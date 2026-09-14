@@ -1,0 +1,4 @@
+# Personal screenshots and scratch files stay out of the public repo
+Screenshot*.png
+_test*
+.DS_Store

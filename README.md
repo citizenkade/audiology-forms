@@ -1,0 +1,51 @@
+# Editable Audiogram
+
+A free audiogram form you fill in on your computer and print to a clean PDF.
+
+It is one file, `audiogram.html`, that opens in any web browser (Chrome, Edge, Safari, Firefox). Nothing to install, no account, no subscription. You type in the student's information, click on the chart to plot thresholds, and print. Every printout is sharp, because the chart is drawn fresh each time instead of being a copy of a copy.
+
+It was made for educational audiologists who needed an editable audiogram and couldn't find one to buy.
+
+## What it looks like
+
+Filling it in on screen. Pick a symbol from the top, click on the chart, and the symbol snaps into place.
+
+![The form on screen with a sample audiogram plotted](docs/form-on-screen.png)
+
+What comes out of the printer, or the PDF you save. One US Letter page.
+
+![The printed page](docs/printed-page.png)
+
+## How to download it
+
+1. **Click this link: [Download audiogram.html](https://github.com/citizenkade/editable-audiogram/releases/latest/download/audiogram.html)**
+2. Your browser saves it to your Downloads folder. If it asks whether to keep the file, choose Keep.
+3. Open your Downloads folder and double-click `audiogram.html`. It opens in your browser, ready to use.
+
+Move the file wherever you like: your desktop, Google Drive, a USB stick. It works from anywhere, and you can email it to a colleague.
+
+If the link above doesn't work for you, there's a second way: click the green **Code** button near the top of this page, choose **Download ZIP**, then unzip it and open `audiogram.html`.
+
+## How to use it
+
+- **Type** into any box. The age fills in on its own from the date of birth and evaluation date.
+- **Plot** by choosing a symbol in the toolbar (R air, L bone, and so on) and clicking on the chart. Symbols snap to the nearest frequency and 5 dB step. Air-conduction thresholds connect automatically.
+- **No response**: click the "No response" button first, then plot. The symbol gets an arrow. Click the button again to turn it off.
+- **Fix a mistake**: click again at the right level to move a symbol, right-click a symbol to remove it, or use Undo.
+- **Pure-tone average** (500, 1000, 2000, and 4000 Hz) calculates itself for each ear once all four thresholds are plotted.
+- **Print / Save as PDF** opens your print dialog. Choose "Save as PDF" as the printer to get a PDF file.
+- **Print blank form** prints an empty copy for hand-plotting.
+- **Copy chart image** puts a picture of the chart and key on your clipboard, ready to paste into a report or email.
+- **Save file** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
+
+## Privacy
+
+Nothing you type leaves your computer. There is no server, no account, and no automatic saving. Student information exists only in the PDFs and files you choose to save.
+
+## Questions and requests
+
+If something is wrong or you want a change, click the **Issues** tab at the top of this page and describe it. You'll need a free GitHub account to post there. Or reply on the Facebook post where you found this.
+
+## License
+
+MIT. Free to use, share, and modify.
