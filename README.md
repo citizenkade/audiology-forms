@@ -6,15 +6,7 @@ It is one file, `audiogram.html`, that opens in any web browser (Chrome, Edge, S
 
 It was made for educational audiologists who needed an editable audiogram and couldn't find one to buy.
 
-## What it looks like
-
-Filling it in on screen. Pick a symbol from the top, click on the chart, and the symbol snaps into place.
-
-![The form on screen with a sample audiogram plotted](docs/form-on-screen.png)
-
-What comes out of the printer, or the PDF you save. One US Letter page.
-
-![The printed page](docs/printed-page.png)
+This page is just a description of it, with a download link and some pictures. The form itself is the file you download in the next section.
 
 ## How to download it
 
@@ -25,6 +17,18 @@ What comes out of the printer, or the PDF you save. One US Letter page.
 Move the file wherever you like: your desktop, Google Drive, a USB stick. It works from anywhere, and you can email it to a colleague.
 
 If the link above doesn't work for you, there's a second way: click the green **Code** button near the top of this page, choose **Download ZIP**, then unzip it and open `audiogram.html`.
+
+## What it looks like
+
+These are pictures, not the form itself. Clicking on them won't fill anything in. Clicking a picture downloads the real form, same as the link above.
+
+Filling it in on screen. You pick a symbol from the toolbar at the top, click on the chart, and the symbol snaps into place.
+
+[![Screenshot of the form open in a web browser, with a sample audiogram plotted](docs/form-on-screen.png)](https://github.com/citizenkade/editable-audiogram/releases/latest/download/audiogram.html)
+
+What comes out of the printer, or the PDF you save. One US Letter page.
+
+[![Screenshot of the printed page](docs/printed-page.png)](https://github.com/citizenkade/editable-audiogram/releases/latest/download/audiogram.html)
 
 ## How to use it
 
