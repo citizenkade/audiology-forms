@@ -42,6 +42,19 @@ What comes out of the printer, or the PDF you save. One US Letter page.
 - **Copy chart image** puts a picture of the chart and key on your clipboard, ready to paste into a report or email.
 - **Save file** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
 
+## ABR report
+
+There is a second form, `abr-report.html`, for auditory brainstem response evaluations. It works the same way: one file, opens in any browser, prints to a two-page PDF. It has its own download link:
+
+**[Download abr-report.html](https://github.com/citizenkade/editable-audiogram/releases/latest/download/abr-report.html)**
+
+What is different from the audiogram form:
+
+- **Thresholds are typed, not clicked.** Enter ABR thresholds in dB nHL for click and toneburst stimuli, by ear and by air or bone conduction. Write `35*` when the lowest level tested had a response, and `NR 90` for no response at 90.
+- **Estimated behavioral thresholds** (dB eHL) fill in on their own from the measured table, using a correction for each stimulus. The corrections are editable and the printout states which ones were used. Untick "Calculate from measured" to type the estimates yourself.
+- **The audiogram draws itself** from the estimated table.
+- **Page 2** holds otoacoustic emissions, immittance, a summary of hearing status, the interpretation, a recommendations checklist, and the signature.
+
 ## Privacy
 
 Nothing you type leaves your computer. There is no server, no account, and no automatic saving. Student information exists only in the PDFs and files you choose to save.

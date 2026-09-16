@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABR Report</title>
+<style>
+:root{--ink:#222;--line:#999;--muted:#666;--red:#d11a2a;--blue:#1f4fd1}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#e9eaee;font:13px/1.35 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink)}
+
+/* ---------- toolbar (screen only) ---------- */
+.toolbar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #d0d2d8;padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.tb-group{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+button.tb{padding:5px 10px;border:1px solid #cfd2d8;border-radius:6px;background:#fff;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222}
+button.tb:hover{border-color:#999}
+button.tb.primary{background:#1f4fd1;color:#fff;border-color:#1f4fd1}
+button.tb.primary:hover{background:#1a43b3}
+.tb-check{display:inline-flex;align-items:center;gap:4px;font-size:12px}
+.status{font-size:12px;color:#555;min-width:180px}
+.sep{width:1px;height:22px;background:#e0e2e8}
+
+/* ---------- the sheets ---------- */
+.sheet{width:8.5in;min-height:11in;margin:18px auto;background:#fff;padding:0.4in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25;position:relative}
+.sheet:last-of-type{margin-bottom:40px}
+h1{font-size:15px;margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.p2head{display:flex;justify-content:space-between;gap:12px;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding-bottom:3px;margin-bottom:0.12in;white-space:nowrap;overflow:hidden}
+.fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
+.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.4in}
+.field label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+.field input{width:100%;border:0;background:transparent;font:inherit;font-size:11px;padding:1px 0;outline:none;color:var(--ink)}
+.field input:focus{background:#f5f7ff}
+.span2{grid-column:span 2}
+.box{border:1px solid var(--line);padding:4px 6px;margin-bottom:0.1in}
+.box h2{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 3px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.box h2 .ctl{text-transform:none;letter-spacing:0;font-weight:400;font-size:9px;color:#444;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.cond-row{display:flex;gap:6px;align-items:baseline;margin:2px 0}
+.cond-row .cl{font-size:9px;color:var(--muted);min-width:78px}
+.checks{display:flex;flex-wrap:wrap;gap:2px 8px}
+.checks label{display:inline-flex;align-items:center;gap:3px;font-size:10px;white-space:nowrap}
+input[type=checkbox]{width:11px;height:11px;margin:0;accent-color:#222;vertical-align:middle}
+.inline-field{display:flex;gap:4px;align-items:baseline;flex:1}
+.inline-field span{font-size:9px;color:var(--muted);white-space:nowrap}
+.inline-field input{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10.5px;outline:none;min-width:0;color:var(--ink)}
+.inline-field input:focus{background:#f5f7ff}
+table.results{width:100%;border-collapse:collapse}
+table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:10px;text-align:left;height:0.2in}
+table.results td:first-child{white-space:nowrap;width:1%}
+table.results th{background:#f2f2f2;font-weight:600;text-align:center}
+table.results th:first-child{text-align:left}
+table.results th.r{color:var(--red)} table.results th.l{color:var(--blue)}
+table.results td.n{text-align:center}
+table.results td.dis{background:#f4f4f4;color:#bbb;text-align:center}
+table.results td input{width:100%;border:0;background:transparent;font:inherit;outline:none;color:var(--ink);padding:0}
+table.results td.n input{text-align:center}
+table.results td input:focus{background:#f5f7ff}
+table.results td input.calc{background:#f7f7f7;color:#333}
+table.results th.corr,table.results td.corr{width:0.5in;background:#fbf8ee;text-align:center}
+table.results td.corr input{text-align:center}
+.foot{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.3}
+.thr{display:grid;grid-template-columns:1fr 3.45in;gap:0.15in;margin-top:0.1in;align-items:start}
+#chart{width:100%;height:auto;display:block}
+#key{width:100%;height:auto;display:block;margin-top:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0.15in;margin-top:0.1in}
+.two .box{margin-bottom:0}
+.bottom{display:grid;grid-template-columns:2.6in 1fr;gap:0.15in;margin-top:0.1in;align-items:start}
+.bottom .box{margin-bottom:0}
+.ear-row{display:flex;gap:10px;align-items:baseline;margin:3px 0;font-size:10px}
+.ear-row .ear{font-weight:600;min-width:34px}
+.ear-row.r .ear{color:var(--red)} .ear-row.l .ear{color:var(--blue)}
+.comments{border:1px solid var(--line);padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none}
+.comments:focus{background:#fbfcff}
+.comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.12in 0 2px}
+.comments-label+.comments{margin-top:0}
+.rec{margin-top:2px}
+.rec-item{display:flex;align-items:baseline;gap:5px;font-size:10px;margin:2px 0}
+.rec-item input[type=checkbox]{position:relative;top:1px;flex:none}
+.rec-item .txt{white-space:nowrap}
+.rec-item input[type=text]{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10px;outline:none;min-width:0;color:var(--ink)}
+.rec-item input[type=text]:focus{background:#f5f7ff}
+.sig{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:0.25in;margin-top:0.2in;align-items:end}
+.sig .line{border-bottom:1px solid #333;height:0.28in}
+.sig input{width:100%;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
+.sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+.pageno{position:absolute;right:0.4in;bottom:0.25in;font-size:8px;color:var(--muted)}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:letter portrait;margin:0.4in}
+  body{background:#fff}
+  .toolbar,.screen-only{display:none!important}
+  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;break-after:page}
+  .sheet:last-of-type{break-after:auto}
+  .pageno{display:none}
+  ::placeholder{color:transparent}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .field input:focus,table.results td input:focus,.comments:focus,.inline-field input:focus{background:transparent}
+  table.results td input.calc{background:transparent;color:var(--ink)}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="tb-group">
+    <button class="tb primary" id="btnPrint" title="Opens the print dialog. Choose 'Save as PDF' as the destination.">Print / Save as PDF</button>
+    <button class="tb" id="btnPrintBlank" title="Prints an empty form">Print blank form</button>
+    <button class="tb" id="btnCopy" title="Copies a PNG of the chart and key to the clipboard">Copy chart image</button>
+    <button class="tb" id="btnPNG">Download chart PNG</button>
+    <label class="tb-check"><input type="checkbox" id="chkBands" checked> Degree labels</label>
+  </div>
+  <div class="sep"></div>
+  <div class="tb-group">
+    <button class="tb" id="btnSave" title="Downloads a copy of this file with everything filled in, so it can be reopened later">Save file</button>
+    <button class="tb" id="btnNew">New form</button>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="sheet" id="sheet1">
+  <h1>Auditory Brainstem Response Evaluation</h1>
+
+  <div class="fields">
+    <div class="field span2"><label>Patient name</label><input data-field="patient" autocomplete="off"></div>
+    <div class="field"><label>Date of birth</label><input data-field="dob" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+    <div class="field"><label>Age</label><input data-field="age" autocomplete="off"></div>
+    <div class="field span2"><label>Patient ID / MRN</label><input data-field="id" autocomplete="off"></div>
+
+    <div class="field"><label>Date of evaluation</label><input data-field="date" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+    <div class="field span2"><label>Examiner(s)</label><input data-field="examiner" autocomplete="off"></div>
+    <div class="field span2"><label>Referring provider</label><input data-field="referredBy" autocomplete="off"></div>
+    <div class="field"><label>Corrected age</label><input data-field="correctedAge" autocomplete="off"></div>
+
+    <div class="field span2"><label>Facility / clinic</label><input data-field="facility" autocomplete="off"></div>
+    <div class="field span2"><label>Reason for evaluation</label><input data-field="reason" autocomplete="off"></div>
+    <div class="field span2"><label>Newborn hearing screen</label><input data-field="nhs" placeholder="Result, date, method" autocomplete="off"></div>
+  </div>
+
+  <div class="box" style="margin-top:0.1in">
+    <h2>Test conditions</h2>
+    <div class="cond-row"><span class="cl">Patient state</span><span class="checks">
+      <label><input type="checkbox" data-check="sSleep"> Natural sleep</label>
+      <label><input type="checkbox" data-check="sSedated"> Sedated</label>
+      <label><input type="checkbox" data-check="sAnesthesia"> General anesthesia</label>
+      <label><input type="checkbox" data-check="sAwake"> Awake, quiet</label>
+    </span><span class="inline-field"><span>Details</span><input data-field="stateNotes"></span></div>
+    <div class="cond-row"><span class="cl">Transducer</span><span class="checks">
+      <label><input type="checkbox" data-check="tInserts"> Insert earphones</label>
+      <label><input type="checkbox" data-check="tHeadphones"> Headphones</label>
+      <label><input type="checkbox" data-check="tBone"> Bone oscillator</label>
+    </span></div>
+    <div class="cond-row"><span class="cl">Stimuli</span><span class="checks">
+      <label><input type="checkbox" data-check="stClick"> Click</label>
+      <label><input type="checkbox" data-check="stToneburst"> Toneburst</label>
+      <label><input type="checkbox" data-check="stChirp"> Chirp</label>
+    </span><span class="inline-field"><span>Equipment</span><input data-field="equipment"></span></div>
+    <div class="cond-row"><span class="cl">Recording quality</span><span class="checks">
+      <label><input type="checkbox" data-check="qGood"> Good</label>
+      <label><input type="checkbox" data-check="qFair"> Fair</label>
+      <label><input type="checkbox" data-check="qPoor"> Poor</label>
+    </span></div>
+  </div>
+
+  <div class="comments-label">History</div>
+  <div class="comments" contenteditable="true" data-field="history" style="min-height:0.75in"></div>
+
+  <div class="thr">
+    <div>
+      <div class="box">
+        <h2>ABR measured thresholds (dB nHL)</h2>
+        <table class="results" id="tblNhl">
+          <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th></tr>
+        </table>
+        <div class="foot">* = lowest level tested with a response present; true threshold may be lower. NR = no response at the level given.</div>
+      </div>
+      <div class="box">
+        <h2>Estimated behavioral thresholds (dB eHL)
+          <label class="ctl screen-only" title="Fills this table from the measured table: eHL = nHL minus the correction for that stimulus. Uncheck to type estimates yourself."><input type="checkbox" data-check="autoCalc"> Calculate from measured</label></h2>
+        <table class="results" id="tblEhl">
+          <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th><th class="corr screen-only" title="Correction in dB subtracted from the measured nHL threshold">Corr.</th></tr>
+        </table>
+        <div class="foot" id="ehlFoot"></div>
+      </div>
+    </div>
+    <div>
+      <div class="box">
+        <h2>Estimated audiogram</h2>
+        <svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg>
+        <svg id="key" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="box">
+      <h2>Click ABR latencies (ms)</h2>
+      <table class="results">
+        <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
+        <tr><td>Level (dB nHL)</td><td class="n"><input data-field="latLevelR"></td><td class="n"><input data-field="latLevelL"></td></tr>
+        <tr><td>Wave I</td><td class="n"><input data-field="latIR"></td><td class="n"><input data-field="latIL"></td></tr>
+        <tr><td>Wave III</td><td class="n"><input data-field="latIIIR"></td><td class="n"><input data-field="latIIIL"></td></tr>
+        <tr><td>Wave V</td><td class="n"><input data-field="latVR"></td><td class="n"><input data-field="latVL"></td></tr>
+        <tr><td>I–V interval</td><td class="n"><input data-field="latIVR"></td><td class="n"><input data-field="latIVL"></td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="comments-label" style="margin-top:0">Testing notes</div>
+      <div class="comments" contenteditable="true" data-field="testingNotes" style="min-height:1.2in"></div>
+    </div>
+  </div>
+  <div class="pageno">Page 1 of 2</div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="sheet" id="sheet2">
+  <div class="p2head"><span>Auditory Brainstem Response Evaluation</span><span id="p2who"></span><span>Page 2 of 2</span></div>
+
+  <div class="two" style="margin-top:0">
+    <div class="box">
+      <h2>Otoacoustic emissions</h2>
+      <div class="ear-row r"><span class="ear">Right</span><span class="checks">
+        <label><input type="checkbox" data-check="oaeRPass"> Present</label>
+        <label><input type="checkbox" data-check="oaeRAbsent"> Absent</label>
+        <label><input type="checkbox" data-check="oaeRNT"> Not tested</label></span>
+        <span class="inline-field"><input data-field="oaeRNotes" placeholder="Notes"></span></div>
+      <div class="ear-row l"><span class="ear">Left</span><span class="checks">
+        <label><input type="checkbox" data-check="oaeLPass"> Present</label>
+        <label><input type="checkbox" data-check="oaeLAbsent"> Absent</label>
+        <label><input type="checkbox" data-check="oaeLNT"> Not tested</label></span>
+        <span class="inline-field"><input data-field="oaeLNotes" placeholder="Notes"></span></div>
+      <div class="ear-row"><span class="inline-field"><span>Type</span><input data-field="oaeType" placeholder="DPOAE / TEOAE, frequencies tested"></span></div>
+    </div>
+    <div class="box">
+      <h2>Immittance</h2>
+      <div class="cond-row"><span class="cl" style="min-width:52px">Probe tone</span><span class="checks">
+        <label><input type="checkbox" data-check="pt226"> 226 Hz</label>
+        <label><input type="checkbox" data-check="pt1000"> 1000 Hz</label>
+      </span></div>
+      <table class="results">
+        <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
+        <tr><td>Tympanometry</td><td><input data-field="tympR"></td><td><input data-field="tympL"></td></tr>
+        <tr><td>Acoustic reflexes</td><td><input data-field="reflexR"></td><td><input data-field="reflexL"></td></tr>
+        <tr><td>Otoscopy</td><td><input data-field="otoR"></td><td><input data-field="otoL"></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:0.1in">
+    <h2>Summary of hearing status</h2>
+    <div class="ear-row r"><span class="ear">Right</span><span class="inline-field"><input data-field="summaryR" placeholder="Type, degree, configuration"></span></div>
+    <div class="ear-row l"><span class="ear">Left</span><span class="inline-field"><input data-field="summaryL" placeholder="Type, degree, configuration"></span></div>
+  </div>
+
+  <div class="comments-label">Interpretation</div>
+  <div class="comments" contenteditable="true" data-field="interpretation" style="min-height:2.2in"></div>
+
+  <div class="comments-label">Recommendations</div>
+  <div class="rec">
+    <div class="rec-item"><input type="checkbox" data-check="rec1"><span class="txt">Results and recommendations reviewed with family / caregivers</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec2"><span class="txt">Report to referring provider and primary care provider</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec3"><span class="txt">Otolaryngology (ENT) evaluation</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec4"><span class="txt">Repeat ABR:</span><input type="text" data-field="rec4x" placeholder="when, and under what conditions"></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec5"><span class="txt">Behavioral audiologic evaluation (VRA / CPA):</span><input type="text" data-field="rec5x" placeholder="at what age"></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec6"><span class="txt">Hearing aid evaluation and fitting</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec7"><span class="txt">Cochlear implant candidacy evaluation</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec8"><span class="txt">Referral to early intervention services</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec9"><span class="txt">Speech-language evaluation</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec10"><span class="txt">Genetics evaluation and counseling</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec11"><span class="txt">Ophthalmology evaluation</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec12"><span class="txt">Medical management of middle ear status, with repeat testing after resolution</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec13"><span class="txt">Continued hearing aid use during all waking hours</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec14"><span class="txt">Other:</span><input type="text" data-field="rec14x"></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec15"><span class="txt">Other:</span><input type="text" data-field="rec15x"></div>
+  </div>
+
+  <div class="sig">
+    <div><div class="line"></div><label>Audiologist signature</label></div>
+    <div><input data-field="sigName"><label>Printed name, credentials</label></div>
+    <div><input data-field="sigDate"><label>Date</label></div>
+  </div>
+  <div class="pageno">Page 2 of 2</div>
+</div>
+
+<script type="application/json" id="saved-state">null</script>
+<script>
+(function(){
+'use strict';
+// Capture the page exactly as it was loaded, before any script changes it. Used by "Save file".
+const PRISTINE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const statusEl=$('#status');
+function setStatus(msg,ms){ statusEl.textContent=msg||''; if(ms){ clearTimeout(setStatus.t); setStatus.t=setTimeout(()=>{ if(statusEl.textContent===msg) statusEl.textContent=''; },ms); } }
+let dirty=false;
+function markDirty(){ dirty=true; }
+
+/* ---------------- threshold tables ---------------- */
+// Stimuli are rows; ears are columns. 8 kHz bone conduction is not tested by ABR, so those cells are blocked.
+const STIM=[
+  {key:'click',label:'Click',freq:null,corr:0},
+  {key:'500',  label:'500 Hz', freq:500, corr:15},
+  {key:'1000', label:'1000 Hz',freq:1000,corr:10},
+  {key:'2000', label:'2000 Hz',freq:2000,corr:5},
+  {key:'4000', label:'4000 Hz',freq:4000,corr:0},
+  {key:'8000', label:'8000 Hz',freq:8000,corr:0,noBone:true},
+];
+const EARS=[{key:'R',type:'RA'},{key:'L',type:'LA'},{key:'RB',type:'RB'},{key:'LB',type:'LB'}];
+function buildTables(){
+  const nhl=$('#tblNhl'), ehl=$('#tblEhl');
+  STIM.forEach(s=>{
+    let a=`<tr><td>${s.label}</td>`, b=`<tr><td>${s.label}</td>`;
+    EARS.forEach(e=>{
+      const bone=e.key.endsWith('B');
+      if(bone&&s.noBone){ a+=`<td class="dis">—</td>`; b+=`<td class="dis">—</td>`; }
+      else { a+=`<td class="n"><input data-field="nhl_${e.key}_${s.key}" autocomplete="off"></td>`; b+=`<td class="n"><input data-field="ehl_${e.key}_${s.key}" autocomplete="off"></td>`; }
+    });
+    a+='</tr>'; b+=`<td class="corr screen-only"><input data-field="corr_${s.key}" autocomplete="off"></td></tr>`;
+    nhl.insertAdjacentHTML('beforeend',a); ehl.insertAdjacentHTML('beforeend',b);
+  });
+}
+
+// Reads a threshold cell. "35" and "35*" are levels; "NR 90", "NR@90" and "90 NR" are no response at 90.
+function parseLevel(str){
+  const s=(str||'').trim(); if(!s) return null;
+  const nr=/\bNR\b|no\s*resp/i.test(s);
+  const m=s.match(/-?\d+(\.\d+)?/);
+  if(!m) return null;
+  return {db:parseFloat(m[0]),nr,star:/\*/.test(s)};
+}
+function field(name){ return document.querySelector(`[data-field="${name}"]`); }
+function corrFor(s){ const v=parseFloat(field('corr_'+s.key).value); return isNaN(v)?0:v; }
+function autoCalcOn(){ return $('[data-check=autoCalc]').checked; }
+
+// eHL = nHL minus the correction. Non-numeric entries (DNT, CNT, a dash) are copied through unchanged.
+function computeEstimated(){
+  STIM.forEach(s=>{
+    const c=corrFor(s);
+    EARS.forEach(e=>{
+      const src=field(`nhl_${e.key}_${s.key}`), dst=field(`ehl_${e.key}_${s.key}`);
+      if(!src||!dst) return;
+      const raw=src.value.trim(), p=parseLevel(raw);
+      if(!raw) dst.value='';
+      else if(!p) dst.value=raw;
+      else { const v=Math.round(p.db-c); dst.value=p.nr?`NR ${v}`:`${v}${p.star?'*':''}`; }
+    });
+  });
+}
+function updateCalcUI(){
+  const on=autoCalcOn();
+  $$('#tblEhl input[data-field^="ehl_"]').forEach(i=>{ i.readOnly=on; i.classList.toggle('calc',on); i.tabIndex=on?-1:0; i.title=on?'Calculated from the measured table. Uncheck "Calculate from measured" to edit.':''; });
+  $$('#tblEhl input[data-field^="corr_"]').forEach(i=>{ i.disabled=!on; });
+  if(on) computeEstimated();
+  const parts=STIM.map(s=>`${s.label} ${corrFor(s)}`).join(' · ');
+  $('#ehlFoot').textContent=on
+    ? `Estimated thresholds = measured nHL minus a correction (dB): ${parts}. Corrections follow this clinic's protocol.`
+    : 'Estimated thresholds entered by the examiner.';
+}
+
+/* ---------------- chart geometry ---------------- */
+const FREQS=[250,500,1000,2000,4000,8000];
+const DB_MIN=-10, DB_MAX=110;
+const PAD={l:42,t:26,r:62,b:12}, OCT=60, DB10=24;
+const CW=5*OCT, CH=12*DB10;
+const W=PAD.l+CW+PAD.r, H=PAD.t+CH+PAD.b;
+const fx=f=>PAD.l+Math.log2(f/250)*OCT;
+const fy=d=>PAD.t+(d-DB_MIN)/10*DB10;
+const RED='#d11a2a', BLUE='#1f4fd1';
+const FONT='Helvetica,Arial,sans-serif';
+const SYM={
+  RA:{ear:'R',name:'Right air', color:RED, dx:0},
+  LA:{ear:'L',name:'Left air',  color:BLUE,dx:0},
+  RB:{ear:'R',name:'Right bone',color:RED, dx:-10},
+  LB:{ear:'L',name:'Left bone', color:BLUE,dx:10},
+};
+const LINES={RA:RED,LA:BLUE};
+const BANDS=[
+  {from:-10,to:15,label:'Normal'},
+  {from:15,to:25,label:'Slight'},
+  {from:25,to:40,label:'Mild'},
+  {from:40,to:55,label:'Moderate'},
+  {from:55,to:70,label:'Mod. severe'},
+  {from:70,to:90,label:'Severe'},
+  {from:90,to:110,label:'Profound'},
+];
+let showBands=true;
+
+function glyph(type,x,y,nr,size){
+  const s=size||6.5, sw=2, c=SYM[type].color;
+  const common=`fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"`;
+  let g='';
+  switch(type){
+    case 'RA': g=`<circle cx="${x}" cy="${y}" r="${s}" ${common}/>`; break;
+    case 'LA': g=`<path d="M${x-s} ${y-s}L${x+s} ${y+s}M${x+s} ${y-s}L${x-s} ${y+s}" ${common}/>`; break;
+    case 'RB': g=`<path d="M${x+s*0.8} ${y-s}L${x-s*0.6} ${y}L${x+s*0.8} ${y+s}" ${common}/>`; break;
+    case 'LB': g=`<path d="M${x-s*0.8} ${y-s}L${x+s*0.6} ${y}L${x-s*0.8} ${y+s}" ${common}/>`; break;
+  }
+  if(nr){
+    const dir=SYM[type].ear==='R'?-1:1;
+    const x0=x+dir*s*0.9, y0=y+s*0.9;
+    const x1=x0+dir*8, y1=y0+9;
+    const ang=Math.atan2(y1-y0,x1-x0), hl=4.5;
+    const a1=ang+Math.PI*0.8, a2=ang-Math.PI*0.8;
+    g+=`<path d="M${x0} ${y0}L${x1} ${y1}M${x1+Math.cos(a1)*hl} ${y1+Math.sin(a1)*hl}L${x1} ${y1}L${x1+Math.cos(a2)*hl} ${y1+Math.sin(a2)*hl}" ${common}/>`;
+  }
+  return g;
+}
+
+// Points come from the estimated table. Click is broadband and is not plotted.
+function chartPoints(){
+  const pts=[];
+  STIM.forEach(s=>{ if(!s.freq) return;
+    EARS.forEach(e=>{
+      const el=field(`ehl_${e.key}_${s.key}`); if(!el) return;
+      const p=parseLevel(el.value); if(!p) return;
+      const db=Math.max(DB_MIN,Math.min(DB_MAX,Math.round(p.db/5)*5));
+      pts.push({type:e.type,freq:s.freq,db,nr:p.nr});
+    });
+  });
+  return pts;
+}
+function chartInner(){
+  const points=chartPoints();
+  let o=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`;
+  if(showBands){
+    const bx=PAD.l+CW+6, bw=PAD.r-8;
+    BANDS.forEach((b,i)=>{
+      const y0=fy(b.from), y1=fy(b.to);
+      if(i%2===1) o+=`<rect x="${PAD.l}" y="${y0}" width="${CW}" height="${y1-y0}" fill="#000" fill-opacity="0.035"/>`;
+      o+=`<line x1="${bx}" x2="${bx+bw}" y1="${y0}" y2="${y0}" stroke="#bbb" stroke-width="1" shape-rendering="crispEdges"/>`;
+      o+=`<text x="${bx+3}" y="${(y0+y1)/2}" dominant-baseline="central" font-family="${FONT}" font-size="7.5" fill="#555">${b.label}</text>`;
+    });
+    o+=`<line x1="${bx}" x2="${bx+bw}" y1="${fy(DB_MAX)}" y2="${fy(DB_MAX)}" stroke="#bbb" stroke-width="1" shape-rendering="crispEdges"/>`;
+  }
+  for(let d=DB_MIN; d<=DB_MAX; d+=10){
+    const y=fy(d), edge=(d===DB_MIN||d===DB_MAX);
+    o+=`<line x1="${PAD.l}" x2="${PAD.l+CW}" y1="${y}" y2="${y}" stroke="${edge?'#555':(d===0?'#777':'#c4c4c4')}" stroke-width="1" shape-rendering="crispEdges"/>`;
+    o+=`<text x="${PAD.l-6}" y="${y}" text-anchor="end" dominant-baseline="central" font-family="${FONT}" font-size="8.5" fill="#333">${d}</text>`;
+  }
+  FREQS.forEach(f=>{
+    const x=fx(f), edge=(f===250||f===8000);
+    o+=`<line x1="${x}" x2="${x}" y1="${PAD.t}" y2="${PAD.t+CH}" stroke="${edge?'#555':'#888'}" stroke-width="1" shape-rendering="crispEdges"/>`;
+    const lab=f>=1000?(f/1000)+'K':String(f);
+    o+=`<text x="${x}" y="${PAD.t-7}" text-anchor="middle" font-family="${FONT}" font-size="8.5" fill="#333">${lab}</text>`;
+  });
+  o+=`<text x="${PAD.l+CW/2}" y="8" text-anchor="middle" font-family="${FONT}" font-size="8" fill="#555" letter-spacing="0.5">FREQUENCY (Hz)</text>`;
+  o+=`<text transform="translate(9 ${PAD.t+CH/2}) rotate(-90)" text-anchor="middle" font-family="${FONT}" font-size="8" fill="#555" letter-spacing="0.5">ESTIMATED HEARING LEVEL (dB eHL)</text>`;
+  Object.keys(LINES).forEach(t=>{
+    const pts=points.filter(p=>p.type===t).sort((a,b)=>a.freq-b.freq);
+    let seg=[];
+    const flush=()=>{ if(seg.length>1) o+=`<polyline points="${seg.map(p=>fx(p.freq)+','+fy(p.db)).join(' ')}" fill="none" stroke="${LINES[t]}" stroke-width="1.5"/>`; seg=[]; };
+    pts.forEach(p=>{ if(p.nr) flush(); else seg.push(p); });
+    flush();
+  });
+  points.forEach(p=>{ o+=glyph(p.type,fx(p.freq)+SYM[p.type].dx,fy(p.db),p.nr); });
+  return o;
+}
+const chartEl=$('#chart'), keyEl=$('#key');
+function renderChart(){ chartEl.setAttribute('viewBox',`0 0 ${W} ${H}`); chartEl.innerHTML=chartInner(); }
+
+/* ---------------- key (one row under the chart) ---------------- */
+const KW=W, KH=22;
+function keyInner(){
+  let o=`<rect x="0" y="0" width="${KW}" height="${KH}" fill="#fff"/>`;
+  const items=[['RA','Right air'],['LA','Left air'],['RB','Right bone'],['LB','Left bone']];
+  let x=PAD.l-2; const y=KH/2;
+  items.forEach(([t,lab])=>{
+    o+=glyph(t,x+6,y,false,5.5);
+    o+=`<text x="${x+16}" y="${y}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" fill="#333">${lab}</text>`;
+    x+=16+lab.length*4.6+14;
+  });
+  o+=glyph('RA',x+6,y-3,true,5.5);
+  o+=`<text x="${x+22}" y="${y}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" fill="#333">No response</text>`;
+  return o;
+}
+function renderKey(){ keyEl.setAttribute('viewBox',`0 0 ${KW} ${KH}`); keyEl.innerHTML=keyInner(); }
+
+/* ---------------- page 2 running header ---------------- */
+function updateP2(){
+  const f=n=>(field(n).value||'').trim();
+  const bits=[f('patient'),f('dob')?'DOB '+f('dob'):'',f('date')?'Evaluated '+f('date'):''].filter(Boolean);
+  $('#p2who').textContent=bits.join(' · ');
+}
+
+/* ---------------- age from DOB and evaluation date ---------------- */
+function parseDate(str){ if(!str) return null; const d=new Date(str.trim()); return isNaN(d)?null:d; }
+function updateAge(){
+  const dob=parseDate(field('dob').value), ev=parseDate(field('date').value);
+  if(!dob||!ev||ev<dob) return;
+  const days=Math.floor((ev-dob)/864e5);
+  let y=ev.getFullYear()-dob.getFullYear(), m=ev.getMonth()-dob.getMonth();
+  if(ev.getDate()<dob.getDate()) m--;
+  if(m<0){ y--; m+=12; }
+  const months=y*12+m;
+  let out;
+  if(days<14) out=`${days} days`;
+  else if(months<1) out=`${Math.floor(days/7)} wk`;
+  else if(months<24) out=`${months} mo`;
+  else out=`${y} yr ${m} mo`;
+  field('age').value=out;
+}
+
+/* ---------------- refresh on any edit ---------------- */
+function refresh(){ if(autoCalcOn()) computeEstimated(); renderChart(); updateP2(); }
+document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(); if((e.target.dataset.field||'').startsWith('corr_')) updateCalcUI(); refresh(); });
+document.addEventListener('change',e=>{
+  if(!e.target.matches('[data-field],[data-check]')) return;
+  markDirty();
+  if(e.target.dataset.check==='autoCalc') updateCalcUI();
+  if(e.target.dataset.field&&e.target.dataset.field.startsWith('corr_')) updateCalcUI();
+  if(e.target.dataset.field==='dob'||e.target.dataset.field==='date') updateAge();
+  refresh();
+});
+$('#chkBands').addEventListener('change',e=>{ showBands=e.target.checked; markDirty(); renderChart(); });
+window.addEventListener('beforeunload',e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
+
+/* ---------------- form state ---------------- */
+function today(){ const d=new Date(); return `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`; }
+function getState(){
+  const fields={}, checks={};
+  $$('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
+  $$('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
+  return {version:1,form:'abr',fields,checks,showBands};
+}
+function applyState(s){
+  s=s||{};
+  const fields=s.fields||{}, checks=s.checks||{};
+  $$('[data-field]').forEach(el=>{ const v=fields[el.dataset.field]||''; if(el.isContentEditable) el.innerText=v; else el.value=v; });
+  $$('[data-check]').forEach(el=>{ el.checked=!!checks[el.dataset.check]; });
+  showBands=s.showBands!==false;
+  $('#chkBands').checked=showBands;
+  updateCalcUI(); refresh();
+}
+function defaultCorrections(){ const o={}; STIM.forEach(s=>{ o['corr_'+s.key]=String(s.corr); }); return o; }
+function emptyState(){ return {fields:Object.assign({date:today()},defaultCorrections()),checks:{autoCalc:true},showBands}; }
+
+/* ---------------- file actions ---------------- */
+function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },2000); }
+function safeName(s){ return (s||'').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'_'); }
+function saveFile(){
+  const st=getState();
+  const json=JSON.stringify(st).replace(/</g,'\\u003c');
+  const html=PRISTINE.replace(/(<script type="application\/json" id="saved-state">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+json+b);
+  const name=`ABR_Report_${safeName(st.fields.patient)||'blank'}_${safeName(st.fields.date)||safeName(today())}.html`;
+  download(new Blob([html],{type:'text/html'}),name);
+  dirty=false; setStatus('Saved '+name,4000);
+}
+$('#btnSave').addEventListener('click',saveFile);
+$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('New form',1500); });
+$('#btnPrint').addEventListener('click',()=>window.print());
+
+let blankSnapshot=null;
+function restoreAfterBlank(){ if(blankSnapshot){ const s=blankSnapshot; blankSnapshot=null; applyState(s); } }
+$('#btnPrintBlank').addEventListener('click',()=>{
+  blankSnapshot=getState();
+  const wasDirty=dirty;
+  applyState({fields:{},checks:{},showBands});
+  window.print();
+  restoreAfterBlank();
+  dirty=wasDirty;
+});
+window.addEventListener('afterprint',restoreAfterBlank);
+
+/* ---------------- chart image (copy / download) ---------------- */
+function svgToImage(inner,w,h){
+  return new Promise((res,rej)=>{
+    const str=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">${inner}</svg>`;
+    const img=new Image();
+    img.onload=()=>res(img); img.onerror=()=>rej(new Error('SVG render failed'));
+    img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(str);
+  });
+}
+async function chartImageBlob(){
+  const scale=3, pad=10;
+  const [ci,ki]=await Promise.all([svgToImage(chartInner(),W,H),svgToImage(keyInner(),KW,KH)]);
+  const cw=W+pad*2, ch=H+KH+4+pad*2;
+  const c=document.createElement('canvas'); c.width=cw*scale; c.height=ch*scale;
+  const g=c.getContext('2d'); g.scale(scale,scale);
+  g.fillStyle='#fff'; g.fillRect(0,0,cw,ch);
+  g.drawImage(ci,pad,pad,W,H);
+  g.drawImage(ki,pad,pad+H+4,KW,KH);
+  return new Promise(res=>c.toBlob(res,'image/png'));
+}
+function pngName(){ const st=getState(); return `ABR_${safeName(st.fields.patient)||'chart'}_${safeName(st.fields.date)||safeName(today())}.png`; }
+$('#btnPNG').addEventListener('click',()=>{ chartImageBlob().then(b=>{ download(b,pngName()); setStatus('PNG downloaded',3000); }); });
+$('#btnCopy').addEventListener('click',()=>{
+  const p=chartImageBlob();
+  if(navigator.clipboard&&window.ClipboardItem){
+    navigator.clipboard.write([new ClipboardItem({'image/png':p})])
+      .then(()=>setStatus('Chart image copied. Paste it anywhere.',4000))
+      .catch(()=>{ p.then(b=>download(b,pngName())); setStatus('Clipboard not available here. Downloaded a PNG instead.',5000); });
+  } else { p.then(b=>download(b,pngName())); setStatus('Clipboard not available in this browser. Downloaded a PNG instead.',5000); }
+});
+
+/* ---------------- boot ---------------- */
+buildTables(); renderKey();
+let saved=null;
+try{ saved=JSON.parse(document.getElementById('saved-state').textContent); }catch(e){ saved=null; }
+applyState(saved||emptyState());
+dirty=false;
+})();
+</script>
+</body>
+</html>

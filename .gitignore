@@ -2,3 +2,4 @@
 Screenshot*.png
 _test*
 .DS_Store
+examples (contains PII)/
