@@ -42,6 +42,12 @@ What comes out of the printer, or the PDF you save. One US Letter page.
 - **Copy chart image** puts a picture of the chart and key on your clipboard, ready to paste into a report or email.
 - **Save file** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
 
+## Your letterhead
+
+Click **Letterhead…** in the toolbar to put your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type. Each is optional.
+
+The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy** in the panel. That downloads a blank `audiogram.html` with your letterhead built in. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Files you save with student information carry the letterhead too.
+
 ## ABR report
 
 There is a second form, `abr-report.html`, for auditory brainstem response evaluations. It works the same way: one file, opens in any browser, prints to a two-page PDF. It has its own download link:

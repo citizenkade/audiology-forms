@@ -28,15 +28,19 @@ button.tb.primary:hover{background:#1a43b3}
 .sep{width:1px;height:22px;background:#e0e2e8}
 
 /* ---------- the sheet ---------- */
-.sheet{width:8.5in;min-height:11in;margin:18px auto 40px;background:#fff;padding:0.4in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25}
-h1{font-size:15px;margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.sheet{width:8.5in;min-height:11in;margin:18px auto 40px;background:#fff;padding:0.3in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25}
+h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+[hidden]{display:none!important}
+.head{display:grid;grid-template-columns:2in 1fr 2in;align-items:center;gap:0.12in;margin-bottom:6px}
+.head .logo img{display:block;max-width:2in;max-height:0.45in}
+.head .contact{font-size:8px;line-height:1.25;color:var(--muted);text-align:right;white-space:pre-line;overflow:hidden}
 .fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
-.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.4in}
+.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.35in}
 .field label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
 .field input{width:100%;border:0;background:transparent;font:inherit;font-size:11px;padding:1px 0;outline:none;color:var(--ink)}
 .field input:focus{background:#f5f7ff}
 .span2{grid-column:span 2}
-.mid{display:grid;grid-template-columns:4.6in 1fr;gap:0.15in;margin-top:0.1in;align-items:start}
+.mid{display:grid;grid-template-columns:4.6in 1fr;gap:0.15in;margin-top:0.08in;align-items:start}
 #chart{width:100%;height:auto;display:block;cursor:crosshair;touch-action:none}
 #chart.erase{cursor:not-allowed}
 .box{border:1px solid var(--line);padding:4px 6px;margin-bottom:0.1in}
@@ -71,19 +75,37 @@ table.results td input:focus{background:#f5f7ff}
 .inline-field{display:flex;gap:4px;align-items:baseline;flex:1}
 .inline-field span{font-size:9px;color:var(--muted);white-space:nowrap}
 .inline-field input{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10.5px;outline:none;min-width:0;color:var(--ink)}
-.comments{border:1px solid var(--line);min-height:0.75in;padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none;margin-top:0.12in}
+.comments{border:1px solid var(--line);min-height:0.65in;padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none;margin-top:0.12in}
 .comments:focus{background:#fbfcff}
 .comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.12in 0 -0.1in}
 .sig{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:0.25in;margin-top:0.08in;align-items:end}
 .sig .line{border-bottom:1px solid #333;height:0.28in}
 .sig input{width:100%;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
 .sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+.sig .signer{font-size:8.5px;line-height:1.25;margin-top:2px;white-space:pre-line}
+.sig .bc{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:end}
+.sig .bc svg{display:block;height:0.3in}
+.sig .bc span{font-size:8px;white-space:nowrap}
+
+/* ---------- letterhead dialog (screen only) ---------- */
+dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-height:calc(100vh - 70px);overflow:auto;border:1px solid #cfd2d8;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.2);padding:14px 16px;font:13px/1.4 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222;z-index:10;background:#fff}
+.lh h3{margin:0 0 12px;font-size:14px}
+.lh .row{margin-bottom:13px}
+.lh label.t{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;margin-bottom:3px}
+.lh input[type=text],.lh textarea{width:100%;border:1px solid #cfd2d8;border-radius:6px;padding:5px 7px;font:inherit;resize:none;color:#222;background:#fff}
+.lh input[type=text]:focus,.lh textarea:focus{outline:none;border-color:#1f4fd1}
+.lh .hint{font-size:11px;color:#666;margin-top:3px}
+.lh .logo-preview{display:flex;align-items:center;gap:10px;margin-bottom:6px;min-height:40px}
+.lh .logo-preview img{max-width:200px;max-height:48px;border:1px dashed #ccc;padding:2px;background:#fff}
+.lh .btns{display:flex;gap:6px;flex-wrap:wrap}
+.lh .foot{border-top:1px solid #eee;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lh .note{font-size:11px;color:#666;margin-bottom:10px}
 
 /* ---------- print ---------- */
 @media print{
-  @page{size:letter portrait;margin:0.4in}
+  @page{size:letter portrait;margin:0.3in}
   body{background:#fff}
-  .toolbar{display:none}
+  .toolbar,dialog{display:none!important}
   .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
   ::placeholder{color:transparent}
   #ghost{display:none}
@@ -114,12 +136,17 @@ table.results td input:focus{background:#f5f7ff}
   <div class="tb-group">
     <button class="tb" id="btnSave" title="Downloads a copy of this file with everything filled in, so it can be reopened later">Save file</button>
     <button class="tb" id="btnNew">New form</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode. Remembered between sessions.">Letterhead…</button>
   </div>
   <div class="status" id="status"></div>
 </div>
 
 <div class="sheet" id="sheet">
-  <h1>Audiological Evaluation</h1>
+  <div class="head">
+    <div class="logo"><img id="shLogo" alt="" hidden></div>
+    <h1>Audiological Evaluation</h1>
+    <div class="contact" id="shContact" hidden></div>
+  </div>
 
   <div class="fields">
     <div class="field span2"><label>Student name</label><input data-field="student" autocomplete="off"></div>
@@ -230,14 +257,47 @@ table.results td input:focus{background:#f5f7ff}
   <div class="comments-label">Results, comments &amp; recommendations</div>
   <div class="comments" id="comments" contenteditable="true" data-field="comments"></div>
 
-  <div class="sig">
-    <div><div class="line"></div><label>Audiologist signature</label></div>
-    <div><input data-field="sigName"><label>Printed name, credentials</label></div>
+  <div class="sig" id="sig">
+    <div class="bc" id="shBarcode" hidden></div>
+    <div><div class="line"></div><label id="sigLabel">Audiologist signature</label><div class="signer" id="shSigner" hidden></div></div>
+    <div id="sigPN"><input data-field="sigName"><label>Printed name, credentials</label></div>
     <div><input data-field="sigDate"><label>Date</label></div>
   </div>
 </div>
 
+<dialog class="lh" id="lhDialog">
+  <h3>Letterhead</h3>
+  <div class="note">Put your logo, office details, and name on every printout. Changes show on the page right away. To keep them for next time, click <b>Save master copy</b> below and use that file from now on.</div>
+  <div class="row">
+    <label class="t">Logo</label>
+    <div class="logo-preview"><img id="lhLogoPreview" alt="" hidden><span class="hint" id="lhLogoNone">No logo</span></div>
+    <div class="btns"><button class="tb" id="lhLogoPick">Choose image…</button><button class="tb" id="lhLogoClear">Remove</button><input type="file" id="lhLogoFile" accept="image/png,image/jpeg,image/svg+xml" hidden></div>
+    <div class="hint">PNG, JPG, or SVG. Prints at the top left, up to 2 inches wide and half an inch tall. A wide logo looks best.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhContact">Office or organization</label>
+    <textarea id="lhContact" rows="4" placeholder="Clinic or office name&#10;Street address&#10;Phone&#10;Fax"></textarea>
+    <div class="hint">Up to 4 lines. Prints at the top right.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhSigner1">Under the signature line</label>
+    <input type="text" id="lhSigner1" maxlength="60" placeholder="Jane Doe, Au.D., CCC-A">
+    <input type="text" id="lhSigner2" maxlength="60" placeholder="jane.doe@clinic.org" style="margin-top:4px">
+    <div class="hint">Your name and credentials, then an optional second line such as an email address.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhDocId">Document identifier</label>
+    <input type="text" id="lhDocId" maxlength="16" placeholder="e.g. Audio Eval">
+    <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
+  </div>
+  <div class="foot">
+    <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
+    <span><button class="tb" id="lhClear">Clear all</button> <button class="tb primary" id="lhDone">Done</button></span>
+  </div>
+</dialog>
+
 <script type="application/json" id="saved-state">null</script>
+<script type="application/json" id="letterhead">null</script>
 <script>
 (function(){
 'use strict';
@@ -500,11 +560,12 @@ function applyState(s){
   $('#chkBands').checked=showBands;
   undoStack=[];
   renderChart();
+  layoutSig();
 }
 function emptyState(){ return {fields:{date:today()},checks:{},points:[],showBands}; }
 
 document.querySelectorAll('[data-field],[data-check]').forEach(el=>{ el.addEventListener('input',markDirty); el.addEventListener('change',markDirty); });
-window.addEventListener('beforeunload',e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
+window.addEventListener('beforeunload',e=>{ if(dirty||lhDirty){ e.preventDefault(); e.returnValue=''; } });
 
 // age from DOB and evaluation date
 function parseDate(str){ if(!str) return null; const d=new Date(str.trim()); return isNaN(d)?null:d; }
@@ -522,13 +583,16 @@ $('[data-field=date]').addEventListener('change',updateAge);
 /* ---------------- file actions ---------------- */
 function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },2000); }
 function safeName(s){ return (s||'').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'_'); }
+function embedJSON(html,id,obj){
+  const json=JSON.stringify(obj).replace(/</g,'\\u003c');
+  return html.replace(new RegExp('(<script type="application/json" id="'+id+'">)[\\s\\S]*?(<\\/script>)'),(m,a,b)=>a+json+b);
+}
+function buildFile(state){ return embedJSON(embedJSON(PRISTINE,'saved-state',state),'letterhead',lhIsEmpty(lh)?null:lh); }
 function saveFile(){
   const st=getState();
-  const json=JSON.stringify(st).replace(/</g,'\\u003c');
-  const html=PRISTINE.replace(/(<script type="application\/json" id="saved-state">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+json+b);
   const name=`Audiogram_${safeName(st.fields.student)||'blank'}_${safeName(st.fields.date)||safeName(today())}.html`;
-  download(new Blob([html],{type:'text/html'}),name);
-  dirty=false; setStatus('Saved '+name,4000);
+  download(new Blob([buildFile(st)],{type:'text/html'}),name);
+  dirty=false; lhDirty=false; setStatus('Saved '+name,4000);
 }
 $('#btnSave').addEventListener('click',saveFile);
 $('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('New form',1500); });
@@ -584,8 +648,128 @@ $('#btnCopy').addEventListener('click',()=>{
   } else { p.then(b=>download(b,pngName())); setStatus('Clipboard not available in this browser. Downloaded a PNG instead.',5000); }
 });
 
+/* ---------------- letterhead: logo, contact lines, signer, document barcode ----------------
+   A page opened from disk cannot write to its own file, so the letterhead lives only in the
+   files this form writes: every "Save file" copy and the "Save master copy" download carry it
+   in the #letterhead block. Nothing is kept in the browser. */
+const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:''};
+let lh={...LH_EMPTY};
+let lhDirty=false;   // changed since the file was opened and not yet saved into a master copy
+function lhNormalize(o){
+  o=o&&typeof o==='object'?o:{};
+  const t={...LH_EMPTY};
+  for(const k in LH_EMPTY) if(typeof o[k]==='string') t[k]=o[k];
+  t.contact=t.contact.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim();
+  t.signer1=t.signer1.slice(0,60).trim(); t.signer2=t.signer2.slice(0,60).trim();
+  t.docId=t.docId.replace(/[^\x20-\x7e]/g,'').slice(0,16).trim();
+  if(!/^data:image\/(png|jpeg|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(t.logo)||t.logo.length>800000) t.logo='';
+  return t;
+}
+function lhIsEmpty(t){ return Object.values(t).every(v=>!v); }
+function lhLoad(){
+  let emb=null; try{ emb=JSON.parse(document.getElementById('letterhead').textContent); }catch(e){ emb=null; }
+  return lhNormalize(emb);
+}
+
+// Code 128, subsets B and C. Widths of the 106 symbols as runs of bar,space,bar,space,bar,space; stop pattern appended.
+const C128='212222222122222221121223121322131222122213122312132212221213221312231212112232122132122231113222123122123221223211221132221231213212223112312131311222321122321221312212322112322211212123212321232121111323131123131321112313132113132311211313231113231311112133112331132131113123113321133121313121211331231131213113213311213131311123311321331121312113312311332111314111221411431111111224111422121124121421141122141221112214112412122114122411142112142211241211221114413111241112134111111242121142121241114212124112124211411212421112421211212141214121412121111143111341131141114113114311411113411311113141114131311141411131211412211214211232';
+function code128svg(text){
+  let vals;
+  if(/^\d+$/.test(text)&&text.length%2===0){ vals=[105]; for(let i=0;i<text.length;i+=2) vals.push(+text.slice(i,i+2)); }
+  else { vals=[104]; for(const ch of text) vals.push(ch.charCodeAt(0)-32); }
+  let sum=vals[0]; for(let i=1;i<vals.length;i++) sum+=vals[i]*i; vals.push(sum%103);
+  const runs=vals.map(v=>C128.substr(v*6,6)).join('')+'2331112';
+  const M=0.9, Q=10, HGT=29;                       // module width in px, quiet zone in modules, height in px
+  let x=Q, rects='';
+  for(let i=0;i<runs.length;i++){ const w=+runs[i]; if(i%2===0) rects+=`<rect x="${(x*M).toFixed(2)}" y="0" width="${(w*M).toFixed(2)}" height="${HGT}"/>`; x+=w; }
+  const tw=((x+Q)*M).toFixed(1);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${tw} ${HGT}" width="${tw}" height="${HGT}" shape-rendering="crispEdges" fill="#000">${rects}</svg>`;
+}
+
+function layoutSig(){
+  const signer=!!(lh.signer1||lh.signer2);
+  const pnHidden=signer&&!$('[data-field=sigName]').value;
+  $('#sigPN').hidden=pnHidden;
+  $('#sig').style.gridTemplateColumns=[lh.docId?'auto':'','2fr',pnHidden?'':'1.6fr','1fr'].filter(Boolean).join(' ');
+}
+function lhRender(){
+  const logo=$('#shLogo');
+  if(lh.logo){ logo.src=lh.logo; logo.hidden=false; } else { logo.removeAttribute('src'); logo.hidden=true; }
+  const c=$('#shContact'); c.textContent=lh.contact; c.hidden=!lh.contact;
+  const sg=[lh.signer1,lh.signer2].filter(Boolean).join('\n');
+  $('#shSigner').textContent=sg; $('#shSigner').hidden=!sg; $('#sigLabel').hidden=!!sg;
+  const bc=$('#shBarcode');
+  if(lh.docId){ bc.innerHTML=code128svg(lh.docId)+'<span></span>'; bc.lastChild.textContent=lh.docId; bc.hidden=false; }
+  else { bc.innerHTML=''; bc.hidden=true; }
+  layoutSig();
+}
+function lhFillDialog(){
+  $('#lhContact').value=lh.contact; $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId;
+  const pv=$('#lhLogoPreview');
+  if(lh.logo){ pv.src=lh.logo; pv.hidden=false; } else { pv.removeAttribute('src'); pv.hidden=true; }
+  $('#lhLogoNone').hidden=!!lh.logo; $('#lhLogoClear').disabled=!lh.logo;
+}
+function lhCommit(msg){ lhDirty=true; lhRender(); setStatus(msg||'Letterhead set. Save a master copy to keep it.',3000); }
+
+function lhSetLogoFile(file){
+  if(!file) return;
+  const type=file.type;
+  if(type==='image/svg+xml'){
+    if(file.size>400000){ setStatus('That SVG is over 400 KB. Simplify it or use a PNG.',6000); return; }
+    file.text().then(t=>{
+      if(!/<svg[\s>]/i.test(t)){ setStatus('That file does not look like an SVG.',5000); return; }
+      lh.logo='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(t)));
+      lhCommit(); lhFillDialog();
+    });
+    return;
+  }
+  if(type!=='image/png'&&type!=='image/jpeg'){ setStatus('Use a PNG, JPG, or SVG image.',5000); return; }
+  const url=URL.createObjectURL(file), img=new Image();
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    const k=Math.min(1,1200/img.naturalWidth,400/img.naturalHeight);
+    const finish=dataUrl=>{ lh.logo=dataUrl; lhCommit(); lhFillDialog(); };
+    if(k===1&&file.size<=400000){ const r=new FileReader(); r.onload=()=>finish(r.result); r.readAsDataURL(file); return; }
+    const c=document.createElement('canvas'); c.width=Math.max(1,Math.round(img.naturalWidth*k)); c.height=Math.max(1,Math.round(img.naturalHeight*k));
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    finish(type==='image/jpeg'?c.toDataURL('image/jpeg',0.88):c.toDataURL('image/png'));
+  };
+  img.onerror=()=>{ URL.revokeObjectURL(url); setStatus('Could not read that image.',5000); };
+  img.src=url;
+}
+
+const lhDialog=$('#lhDialog');
+$('#btnLetterhead').addEventListener('click',()=>{ if(lhDialog.open){ lhDialog.close(); return; } lhFillDialog(); lhDialog.show(); });
+$('#lhDone').addEventListener('click',()=>lhDialog.close());
+$('#lhLogoPick').addEventListener('click',()=>$('#lhLogoFile').click());
+$('#lhLogoFile').addEventListener('change',e=>{ lhSetLogoFile(e.target.files[0]); e.target.value=''; });
+$('#lhLogoClear').addEventListener('click',()=>{ lh.logo=''; lhCommit('Logo removed'); lhFillDialog(); });
+$('#lhContact').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n');
+  if(fixed!==v) e.target.value=fixed;
+  lh.contact=fixed.trim(); lhCommit();
+});
+$('#lhSigner1').addEventListener('input',e=>{ lh.signer1=e.target.value.trim(); lhCommit(); });
+$('#lhSigner2').addEventListener('input',e=>{ lh.signer2=e.target.value.trim(); lhCommit(); });
+$('#lhDocId').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.replace(/[^\x20-\x7e]/g,'').slice(0,16);
+  if(fixed!==v) e.target.value=fixed;
+  lh.docId=fixed.trim(); lhCommit();
+});
+$('#lhClear').addEventListener('click',()=>{
+  if(lhIsEmpty(lh)) return;
+  if(!confirm('Remove the logo, contact lines, signer, and document identifier?')) return;
+  lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
+});
+$('#lhMaster').addEventListener('click',()=>{
+  download(new Blob([buildFile(null)],{type:'text/html'}),'audiogram.html');
+  lhDirty=false;
+  setStatus('Saved audiogram.html with your letterhead. Use that file from now on.',6000);
+});
+
 /* ---------------- boot ---------------- */
 buildPalette(); updateToolUI(); renderKey();
+lh=lhLoad(); lhRender();
 let saved=null;
 try{ saved=JSON.parse(document.getElementById('saved-state').textContent); }catch(e){ saved=null; }
 applyState(saved||emptyState());
