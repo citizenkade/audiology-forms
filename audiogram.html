@@ -100,6 +100,9 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
 .lh .btns{display:flex;gap:6px;flex-wrap:wrap}
 .lh .foot{border-top:1px solid #eee;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .lh .note{font-size:11px;color:#666;margin-bottom:10px}
+.lh .inline{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#666}
+.lh .inline select{width:auto}
+.lh select{border:1px solid #cfd2d8;border-radius:6px;padding:5px 7px;font:inherit;color:#222;background:#fff}
 
 /* ---------- print ---------- */
 @media print{
@@ -134,9 +137,10 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
   </div>
   <div class="sep"></div>
   <div class="tb-group">
-    <button class="tb" id="btnSave" title="Downloads a copy of this file with everything filled in, so it can be reopened later">Save file</button>
-    <button class="tb" id="btnNew">New form</button>
-    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode. Remembered between sessions.">Letterhead…</button>
+    <button class="tb" id="btnSave" title="Downloads a copy of this form with everything filled in, so you can reopen it later">Save evaluation</button>
+    <button class="tb" id="btnMaster" title="Downloads a blank copy with your letterhead built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
+    <button class="tb" id="btnNew">Clear form</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode.">Letterhead…</button>
   </div>
   <div class="status" id="status"></div>
 </div>
@@ -289,6 +293,7 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
     <label class="t" for="lhDocId">Document identifier</label>
     <input type="text" id="lhDocId" maxlength="16" placeholder="e.g. Audio Eval">
     <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
+    <div class="inline"><label for="lhBcPages">On page</label><select id="lhBcPages"><option value="first">First</option><option value="last">Last</option><option value="all">All</option></select></div>
   </div>
   <div class="foot">
     <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
@@ -301,7 +306,7 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
 <script>
 (function(){
 'use strict';
-// Capture the page exactly as it was loaded, before any script changes it. Used by "Save file".
+// Capture the page exactly as it was loaded, before any script changes it. Used by "Save evaluation" and "Save master copy".
 const PRISTINE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
 /* ---------------- chart geometry ---------------- */
@@ -595,7 +600,7 @@ function saveFile(){
   dirty=false; lhDirty=false; setStatus('Saved '+name,4000);
 }
 $('#btnSave').addEventListener('click',saveFile);
-$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('New form',1500); });
+$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('Form cleared',1500); });
 $('#btnPrint').addEventListener('click',()=>window.print());
 
 let blankSnapshot=null;
@@ -650,9 +655,9 @@ $('#btnCopy').addEventListener('click',()=>{
 
 /* ---------------- letterhead: logo, contact lines, signer, document barcode ----------------
    A page opened from disk cannot write to its own file, so the letterhead lives only in the
-   files this form writes: every "Save file" copy and the "Save master copy" download carry it
+   files this form writes: every "Save evaluation" copy and the "Save master copy" download carry it
    in the #letterhead block. Nothing is kept in the browser. */
-const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:''};
+const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:'',bcPages:'first'};   // bcPages: which page carries the barcode; one page here, kept for parity with the ABR report
 let lh={...LH_EMPTY};
 let lhDirty=false;   // changed since the file was opened and not yet saved into a master copy
 function lhNormalize(o){
@@ -662,10 +667,11 @@ function lhNormalize(o){
   t.contact=t.contact.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim();
   t.signer1=t.signer1.slice(0,60).trim(); t.signer2=t.signer2.slice(0,60).trim();
   t.docId=t.docId.replace(/[^\x20-\x7e]/g,'').slice(0,16).trim();
+  if(!['first','last','all'].includes(t.bcPages)) t.bcPages='first';
   if(!/^data:image\/(png|jpeg|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(t.logo)||t.logo.length>800000) t.logo='';
   return t;
 }
-function lhIsEmpty(t){ return Object.values(t).every(v=>!v); }
+function lhIsEmpty(t){ return !(t.logo||t.contact||t.signer1||t.signer2||t.docId); }
 function lhLoad(){
   let emb=null; try{ emb=JSON.parse(document.getElementById('letterhead').textContent); }catch(e){ emb=null; }
   return lhNormalize(emb);
@@ -704,7 +710,7 @@ function lhRender(){
   layoutSig();
 }
 function lhFillDialog(){
-  $('#lhContact').value=lh.contact; $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId;
+  $('#lhContact').value=lh.contact; $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId; $('#lhBcPages').value=lh.bcPages;
   const pv=$('#lhLogoPreview');
   if(lh.logo){ pv.src=lh.logo; pv.hidden=false; } else { pv.removeAttribute('src'); pv.hidden=true; }
   $('#lhLogoNone').hidden=!!lh.logo; $('#lhLogoClear').disabled=!lh.logo;
@@ -756,16 +762,19 @@ $('#lhDocId').addEventListener('input',e=>{
   if(fixed!==v) e.target.value=fixed;
   lh.docId=fixed.trim(); lhCommit();
 });
+$('#lhBcPages').addEventListener('change',e=>{ lh.bcPages=e.target.value; lhCommit(); });
 $('#lhClear').addEventListener('click',()=>{
   if(lhIsEmpty(lh)) return;
   if(!confirm('Remove the logo, contact lines, signer, and document identifier?')) return;
   lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
 });
-$('#lhMaster').addEventListener('click',()=>{
+function saveMaster(){
   download(new Blob([buildFile(null)],{type:'text/html'}),'audiogram.html');
   lhDirty=false;
   setStatus('Saved audiogram.html with your letterhead. Use that file from now on.',6000);
-});
+}
+$('#lhMaster').addEventListener('click',saveMaster);
+$('#btnMaster').addEventListener('click',saveMaster);
 
 /* ---------------- boot ---------------- */
 buildPalette(); updateToolUI(); renderKey();
