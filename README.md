@@ -44,22 +44,37 @@ How to use it:
 - **Print / Save as PDF** opens your print dialog. Choose "Save as PDF" as the printer to get a PDF file.
 - **Print blank form** prints an empty copy for hand-plotting.
 - **Copy chart image** puts a picture of the chart and key on your clipboard, ready to paste into a report or email.
-- **Save file** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
+- **Save evaluation** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
+- **Clear form** empties every field, ready for the next student.
 
 ## ABR report
 
-Works the same way: one file, opens in any browser, prints to a two-page PDF. What is different from the audiogram form:
+Again, these are pictures; clicking one downloads the real form.
 
-- **Thresholds are typed, not clicked.** Enter ABR thresholds in dB nHL for click and toneburst stimuli, by ear and by air or bone conduction. Write `35*` when the lowest level tested had a response, and `NR 90` for no response at 90.
-- **Estimated behavioral thresholds** (dB eHL) fill in on their own from the measured table, using a correction for each stimulus. The corrections are editable and the printout states which ones were used. Untick "Calculate from measured" to type the estimates yourself.
-- **The audiogram draws itself** from the estimated table.
-- **Page 2** holds otoacoustic emissions, immittance, a summary of hearing status, the interpretation, a recommendations checklist, and the signature.
+Filling it in on screen. Thresholds go into the measured table, and the estimated table and the audiogram follow. You can also plot on the chart, and the tables follow that.
+
+[![Screenshot of the ABR report open in a web browser, with sample thresholds and the estimated audiogram](docs/abr/form-on-screen.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/abr-report.html)
+
+What comes out of the printer. Two US Letter pages.
+
+[![Screenshot of printed page 1](docs/abr/printed-page-1.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/abr-report.html)
+
+[![Screenshot of printed page 2](docs/abr/printed-page-2.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/abr-report.html)
+
+It works the same way as the audiogram: one file, opens in any browser, prints to PDF. What is different:
+
+- **Thresholds are typed or plotted.** Enter ABR thresholds in dB nHL for click and toneburst stimuli, by ear and by air or bone conduction. Write `35*` when the lowest level tested had a response, `NR 90` for no response at 90, and add `M` for a masked threshold (`45M`, `NR 90M`). Or pick a symbol in the toolbar and click on the chart, the same as the audiogram form; the click fills in the matching table cell. Clicking a symbol that is already there switches it between masked and unmasked.
+- **Tab moves down the column**, so you can enter the whole right ear, then the left, then right bone, then left bone.
+- **Estimated behavioral thresholds** (dB eHL) fill in on their own from the measured table while "Auto-fill using correction factors" is ticked. Click *correction factors* to see or change them: one set for air conduction, one for bone. The printout states which ones were used. Untick auto-fill to type the estimates yourself.
+- **The audiogram draws itself** from the estimated table, with masked symbols where you marked them.
+- **Page 1** also holds the history, testing notes, click latencies, and otoscopy. **Page 2** holds otoacoustic emissions, immittance, a summary of hearing status, the interpretation, a recommendations checklist, and the signature. Two recommendations ask a follow-up question when ticked: whether a hearing aid consult was completed today, and whether a cochlear implant referral was placed today.
+- **Correction factors are saved with your letterhead.** Save a master copy (below) and a colleague who opens it gets the same corrections.
 
 ## Your letterhead
 
-The audiogram form has a **Letterhead…** button in the toolbar that puts your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type. Each is optional.
+Both forms have a **Letterhead…** button in the toolbar that puts your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type, on the first page, the last page, or every page. Each is optional.
 
-The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy** in the panel. That downloads a blank `audiogram.html` with your letterhead built in. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Files you save with student information carry the letterhead too.
+The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy**, in the toolbar or in the panel. That downloads a blank copy of the form (`audiogram.html` or `abr-report.html`) with your letterhead built in, and for the ABR report your correction factors too. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Evaluations you save carry the letterhead too.
 
 ## Privacy
 
