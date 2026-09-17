@@ -54,13 +54,16 @@ input[type=checkbox]{width:11px;height:11px;margin:0;accent-color:#222;vertical-
 .pta .r b{color:var(--red)} .pta .l b{color:var(--blue)}
 .pta .note{font-size:8px;color:var(--muted)}
 table.results{width:100%;border-collapse:collapse}
-table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:10px;text-align:left;height:0.2in}
+table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:10px;text-align:left;height:0.17in}
 table.results td:first-child{white-space:nowrap;width:1%}
 table.results th{background:#f2f2f2;font-weight:600}
 table.results th.r{color:var(--red)} table.results th.l{color:var(--blue)}
+table.results tr.group td{background:#f7f7f7;height:auto;padding:1px 4px;white-space:normal;width:auto;font-size:8.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+table.results tr.group .checks{display:inline-flex;margin-left:10px;vertical-align:middle;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink)}
+table.results tr.group .checks label{font-size:9.5px}
 table.results td input{width:100%;border:0;background:transparent;font:inherit;outline:none;color:var(--ink);padding:0}
 table.results td input:focus{background:#f5f7ff}
-.bottom{display:grid;grid-template-columns:1fr 1fr;gap:0.15in;margin-top:0.1in}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:0.15in;margin-top:0.07in}
 .bottom .box{margin-bottom:0}
 .oae-row{display:flex;gap:10px;align-items:center;margin:2px 0;font-size:10px}
 .oae-row .ear{font-weight:600;min-width:34px}
@@ -68,10 +71,10 @@ table.results td input:focus{background:#f5f7ff}
 .inline-field{display:flex;gap:4px;align-items:baseline;flex:1}
 .inline-field span{font-size:9px;color:var(--muted);white-space:nowrap}
 .inline-field input{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10.5px;outline:none;min-width:0;color:var(--ink)}
-.comments{border:1px solid var(--line);min-height:0.9in;padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none;margin-top:0.12in}
+.comments{border:1px solid var(--line);min-height:0.75in;padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none;margin-top:0.12in}
 .comments:focus{background:#fbfcff}
 .comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.12in 0 -0.1in}
-.sig{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:0.25in;margin-top:0.14in;align-items:end}
+.sig{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:0.25in;margin-top:0.08in;align-items:end}
 .sig .line{border-bottom:1px solid #333;height:0.28in}
 .sig input{width:100%;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
 .sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
@@ -185,10 +188,18 @@ table.results td input:focus{background:#f5f7ff}
     </div>
     <div class="box">
       <h2>Speech audiometry</h2>
-      <table class="results">
+      <table class="results speech">
         <tr><th></th><th class="r">Right</th><th class="l">Left</th><th>Sound field</th></tr>
-        <tr><td>SRT / SAT (dB HL)</td><td><input data-field="srtR"></td><td><input data-field="srtL"></td><td><input data-field="srtSF"></td></tr>
-        <tr><td>Word recognition (%)</td><td><input data-field="wrsR"></td><td><input data-field="wrsL"></td><td><input data-field="wrsSF"></td></tr>
+        <tr class="group"><td colspan="4"><span>Thresholds</span><span class="checks">
+          <label><input type="checkbox" data-check="srtRecorded"> Recorded</label>
+          <label><input type="checkbox" data-check="srtMLV"> MLV</label></span></td></tr>
+        <tr><td>SRT (dB HL)</td><td><input data-field="srtR"></td><td><input data-field="srtL"></td><td><input data-field="srtSF"></td></tr>
+        <tr><td>SDT (dB HL)</td><td><input data-field="sdtR"></td><td><input data-field="sdtL"></td><td><input data-field="sdtSF"></td></tr>
+        <tr><td>Masking</td><td><input data-field="srtMaskR"></td><td><input data-field="srtMaskL"></td><td><input data-field="srtMaskSF"></td></tr>
+        <tr class="group"><td colspan="4"><span>Word recognition</span><span class="checks">
+          <label><input type="checkbox" data-check="wrsRecorded"> Recorded</label>
+          <label><input type="checkbox" data-check="wrsMLV"> MLV</label></span></td></tr>
+        <tr><td>Score (%)</td><td><input data-field="wrsR"></td><td><input data-field="wrsL"></td><td><input data-field="wrsSF"></td></tr>
         <tr><td>Level (dB HL)</td><td><input data-field="wrsLevelR"></td><td><input data-field="wrsLevelL"></td><td><input data-field="wrsLevelSF"></td></tr>
         <tr><td>Word list</td><td><input data-field="wrsListR"></td><td><input data-field="wrsListL"></td><td><input data-field="wrsListSF"></td></tr>
         <tr><td>Masking</td><td><input data-field="maskR"></td><td><input data-field="maskL"></td><td><input data-field="maskSF"></td></tr>
