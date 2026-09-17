@@ -9,25 +9,39 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:#e9eaee;font:13px/1.35 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink)}
+[hidden]{display:none!important}
 
 /* ---------- toolbar (screen only) ---------- */
 .toolbar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #d0d2d8;padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .tb-group{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tb-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;margin-right:4px}
+.sym-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 7px 3px 4px;border:1px solid #cfd2d8;border-radius:6px;background:#fff;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222}
+.sym-btn:hover{border-color:#999}
+.sym-btn.active{border-color:#333;background:#eef1ff;box-shadow:inset 0 0 0 1px #333}
+.sym-btn svg{width:20px;height:20px;display:block}
+.sym-btn.toggle.active{background:#fff3cd;border-color:#b8860b;box-shadow:inset 0 0 0 1px #b8860b}
 button.tb{padding:5px 10px;border:1px solid #cfd2d8;border-radius:6px;background:#fff;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222}
 button.tb:hover{border-color:#999}
 button.tb.primary{background:#1f4fd1;color:#fff;border-color:#1f4fd1}
 button.tb.primary:hover{background:#1a43b3}
+button.tb:disabled{opacity:.5;cursor:default}
 .tb-check{display:inline-flex;align-items:center;gap:4px;font-size:12px}
 .status{font-size:12px;color:#555;min-width:180px}
 .sep{width:1px;height:22px;background:#e0e2e8}
 
 /* ---------- the sheets ---------- */
-.sheet{width:8.5in;min-height:11in;margin:18px auto;background:#fff;padding:0.4in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25;position:relative}
+.sheet{width:8.5in;min-height:11in;margin:18px auto;background:#fff;padding:0.35in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25;display:flex;flex-direction:column}
 .sheet:last-of-type{margin-bottom:40px}
-h1{font-size:15px;margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.sheet>*{flex:none}
+h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.head{display:grid;grid-template-columns:2in 1fr 2in;align-items:center;gap:0.12in;margin-bottom:6px}
+.head.plain{grid-template-columns:1fr}
+.head.plain .logo,.head.plain .contact{display:none}
+.head .logo img{display:block;max-width:2in;max-height:0.45in}
+.head .contact{font-size:8px;line-height:1.25;color:var(--muted);text-align:right;white-space:pre-line;overflow:hidden}
 .p2head{display:flex;justify-content:space-between;gap:12px;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding-bottom:3px;margin-bottom:0.12in;white-space:nowrap;overflow:hidden}
 .fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
-.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.4in}
+.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.36in}
 .field label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
 .field input{width:100%;border:0;background:transparent;font:inherit;font-size:11px;padding:1px 0;outline:none;color:var(--ink)}
 .field input:focus{background:#f5f7ff}
@@ -35,17 +49,20 @@ h1{font-size:15px;margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;t
 .box{border:1px solid var(--line);padding:4px 6px;margin-bottom:0.1in}
 .box h2{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 3px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .box h2 .ctl{text-transform:none;letter-spacing:0;font-weight:400;font-size:9px;color:#444;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.box h2 .ctl label{display:inline-flex;align-items:center;gap:3px}
+button.linkbtn{border:0;background:none;padding:0;font:inherit;color:var(--blue);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+button.linkbtn:hover{text-decoration-style:solid}
 .cond-row{display:flex;gap:6px;align-items:baseline;margin:2px 0}
 .cond-row .cl{font-size:9px;color:var(--muted);min-width:78px}
 .checks{display:flex;flex-wrap:wrap;gap:2px 8px}
 .checks label{display:inline-flex;align-items:center;gap:3px;font-size:10px;white-space:nowrap}
-input[type=checkbox]{width:11px;height:11px;margin:0;accent-color:#222;vertical-align:middle}
+input[type=checkbox],input[type=radio]{width:11px;height:11px;margin:0;accent-color:#222;vertical-align:middle}
 .inline-field{display:flex;gap:4px;align-items:baseline;flex:1}
 .inline-field span{font-size:9px;color:var(--muted);white-space:nowrap}
 .inline-field input{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10.5px;outline:none;min-width:0;color:var(--ink)}
 .inline-field input:focus{background:#f5f7ff}
 table.results{width:100%;border-collapse:collapse}
-table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:10px;text-align:left;height:0.2in}
+table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:10px;text-align:left;height:0.18in}
 table.results td:first-child{white-space:nowrap;width:1%}
 table.results th{background:#f2f2f2;font-weight:600;text-align:center}
 table.results th:first-child{text-align:left}
@@ -56,22 +73,20 @@ table.results td input{width:100%;border:0;background:transparent;font:inherit;o
 table.results td.n input{text-align:center}
 table.results td input:focus{background:#f5f7ff}
 table.results td input.calc{background:#f7f7f7;color:#333}
-table.results th.corr,table.results td.corr{width:0.5in;background:#fbf8ee;text-align:center}
-table.results td.corr input{text-align:center}
 .foot{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.3}
 .thr{display:grid;grid-template-columns:1fr 3.45in;gap:0.15in;margin-top:0.1in;align-items:start}
-#chart{width:100%;height:auto;display:block}
+.thr .box:last-child{margin-bottom:0}
+#chart{width:100%;height:auto;display:block;cursor:crosshair;touch-action:none}
+#chart.erase{cursor:not-allowed}
 #key{width:100%;height:auto;display:block;margin-top:2px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:0.15in;margin-top:0.1in}
 .two .box{margin-bottom:0}
-.bottom{display:grid;grid-template-columns:2.6in 1fr;gap:0.15in;margin-top:0.1in;align-items:start}
-.bottom .box{margin-bottom:0}
 .ear-row{display:flex;gap:10px;align-items:baseline;margin:3px 0;font-size:10px}
 .ear-row .ear{font-weight:600;min-width:34px}
 .ear-row.r .ear{color:var(--red)} .ear-row.l .ear{color:var(--blue)}
 .comments{border:1px solid var(--line);padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none}
 .comments:focus{background:#fbfcff}
-.comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.12in 0 2px}
+.comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.1in 0 2px}
 .comments-label+.comments{margin-top:0}
 .rec{margin-top:2px}
 .rec-item{display:flex;align-items:baseline;gap:5px;font-size:10px;margin:2px 0}
@@ -79,21 +94,55 @@ table.results td.corr input{text-align:center}
 .rec-item .txt{white-space:nowrap}
 .rec-item input[type=text]{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10px;outline:none;min-width:0;color:var(--ink)}
 .rec-item input[type=text]:focus{background:#f5f7ff}
+.rec-item .followup{display:none;margin-left:12px;gap:8px;align-items:center;font-size:9.5px;color:#444;white-space:nowrap}
+.rec-item .followup .q{color:var(--muted)}
+.rec-item .followup label{display:inline-flex;align-items:center;gap:3px}
+.rec-item.on .followup{display:inline-flex}
 .sig{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:0.25in;margin-top:0.2in;align-items:end}
 .sig .line{border-bottom:1px solid #333;height:0.28in}
 .sig input{width:100%;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
 .sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
-.pageno{position:absolute;right:0.4in;bottom:0.25in;font-size:8px;color:var(--muted)}
+.sig .signer{font-size:8.5px;line-height:1.25;margin-top:2px;white-space:pre-line}
+.bc{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:end}
+.bc svg{display:block;height:0.3in}
+.bc span{font-size:8px;white-space:nowrap}
+.pfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:0.08in;font-size:8px;color:var(--muted)}
+.pfoot .pageno{margin-left:auto}
+
+/* ---------- letterhead and correction dialogs (screen only) ---------- */
+dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-height:calc(100vh - 70px);overflow:auto;border:1px solid #cfd2d8;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.2);padding:14px 16px;font:13px/1.4 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222;z-index:10;background:#fff}
+dialog.lh.pop{width:300px;right:auto}
+.lh h3{margin:0 0 12px;font-size:14px}
+.lh .row{margin-bottom:13px}
+.lh label.t{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;margin-bottom:3px}
+.lh input[type=text],.lh textarea,.lh select{width:100%;border:1px solid #cfd2d8;border-radius:6px;padding:5px 7px;font:inherit;resize:none;color:#222;background:#fff}
+.lh input[type=text]:focus,.lh textarea:focus,.lh select:focus{outline:none;border-color:#1f4fd1}
+.lh .hint{font-size:11px;color:#666;margin-top:3px}
+.lh .logo-preview{display:flex;align-items:center;gap:10px;margin-bottom:6px;min-height:40px}
+.lh .logo-preview img{max-width:200px;max-height:48px;border:1px dashed #ccc;padding:2px;background:#fff}
+.lh .btns{display:flex;gap:6px;flex-wrap:wrap}
+.lh .foot{border-top:1px solid #eee;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lh .note{font-size:11px;color:#666;margin-bottom:10px}
+.lh .inline{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#666}
+.lh .inline select{width:auto}
+table.corr{border-collapse:collapse;width:100%;margin-bottom:10px}
+table.corr th,table.corr td{border:1px solid #ddd;padding:3px 6px;font-size:12px;text-align:center}
+table.corr td:first-child{text-align:left;white-space:nowrap}
+table.corr th{background:#f4f4f6;font-weight:600}
+table.corr th.r,table.corr th.l{font-weight:600}
+table.corr input{width:100%;border:0;background:transparent;font:inherit;text-align:center;outline:none;padding:2px 0}
+table.corr input:focus{background:#f5f7ff}
+table.corr .dis{color:#bbb}
 
 /* ---------- print ---------- */
 @media print{
-  @page{size:letter portrait;margin:0.4in}
+  @page{size:letter portrait;margin:0.35in}
   body{background:#fff}
-  .toolbar,.screen-only{display:none!important}
-  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;break-after:page}
+  .toolbar,dialog,.screen-only{display:none!important}
+  .sheet{width:auto;min-height:10.1in;margin:0;padding:0;box-shadow:none;break-after:page}
   .sheet:last-of-type{break-after:auto}
-  .pageno{display:none}
   ::placeholder{color:transparent}
+  #ghost{display:none}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .field input:focus,table.results td input:focus,.comments:focus,.inline-field input:focus{background:transparent}
   table.results td input.calc{background:transparent;color:var(--ink)}
@@ -103,24 +152,37 @@ table.results td.corr input{text-align:center}
 <body>
 
 <div class="toolbar">
+  <div class="tb-group" id="palette"><span class="tb-label">Plot</span></div>
+  <div class="tb-group">
+    <button class="sym-btn toggle" id="btnNR" title="No response: next symbols get a no-response arrow">No response</button>
+    <button class="sym-btn" id="btnErase" title="Click a symbol on the chart to clear its table cell">Erase</button>
+    <button class="tb" id="btnUndo" title="Undo last chart change (Ctrl/Cmd+Z)">Undo</button>
+    <label class="tb-check"><input type="checkbox" id="chkBands" checked> Degree labels</label>
+  </div>
+  <div class="sep"></div>
   <div class="tb-group">
     <button class="tb primary" id="btnPrint" title="Opens the print dialog. Choose 'Save as PDF' as the destination.">Print / Save as PDF</button>
     <button class="tb" id="btnPrintBlank" title="Prints an empty form">Print blank form</button>
     <button class="tb" id="btnCopy" title="Copies a PNG of the chart and key to the clipboard">Copy chart image</button>
     <button class="tb" id="btnPNG">Download chart PNG</button>
-    <label class="tb-check"><input type="checkbox" id="chkBands" checked> Degree labels</label>
   </div>
   <div class="sep"></div>
   <div class="tb-group">
-    <button class="tb" id="btnSave" title="Downloads a copy of this file with everything filled in, so it can be reopened later">Save file</button>
-    <button class="tb" id="btnNew">New form</button>
+    <button class="tb" id="btnSave" title="Downloads a copy of this form with everything filled in, so you can reopen it later">Save evaluation</button>
+    <button class="tb" id="btnMaster" title="Downloads a blank copy with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
+    <button class="tb" id="btnNew">Clear form</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode.">Letterhead…</button>
   </div>
   <div class="status" id="status"></div>
 </div>
 
 <!-- ================= PAGE 1 ================= -->
 <div class="sheet" id="sheet1">
-  <h1>Auditory Brainstem Response Evaluation</h1>
+  <div class="head">
+    <div class="logo"><img id="shLogo" alt="" hidden></div>
+    <h1>Auditory Brainstem Response Evaluation</h1>
+    <div class="contact" id="shContact" hidden></div>
+  </div>
 
   <div class="fields">
     <div class="field span2"><label>Patient name</label><input data-field="patient" autocomplete="off"></div>
@@ -160,11 +222,11 @@ table.results td.corr input{text-align:center}
       <label><input type="checkbox" data-check="qGood"> Good</label>
       <label><input type="checkbox" data-check="qFair"> Fair</label>
       <label><input type="checkbox" data-check="qPoor"> Poor</label>
-    </span></div>
+    </span><span class="inline-field"><span>Details</span><input data-field="qualityNotes"></span></div>
   </div>
 
   <div class="comments-label">History</div>
-  <div class="comments" contenteditable="true" data-field="history" style="min-height:0.75in"></div>
+  <div class="comments" contenteditable="true" data-field="history" style="min-height:1.25in"></div>
 
   <div class="thr">
     <div>
@@ -173,44 +235,45 @@ table.results td.corr input{text-align:center}
         <table class="results" id="tblNhl">
           <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th></tr>
         </table>
-        <div class="foot">* = lowest level tested with a response present; true threshold may be lower. NR = no response at the level given.</div>
+        <div class="foot">* = lowest level tested with a response present; true threshold may be lower. NR = no response at the level given. M = masked.</div>
       </div>
       <div class="box">
         <h2>Estimated behavioral thresholds (dB eHL)
-          <label class="ctl screen-only" title="Fills this table from the measured table: eHL = nHL minus the correction for that stimulus. Uncheck to type estimates yourself."><input type="checkbox" data-check="autoCalc"> Calculate from measured</label></h2>
+          <span class="ctl screen-only"><label title="Fills this table from the measured table: eHL = nHL minus the correction factor for that stimulus. Uncheck to type estimates yourself."><input type="checkbox" data-check="autoCalc"> Auto-fill using</label> <button type="button" class="linkbtn" id="btnCorr" title="View or change the correction factors">correction factors ▾</button></span></h2>
         <table class="results" id="tblEhl">
-          <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th><th class="corr screen-only" title="Correction in dB subtracted from the measured nHL threshold">Corr.</th></tr>
+          <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th></tr>
         </table>
         <div class="foot" id="ehlFoot"></div>
       </div>
+      <div class="box">
+        <h2>Click ABR latencies (ms)</h2>
+        <table class="results">
+          <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
+          <tr><td>Level (dB nHL)</td><td class="n"><input data-field="latLevelR"></td><td class="n"><input data-field="latLevelL"></td></tr>
+          <tr><td>Wave I</td><td class="n"><input data-field="latIR"></td><td class="n"><input data-field="latIL"></td></tr>
+          <tr><td>Wave III</td><td class="n"><input data-field="latIIIR"></td><td class="n"><input data-field="latIIIL"></td></tr>
+          <tr><td>Wave V</td><td class="n"><input data-field="latVR"></td><td class="n"><input data-field="latVL"></td></tr>
+          <tr><td>I–V interval</td><td class="n"><input data-field="latIVR"></td><td class="n"><input data-field="latIVL"></td></tr>
+        </table>
+      </div>
     </div>
     <div>
+      <div class="comments-label" style="margin-top:0">Testing notes</div>
+      <div class="comments" contenteditable="true" data-field="testingNotes" style="min-height:0.95in;margin-bottom:0.1in"></div>
       <div class="box">
         <h2>Estimated audiogram</h2>
         <svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg>
         <svg id="key" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
+      <div class="box">
+        <h2>Otoscopy</h2>
+        <div class="ear-row r"><span class="ear">Right</span><span class="inline-field"><input data-field="otoR"></span></div>
+        <div class="ear-row l"><span class="ear">Left</span><span class="inline-field"><input data-field="otoL"></span></div>
+      </div>
     </div>
   </div>
 
-  <div class="bottom">
-    <div class="box">
-      <h2>Click ABR latencies (ms)</h2>
-      <table class="results">
-        <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
-        <tr><td>Level (dB nHL)</td><td class="n"><input data-field="latLevelR"></td><td class="n"><input data-field="latLevelL"></td></tr>
-        <tr><td>Wave I</td><td class="n"><input data-field="latIR"></td><td class="n"><input data-field="latIL"></td></tr>
-        <tr><td>Wave III</td><td class="n"><input data-field="latIIIR"></td><td class="n"><input data-field="latIIIL"></td></tr>
-        <tr><td>Wave V</td><td class="n"><input data-field="latVR"></td><td class="n"><input data-field="latVL"></td></tr>
-        <tr><td>I–V interval</td><td class="n"><input data-field="latIVR"></td><td class="n"><input data-field="latIVL"></td></tr>
-      </table>
-    </div>
-    <div>
-      <div class="comments-label" style="margin-top:0">Testing notes</div>
-      <div class="comments" contenteditable="true" data-field="testingNotes" style="min-height:1.2in"></div>
-    </div>
-  </div>
-  <div class="pageno">Page 1 of 2</div>
+  <div class="pfoot"><div class="bc" id="shBarcode1" hidden></div><span class="pageno">Page 1 of 2</span></div>
 </div>
 
 <!-- ================= PAGE 2 ================= -->
@@ -238,12 +301,8 @@ table.results td.corr input{text-align:center}
         <label><input type="checkbox" data-check="pt226"> 226 Hz</label>
         <label><input type="checkbox" data-check="pt1000"> 1000 Hz</label>
       </span></div>
-      <table class="results">
-        <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
-        <tr><td>Tympanometry</td><td><input data-field="tympR"></td><td><input data-field="tympL"></td></tr>
-        <tr><td>Acoustic reflexes</td><td><input data-field="reflexR"></td><td><input data-field="reflexL"></td></tr>
-        <tr><td>Otoscopy</td><td><input data-field="otoR"></td><td><input data-field="otoL"></td></tr>
-      </table>
+      <div class="ear-row r"><span class="ear">Right</span><span class="inline-field"><input data-field="tympR" placeholder="Tympanometry"></span></div>
+      <div class="ear-row l"><span class="ear">Left</span><span class="inline-field"><input data-field="tympL" placeholder="Tympanometry"></span></div>
     </div>
   </div>
 
@@ -254,17 +313,20 @@ table.results td.corr input{text-align:center}
   </div>
 
   <div class="comments-label">Interpretation</div>
-  <div class="comments" contenteditable="true" data-field="interpretation" style="min-height:2.2in"></div>
+  <div class="comments" contenteditable="true" data-field="interpretation" style="min-height:3.5in"></div>
 
   <div class="comments-label">Recommendations</div>
   <div class="rec">
     <div class="rec-item"><input type="checkbox" data-check="rec1"><span class="txt">Results and recommendations reviewed with family / caregivers</span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec2"><span class="txt">Report to referring provider and primary care provider</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec16"><span class="txt">Audiologist to update EHDI record</span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec3"><span class="txt">Otolaryngology (ENT) evaluation</span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec4"><span class="txt">Repeat ABR:</span><input type="text" data-field="rec4x" placeholder="when, and under what conditions"></div>
     <div class="rec-item"><input type="checkbox" data-check="rec5"><span class="txt">Behavioral audiologic evaluation (VRA / CPA):</span><input type="text" data-field="rec5x" placeholder="at what age"></div>
-    <div class="rec-item"><input type="checkbox" data-check="rec6"><span class="txt">Hearing aid evaluation and fitting</span></div>
-    <div class="rec-item"><input type="checkbox" data-check="rec7"><span class="txt">Cochlear implant candidacy evaluation</span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec6"><span class="txt">Hearing aid evaluation and fitting</span>
+      <span class="followup"><span class="q">Consult completed today?</span><label><input type="radio" name="rec6q" data-check="rec6Yes"> Yes</label><label><input type="radio" name="rec6q" data-check="rec6No"> No</label></span></div>
+    <div class="rec-item"><input type="checkbox" data-check="rec7"><span class="txt">Cochlear implant candidacy evaluation</span>
+      <span class="followup"><span class="q">Referral placed today?</span><label><input type="radio" name="rec7q" data-check="rec7Yes"> Yes</label><label><input type="radio" name="rec7q" data-check="rec7No"> No</label></span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec8"><span class="txt">Referral to early intervention services</span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec9"><span class="txt">Speech-language evaluation</span></div>
     <div class="rec-item"><input type="checkbox" data-check="rec10"><span class="txt">Genetics evaluation and counseling</span></div>
@@ -275,89 +337,176 @@ table.results td.corr input{text-align:center}
     <div class="rec-item"><input type="checkbox" data-check="rec15"><span class="txt">Other:</span><input type="text" data-field="rec15x"></div>
   </div>
 
-  <div class="sig">
-    <div><div class="line"></div><label>Audiologist signature</label></div>
-    <div><input data-field="sigName"><label>Printed name, credentials</label></div>
+  <div class="sig" id="sig">
+    <div class="bc" id="shBarcode2" hidden></div>
+    <div><div class="line"></div><label id="sigLabel">Audiologist signature</label><div class="signer" id="shSigner" hidden></div></div>
+    <div id="sigPN"><input data-field="sigName"><label>Printed name, credentials</label></div>
     <div><input data-field="sigDate"><label>Date</label></div>
   </div>
-  <div class="pageno">Page 2 of 2</div>
 </div>
 
+<dialog class="lh" id="lhDialog">
+  <h3>Letterhead</h3>
+  <div class="note">Put your logo, office details, and name on every printout. Changes show on the page right away. To keep them for next time, click <b>Save master copy</b> below and use that file from now on.</div>
+  <div class="row">
+    <label class="t">Logo</label>
+    <div class="logo-preview"><img id="lhLogoPreview" alt="" hidden><span class="hint" id="lhLogoNone">No logo</span></div>
+    <div class="btns"><button class="tb" id="lhLogoPick">Choose image…</button><button class="tb" id="lhLogoClear">Remove</button><input type="file" id="lhLogoFile" accept="image/png,image/jpeg,image/svg+xml" hidden></div>
+    <div class="hint">PNG, JPG, or SVG. Prints at the top left, up to 2 inches wide and half an inch tall. A wide logo looks best.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhContact">Office or organization</label>
+    <textarea id="lhContact" rows="4" placeholder="Clinic or office name&#10;Street address&#10;Phone&#10;Fax"></textarea>
+    <div class="hint">Up to 4 lines. Prints at the top right.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhSigner1">Under the signature line</label>
+    <input type="text" id="lhSigner1" maxlength="60" placeholder="Jane Doe, Au.D., CCC-A">
+    <input type="text" id="lhSigner2" maxlength="60" placeholder="jane.doe@clinic.org" style="margin-top:4px">
+    <div class="hint">Your name and credentials, then an optional second line such as an email address.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhDocId">Document identifier</label>
+    <input type="text" id="lhDocId" maxlength="16" placeholder="e.g. ABR Report">
+    <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
+    <div class="inline"><label for="lhBcPages">On page</label><select id="lhBcPages"><option value="first">First</option><option value="last">Last</option><option value="all">All</option></select></div>
+  </div>
+  <div class="foot">
+    <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
+    <span><button class="tb" id="lhClear">Clear all</button> <button class="tb primary" id="lhDone">Done</button></span>
+  </div>
+</dialog>
+
+<dialog class="lh pop" id="corrDialog">
+  <h3>Correction factors</h3>
+  <div class="note">Subtracted from each measured nHL threshold to estimate the behavioral threshold in dB eHL. One set for air conduction, one for bone.</div>
+  <table class="corr" id="corrTable">
+    <tr><th>Stimulus</th><th>Air</th><th>Bone</th></tr>
+  </table>
+  <div class="hint" style="margin-bottom:10px">To keep these for next time, click <b>Save master copy</b> and use that file from now on.</div>
+  <div class="foot">
+    <button class="tb" id="corrMaster" title="Downloads a blank copy of this form with your letterhead and correction factors built in.">Save master copy</button>
+    <span><button class="tb" id="corrReset">Reset</button> <button class="tb primary" id="corrDone">Done</button></span>
+  </div>
+</dialog>
+
 <script type="application/json" id="saved-state">null</script>
+<script type="application/json" id="letterhead">null</script>
+<script type="application/json" id="settings">null</script>
 <script>
 (function(){
 'use strict';
-// Capture the page exactly as it was loaded, before any script changes it. Used by "Save file".
+// Capture the page exactly as it was loaded, before any script changes it. Used by "Save evaluation" and "Save master copy".
 const PRISTINE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
 const statusEl=$('#status');
 function setStatus(msg,ms){ statusEl.textContent=msg||''; if(ms){ clearTimeout(setStatus.t); setStatus.t=setTimeout(()=>{ if(statusEl.textContent===msg) statusEl.textContent=''; },ms); } }
-let dirty=false;
+let dirty=false;          // evaluation changed since it was opened or saved
+let settingsDirty=false;  // letterhead or correction factors changed and not yet saved into a master copy
 function markDirty(){ dirty=true; }
 
-/* ---------------- threshold tables ---------------- */
-// Stimuli are rows; ears are columns. 8 kHz bone conduction is not tested by ABR, so those cells are blocked.
+/* ---------------- stimuli, ears, threshold cells ----------------
+   Stimuli are rows; ears are columns. 8 kHz bone conduction is not tested by ABR, so those cells are blocked.
+   A cell holds a level in dB with optional marks: "35*" (lowest level tested had a response), "NR 90"
+   (no response at 90), and "M" for masked ("45M", "NR 90M"). The estimated table and the chart read these. */
 const STIM=[
-  {key:'click',label:'Click',freq:null,corr:0},
-  {key:'500',  label:'500 Hz', freq:500, corr:15},
-  {key:'1000', label:'1000 Hz',freq:1000,corr:10},
-  {key:'2000', label:'2000 Hz',freq:2000,corr:5},
-  {key:'4000', label:'4000 Hz',freq:4000,corr:0},
-  {key:'8000', label:'8000 Hz',freq:8000,corr:0,noBone:true},
+  {key:'click',label:'Click',  short:'Click',freq:null},
+  {key:'500',  label:'500 Hz', short:'500', freq:500},
+  {key:'1000', label:'1000 Hz',short:'1k',  freq:1000},
+  {key:'2000', label:'2000 Hz',short:'2k',  freq:2000},
+  {key:'4000', label:'4000 Hz',short:'4k',  freq:4000},
+  {key:'8000', label:'8000 Hz',short:'8k',  freq:8000,noBone:true},
 ];
-const EARS=[{key:'R',type:'RA'},{key:'L',type:'LA'},{key:'RB',type:'RB'},{key:'LB',type:'LB'}];
+const EARS=[{key:'R',series:'RA',bone:false},{key:'L',series:'LA',bone:false},{key:'RB',series:'RB',bone:true},{key:'LB',series:'LB',bone:true}];
+const DEFAULT_CORR={air:{click:0,'500':15,'1000':10,'2000':5,'4000':0,'8000':0},bone:{click:0,'500':15,'1000':10,'2000':5,'4000':0}};
+
 function buildTables(){
   const nhl=$('#tblNhl'), ehl=$('#tblEhl');
   STIM.forEach(s=>{
     let a=`<tr><td>${s.label}</td>`, b=`<tr><td>${s.label}</td>`;
     EARS.forEach(e=>{
-      const bone=e.key.endsWith('B');
-      if(bone&&s.noBone){ a+=`<td class="dis">—</td>`; b+=`<td class="dis">—</td>`; }
+      if(e.bone&&s.noBone){ a+=`<td class="dis">—</td>`; b+=`<td class="dis">—</td>`; }
       else { a+=`<td class="n"><input data-field="nhl_${e.key}_${s.key}" autocomplete="off"></td>`; b+=`<td class="n"><input data-field="ehl_${e.key}_${s.key}" autocomplete="off"></td>`; }
     });
-    a+='</tr>'; b+=`<td class="corr screen-only"><input data-field="corr_${s.key}" autocomplete="off"></td></tr>`;
-    nhl.insertAdjacentHTML('beforeend',a); ehl.insertAdjacentHTML('beforeend',b);
+    nhl.insertAdjacentHTML('beforeend',a+'</tr>'); ehl.insertAdjacentHTML('beforeend',b+'</tr>');
   });
 }
+function field(name){ return document.querySelector(`[data-field="${name}"]`); }
+function cell(tbl,ear,stim){ return field(`${tbl}_${ear.key}_${stim.key}`); }
 
-// Reads a threshold cell. "35" and "35*" are levels; "NR 90", "NR@90" and "90 NR" are no response at 90.
+// Reads a threshold cell. "35" and "35*" are levels; "NR 90", "NR@90" and "90 NR" are no response at 90;
+// a standalone M anywhere ("45M", "45 M", "M 45") means masked. Letters inside words (Mild, DNT) don't count.
 function parseLevel(str){
   const s=(str||'').trim(); if(!s) return null;
-  const nr=/\bNR\b|no\s*resp/i.test(s);
   const m=s.match(/-?\d+(\.\d+)?/);
   if(!m) return null;
-  return {db:parseFloat(m[0]),nr,star:/\*/.test(s)};
+  return {db:parseFloat(m[0]),nr:/\bNR\b|no\s*resp/i.test(s),star:/\*/.test(s),masked:/(^|[^a-z])m(?![a-z])/i.test(s)};
 }
-function field(name){ return document.querySelector(`[data-field="${name}"]`); }
-function corrFor(s){ const v=parseFloat(field('corr_'+s.key).value); return isNaN(v)?0:v; }
+function fmtLevel(p){ return `${p.nr?'NR ':''}${p.db}${p.star?'*':''}${p.masked?'M':''}`; }
+
+/* ---------------- correction factors (a clinic setting, kept in the file next to the letterhead) ---------------- */
+let settings=settingsNormalize(null);
+function settingsNormalize(o){
+  const t={corr:{air:{},bone:{}}};
+  ['air','bone'].forEach(g=>{
+    const src=(o&&o.corr&&o.corr[g])||{};
+    STIM.forEach(s=>{ if(g==='bone'&&s.noBone) return; const v=parseFloat(src[s.key]); t.corr[g][s.key]=isNaN(v)?DEFAULT_CORR[g][s.key]:v; });
+  });
+  return t;
+}
+function settingsLoad(){ let emb=null; try{ emb=JSON.parse(document.getElementById('settings').textContent); }catch(e){ emb=null; } return settingsNormalize(emb); }
+function settingsIsDefault(t){ return JSON.stringify(t)===JSON.stringify(settingsNormalize(null)); }
+function corrFor(stim,ear){ const v=settings.corr[ear.bone?'bone':'air'][stim.key]; return typeof v==='number'?v:0; }
 function autoCalcOn(){ return $('[data-check=autoCalc]').checked; }
 
 // eHL = nHL minus the correction. Non-numeric entries (DNT, CNT, a dash) are copied through unchanged.
 function computeEstimated(){
-  STIM.forEach(s=>{
-    const c=corrFor(s);
-    EARS.forEach(e=>{
-      const src=field(`nhl_${e.key}_${s.key}`), dst=field(`ehl_${e.key}_${s.key}`);
-      if(!src||!dst) return;
-      const raw=src.value.trim(), p=parseLevel(raw);
-      if(!raw) dst.value='';
-      else if(!p) dst.value=raw;
-      else { const v=Math.round(p.db-c); dst.value=p.nr?`NR ${v}`:`${v}${p.star?'*':''}`; }
-    });
-  });
+  STIM.forEach(s=>{ EARS.forEach(e=>{
+    const src=cell('nhl',e,s), dst=cell('ehl',e,s);
+    if(!src||!dst) return;
+    const raw=src.value.trim(), p=parseLevel(raw);
+    if(!raw) dst.value='';
+    else if(!p) dst.value=raw;
+    else dst.value=fmtLevel({...p,db:Math.round(p.db-corrFor(s,e))});
+  }); });
 }
+function corrSummary(g){ return STIM.filter(s=>!(g==='bone'&&s.noBone)).map(s=>`${s.short} ${settings.corr[g][s.key]}`).join(' · '); }
 function updateCalcUI(){
   const on=autoCalcOn();
-  $$('#tblEhl input[data-field^="ehl_"]').forEach(i=>{ i.readOnly=on; i.classList.toggle('calc',on); i.tabIndex=on?-1:0; i.title=on?'Calculated from the measured table. Uncheck "Calculate from measured" to edit.':''; });
-  $$('#tblEhl input[data-field^="corr_"]').forEach(i=>{ i.disabled=!on; });
+  $$('#tblEhl input[data-field^="ehl_"]').forEach(i=>{ i.readOnly=on; i.classList.toggle('calc',on); i.tabIndex=on?-1:0; i.title=on?'Calculated from the measured table. Untick "Auto-fill" to edit.':''; });
   if(on) computeEstimated();
-  const parts=STIM.map(s=>`${s.label} ${corrFor(s)}`).join(' · ');
   $('#ehlFoot').textContent=on
-    ? `Estimated thresholds = measured nHL minus a correction (dB): ${parts}. Corrections follow this clinic's protocol.`
-    : 'Estimated thresholds entered by the examiner.';
+    ? `Estimated = measured nHL minus a correction (dB). Air: ${corrSummary('air')}. Bone: ${corrSummary('bone')}. M = masked.`
+    : 'Estimated thresholds entered by the examiner. M = masked.';
 }
+
+function buildCorrTable(){
+  const tb=$('#corrTable');
+  STIM.forEach(s=>{
+    tb.insertAdjacentHTML('beforeend',`<tr><td>${s.label}</td><td><input type="number" step="1" data-corr="air_${s.key}"></td><td>${s.noBone?'<span class="dis">—</span>':`<input type="number" step="1" data-corr="bone_${s.key}">`}</td></tr>`);
+  });
+}
+function fillCorrInputs(){ $$('[data-corr]').forEach(i=>{ const [g,k]=i.dataset.corr.split('_'); i.value=settings.corr[g][k]; }); }
+$('#corrTable').addEventListener('input',e=>{
+  const i=e.target; if(!i.dataset.corr) return;
+  const [g,k]=i.dataset.corr.split('_'); const v=parseFloat(i.value);
+  settings.corr[g][k]=isNaN(v)?0:v; settingsDirty=true;
+  updateCalcUI(); refresh();
+});
+const corrDialog=$('#corrDialog');
+$('#btnCorr').addEventListener('click',e=>{
+  if(corrDialog.open){ corrDialog.close(); return; }
+  fillCorrInputs();
+  const r=e.currentTarget.getBoundingClientRect();
+  corrDialog.style.top=Math.min(r.bottom+6,window.innerHeight-360)+'px';
+  corrDialog.style.left=Math.max(8,Math.min(r.left,window.innerWidth-316))+'px';
+  corrDialog.show();
+});
+$('#corrDone').addEventListener('click',()=>{ fillCorrInputs(); corrDialog.close(); });
+$('#corrReset').addEventListener('click',()=>{ settings=settingsNormalize(null); settingsDirty=true; fillCorrInputs(); updateCalcUI(); refresh(); setStatus('Correction factors reset to the defaults',3000); });
+$('#corrMaster').addEventListener('click',saveMaster);
 
 /* ---------------- chart geometry ---------------- */
 const FREQS=[250,500,1000,2000,4000,8000];
@@ -370,11 +519,16 @@ const fy=d=>PAD.t+(d-DB_MIN)/10*DB10;
 const RED='#d11a2a', BLUE='#1f4fd1';
 const FONT='Helvetica,Arial,sans-serif';
 const SYM={
-  RA:{ear:'R',name:'Right air', color:RED, dx:0},
-  LA:{ear:'L',name:'Left air',  color:BLUE,dx:0},
-  RB:{ear:'R',name:'Right bone',color:RED, dx:-10},
-  LB:{ear:'L',name:'Left bone', color:BLUE,dx:10},
+  RA :{ear:'R',series:'RA',name:'Right air',         color:RED, dx:0},
+  RAM:{ear:'R',series:'RA',name:'Right air, masked', color:RED, dx:0},
+  RB :{ear:'R',series:'RB',name:'Right bone',        color:RED, dx:-10},
+  RBM:{ear:'R',series:'RB',name:'Right bone, masked',color:RED, dx:-10},
+  LA :{ear:'L',series:'LA',name:'Left air',          color:BLUE,dx:0},
+  LAM:{ear:'L',series:'LA',name:'Left air, masked',  color:BLUE,dx:0},
+  LB :{ear:'L',series:'LB',name:'Left bone',         color:BLUE,dx:10},
+  LBM:{ear:'L',series:'LB',name:'Left bone, masked', color:BLUE,dx:10},
 };
+const PALETTE_ORDER=['RA','RAM','RB','RBM','LA','LAM','LB','LBM'];
 const LINES={RA:RED,LA:BLUE};
 const BANDS=[
   {from:-10,to:15,label:'Normal'},
@@ -386,6 +540,8 @@ const BANDS=[
   {from:90,to:110,label:'Profound'},
 ];
 let showBands=true;
+let tool={type:'RA',nr:false,erase:false};
+let undoStack=[];
 
 function glyph(type,x,y,nr,size){
   const s=size||6.5, sw=2, c=SYM[type].color;
@@ -394,8 +550,12 @@ function glyph(type,x,y,nr,size){
   switch(type){
     case 'RA': g=`<circle cx="${x}" cy="${y}" r="${s}" ${common}/>`; break;
     case 'LA': g=`<path d="M${x-s} ${y-s}L${x+s} ${y+s}M${x+s} ${y-s}L${x-s} ${y+s}" ${common}/>`; break;
+    case 'RAM': g=`<path d="M${x} ${y-s-1.5}L${x+s+1} ${y+s}L${x-s-1} ${y+s}Z" ${common}/>`; break;
+    case 'LAM': g=`<rect x="${x-s}" y="${y-s}" width="${2*s}" height="${2*s}" ${common}/>`; break;
     case 'RB': g=`<path d="M${x+s*0.8} ${y-s}L${x-s*0.6} ${y}L${x+s*0.8} ${y+s}" ${common}/>`; break;
     case 'LB': g=`<path d="M${x-s*0.8} ${y-s}L${x+s*0.6} ${y}L${x-s*0.8} ${y+s}" ${common}/>`; break;
+    case 'RBM': g=`<path d="M${x+s*0.7} ${y-s}L${x-s*0.4} ${y-s}L${x-s*0.4} ${y+s}L${x+s*0.7} ${y+s}" ${common}/>`; break;
+    case 'LBM': g=`<path d="M${x-s*0.7} ${y-s}L${x+s*0.4} ${y-s}L${x+s*0.4} ${y+s}L${x-s*0.7} ${y+s}" ${common}/>`; break;
   }
   if(nr){
     const dir=SYM[type].ear==='R'?-1:1;
@@ -413,10 +573,10 @@ function chartPoints(){
   const pts=[];
   STIM.forEach(s=>{ if(!s.freq) return;
     EARS.forEach(e=>{
-      const el=field(`ehl_${e.key}_${s.key}`); if(!el) return;
+      const el=cell('ehl',e,s); if(!el) return;
       const p=parseLevel(el.value); if(!p) return;
       const db=Math.max(DB_MIN,Math.min(DB_MAX,Math.round(p.db/5)*5));
-      pts.push({type:e.type,freq:s.freq,db,nr:p.nr});
+      pts.push({type:e.series+(p.masked?'M':''),freq:s.freq,db,nr:p.nr});
     });
   });
   return pts;
@@ -447,10 +607,10 @@ function chartInner(){
   });
   o+=`<text x="${PAD.l+CW/2}" y="8" text-anchor="middle" font-family="${FONT}" font-size="8" fill="#555" letter-spacing="0.5">FREQUENCY (Hz)</text>`;
   o+=`<text transform="translate(9 ${PAD.t+CH/2}) rotate(-90)" text-anchor="middle" font-family="${FONT}" font-size="8" fill="#555" letter-spacing="0.5">ESTIMATED HEARING LEVEL (dB eHL)</text>`;
-  Object.keys(LINES).forEach(t=>{
-    const pts=points.filter(p=>p.type===t).sort((a,b)=>a.freq-b.freq);
+  Object.keys(LINES).forEach(series=>{
+    const pts=points.filter(p=>SYM[p.type].series===series).sort((a,b)=>a.freq-b.freq);
     let seg=[];
-    const flush=()=>{ if(seg.length>1) o+=`<polyline points="${seg.map(p=>fx(p.freq)+','+fy(p.db)).join(' ')}" fill="none" stroke="${LINES[t]}" stroke-width="1.5"/>`; seg=[]; };
+    const flush=()=>{ if(seg.length>1) o+=`<polyline points="${seg.map(p=>fx(p.freq)+','+fy(p.db)).join(' ')}" fill="none" stroke="${LINES[series]}" stroke-width="1.5"/>`; seg=[]; };
     pts.forEach(p=>{ if(p.nr) flush(); else seg.push(p); });
     flush();
   });
@@ -458,30 +618,179 @@ function chartInner(){
   return o;
 }
 const chartEl=$('#chart'), keyEl=$('#key');
-function renderChart(){ chartEl.setAttribute('viewBox',`0 0 ${W} ${H}`); chartEl.innerHTML=chartInner(); }
+function renderChart(){ chartEl.setAttribute('viewBox',`0 0 ${W} ${H}`); chartEl.innerHTML=chartInner()+`<g id="ghost" opacity="0.45"></g>`; }
 
-/* ---------------- key (one row under the chart) ---------------- */
-const KW=W, KH=22;
+/* ---------------- key (a small matrix under the chart) ---------------- */
+const KW=W, KH=53;
 function keyInner(){
   let o=`<rect x="0" y="0" width="${KW}" height="${KH}" fill="#fff"/>`;
-  const items=[['RA','Right air'],['LA','Left air'],['RB','Right bone'],['LB','Left bone']];
-  let x=PAD.l-2; const y=KH/2;
-  items.forEach(([t,lab])=>{
-    o+=glyph(t,x+6,y,false,5.5);
-    o+=`<text x="${x+16}" y="${y}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" fill="#333">${lab}</text>`;
-    x+=16+lab.length*4.6+14;
+  const cols=[['Air','RA','LA'],['Air, masked','RAM','LAM'],['Bone','RB','LB'],['Bone, masked','RBM','LBM'],['No response','RA','LA',true]];
+  const x0=PAD.l+6, cw=(KW-x0-4)/cols.length, yR=24, yL=41;
+  o+=`<text x="4" y="${yR}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" font-weight="700" fill="${RED}">Right</text>`;
+  o+=`<text x="4" y="${yL}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" font-weight="700" fill="${BLUE}">Left</text>`;
+  cols.forEach((c,i)=>{
+    const x=x0+i*cw+cw/2;
+    o+=`<text x="${x}" y="8" text-anchor="middle" dominant-baseline="central" font-family="${FONT}" font-size="7.5" fill="#555">${c[0]}</text>`;
+    o+=glyph(c[1],x,yR-(c[3]?3:0),!!c[3],5.5)+glyph(c[2],x,yL-(c[3]?3:0),!!c[3],5.5);
   });
-  o+=glyph('RA',x+6,y-3,true,5.5);
-  o+=`<text x="${x+22}" y="${y}" dominant-baseline="central" font-family="${FONT}" font-size="8.5" fill="#333">No response</text>`;
   return o;
 }
 function renderKey(){ keyEl.setAttribute('viewBox',`0 0 ${KW} ${KH}`); keyEl.innerHTML=keyInner(); }
+
+/* ---------------- palette ---------------- */
+function buildPalette(){
+  const pal=$('#palette');
+  PALETTE_ORDER.forEach(t=>{
+    const b=document.createElement('button');
+    b.className='sym-btn'; b.dataset.type=t; b.title=SYM[t].name;
+    const short={RA:'R air',RAM:'R air (M)',RB:'R bone',RBM:'R bone (M)',LA:'L air',LAM:'L air (M)',LB:'L bone',LBM:'L bone (M)'}[t];
+    b.innerHTML=`<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">${glyph(t,10,10,false,6)}</svg>${short}`;
+    b.addEventListener('click',()=>{ tool.type=t; tool.erase=false; updateToolUI(); });
+    pal.appendChild(b);
+  });
+}
+function updateToolUI(){
+  document.querySelectorAll('#palette .sym-btn').forEach(b=>b.classList.toggle('active',!tool.erase&&b.dataset.type===tool.type));
+  $('#btnNR').classList.toggle('active',tool.nr);
+  $('#btnErase').classList.toggle('active',tool.erase);
+  chartEl.classList.toggle('erase',tool.erase);
+}
+
+/* ---------------- chart interaction ----------------
+   The chart is a view of the estimated table, so a click writes a table cell. With auto-fill on the
+   estimated cells are computed, so the click writes the measured cell instead (eHL plus the correction)
+   and the status line shows both numbers. Clicking a symbol that already matches the tool toggles masking. */
+function toChart(e){
+  const r=chartEl.getBoundingClientRect();
+  return {x:(e.clientX-r.left)*W/r.width, y:(e.clientY-r.top)*H/r.height};
+}
+function snap(p){
+  if(p.x<PAD.l-14||p.x>PAD.l+CW+14||p.y<PAD.t-8||p.y>PAD.t+CH+8) return null;
+  let bf=FREQS[0], bd=1e9;
+  FREQS.forEach(f=>{ const d=Math.abs(fx(f)-p.x); if(d<bd){bd=d;bf=f;} });
+  let db=Math.round(((p.y-PAD.t)/DB10*10)/5)*5+DB_MIN;
+  db=Math.max(DB_MIN,Math.min(DB_MAX,db));
+  return {freq:bf,db};
+}
+// Which table cells a symbol at this frequency maps to, or a reason it can't be plotted.
+function target(type,freq){
+  const stim=STIM.find(s=>s.freq===freq);
+  if(!stim) return {err:`No ${freq} Hz row in the table`};
+  const ear=EARS.find(e=>e.series===SYM[type].series);
+  if(ear.bone&&stim.noBone) return {err:'Bone conduction is not tested at 8000 Hz'};
+  return {stim,ear,nhl:cell('nhl',ear,stim),ehl:cell('ehl',ear,stim)};
+}
+function sourceCell(t){ return autoCalcOn()?t.nhl:t.ehl; }
+function existingAt(s){ return chartPoints().find(p=>p.freq===s.freq&&p.db===s.db&&p.type===tool.type&&p.nr===tool.nr)||null; }
+function nearestPoint(p){
+  let best=null, bd=1e9;
+  chartPoints().forEach(pt=>{ const d=Math.hypot(fx(pt.freq)+SYM[pt.type].dx-p.x, fy(pt.db)-p.y); if(d<bd){bd=d;best=pt;} });
+  return bd<=12?best:null;
+}
+function describe(type,s,nr){
+  const t=target(type,s.freq);
+  let msg=`${SYM[type].name}${nr?' (no response)':''}: ${s.freq} Hz, ${s.db} dB eHL`;
+  if(autoCalcOn()) msg+=` (measured ${s.db+corrFor(t.stim,t.ear)} nHL)`;
+  return msg;
+}
+function pushUndo(){
+  const snap={}; $$('input[data-field^="nhl_"],input[data-field^="ehl_"]').forEach(i=>{ snap[i.dataset.field]=i.value; });
+  undoStack.push(snap); if(undoStack.length>100) undoStack.shift();
+}
+function commitCells(){ markDirty(); refresh(); }
+
+chartEl.addEventListener('pointermove',e=>{
+  const p=toChart(e), ghost=$('#ghost');
+  if(tool.erase){ const n=nearestPoint(p); ghost.innerHTML=n?`<circle cx="${fx(n.freq)+SYM[n.type].dx}" cy="${fy(n.db)}" r="11" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="3 2"/>`:''; setStatus(n?`Clear ${SYM[n.type].name} at ${n.freq} Hz`:'Click a symbol to clear it from the table'); return; }
+  const s=snap(p);
+  if(!s){ ghost.innerHTML=''; setStatus(''); return; }
+  const t=target(tool.type,s.freq);
+  if(t.err){ ghost.innerHTML=''; setStatus(t.err); return; }
+  const ex=existingAt(s);
+  if(ex){
+    const masked=tool.type.endsWith('M'), flipped=masked?tool.type.slice(0,-1):tool.type+'M';
+    ghost.innerHTML=glyph(flipped,fx(s.freq)+SYM[flipped].dx,fy(s.db),tool.nr);
+    setStatus(`Click to mark ${SYM[tool.type].name} at ${s.freq} Hz as ${masked?'unmasked':'masked'}`);
+    return;
+  }
+  ghost.innerHTML=glyph(tool.type,fx(s.freq)+SYM[tool.type].dx,fy(s.db),tool.nr);
+  setStatus(describe(tool.type,s,tool.nr));
+});
+chartEl.addEventListener('pointerleave',()=>{ $('#ghost').innerHTML=''; setStatus(''); });
+chartEl.addEventListener('pointerdown',e=>{
+  if(e.button!==0) return;
+  const p=toChart(e);
+  if(tool.erase){ const n=nearestPoint(p); if(n){ pushUndo(); sourceCell(target(n.type,n.freq)).value=''; commitCells(); } return; }
+  const s=snap(p); if(!s) return;
+  const t=target(tool.type,s.freq); if(t.err){ setStatus(t.err,2500); return; }
+  const src=sourceCell(t);
+  pushUndo();
+  const ex=existingAt(s);
+  if(ex){ // same symbol already here: flip its masking, keep the typed value as it is
+    const cur=parseLevel(src.value)||{db:s.db,nr:tool.nr,star:false,masked:false};
+    src.value=fmtLevel({...cur,masked:!cur.masked});
+  } else {
+    const db=autoCalcOn()?s.db+corrFor(t.stim,t.ear):s.db;
+    src.value=fmtLevel({db,nr:tool.nr,star:false,masked:tool.type.endsWith('M')});
+  }
+  commitCells();
+  setStatus(`${SYM[tool.type].name}: ${s.freq} Hz → ${src.value} in the ${autoCalcOn()?'measured':'estimated'} table`,3000);
+});
+chartEl.addEventListener('contextmenu',e=>{ // right-click clears the cell
+  e.preventDefault(); const n=nearestPoint(toChart(e)); if(n){ pushUndo(); sourceCell(target(n.type,n.freq)).value=''; commitCells(); }
+});
+$('#btnNR').addEventListener('click',()=>{ tool.nr=!tool.nr; updateToolUI(); });
+$('#btnErase').addEventListener('click',()=>{ tool.erase=!tool.erase; updateToolUI(); });
+function undo(){
+  if(!undoStack.length){ setStatus('Nothing to undo',1500); return; }
+  const snap=undoStack.pop();
+  for(const k in snap){ const el=field(k); if(el) el.value=snap[k]; }
+  commitCells();
+}
+$('#btnUndo').addEventListener('click',undo);
+$('#chkBands').addEventListener('change',e=>{ showBands=e.target.checked; markDirty(); renderChart(); });
+document.addEventListener('keydown',e=>{
+  const t=e.target, typing=t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable);
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='z'&&!typing){ e.preventDefault(); undo(); }
+  if(e.key==='Escape'){ tool.erase=false; tool.nr=false; updateToolUI(); }
+});
+
+/* ---------------- tab order in the threshold tables: down each ear's column, then the next ear ---------------- */
+function columnOrder(tbl){
+  const prefix=tbl.id==='tblNhl'?'nhl':'ehl', out=[];
+  EARS.forEach(e=>STIM.forEach(s=>{ const i=cell(prefix,e,s); if(i&&!i.readOnly&&i.tabIndex!==-1) out.push(i); }));
+  return out;
+}
+function focusAfter(el){
+  const all=$$('input,button,select,textarea,[contenteditable="true"]').filter(x=>!x.disabled&&x.tabIndex>=0&&!x.hidden&&x.offsetParent!==null);
+  const n=all.find(x=>!el.contains(x)&&(el.compareDocumentPosition(x)&Node.DOCUMENT_POSITION_FOLLOWING));
+  if(n) n.focus();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Tab') return;
+  const tbl=e.target.closest&&e.target.closest('#tblNhl,#tblEhl'); if(!tbl) return;
+  const order=columnOrder(tbl), i=order.indexOf(e.target); if(i<0) return;
+  const j=i+(e.shiftKey?-1:1);
+  if(j<0) return;                       // the first cell is first in the page too; let the browser leave normally
+  e.preventDefault();
+  if(j<order.length){ order[j].focus(); order[j].select(); } else focusAfter(tbl);
+});
 
 /* ---------------- page 2 running header ---------------- */
 function updateP2(){
   const f=n=>(field(n).value||'').trim();
   const bits=[f('patient'),f('dob')?'DOB '+f('dob'):'',f('date')?'Evaluated '+f('date'):''].filter(Boolean);
   $('#p2who').textContent=bits.join(' · ');
+}
+
+/* ---------------- recommendation follow-ups, shown only while the item is checked ---------------- */
+const FOLLOW={rec6:['rec6Yes','rec6No'],rec7:['rec7Yes','rec7No']};
+function updateFollowups(){
+  for(const k in FOLLOW){
+    const cb=$(`[data-check=${k}]`), on=cb.checked;
+    cb.closest('.rec-item').classList.toggle('on',on);
+    if(!on) FOLLOW[k].forEach(n=>{ $(`[data-check=${n}]`).checked=false; });
+  }
 }
 
 /* ---------------- age from DOB and evaluation date ---------------- */
@@ -504,17 +813,17 @@ function updateAge(){
 
 /* ---------------- refresh on any edit ---------------- */
 function refresh(){ if(autoCalcOn()) computeEstimated(); renderChart(); updateP2(); }
-document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(); if((e.target.dataset.field||'').startsWith('corr_')) updateCalcUI(); refresh(); });
+document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(); refresh(); });
 document.addEventListener('change',e=>{
   if(!e.target.matches('[data-field],[data-check]')) return;
   markDirty();
-  if(e.target.dataset.check==='autoCalc') updateCalcUI();
-  if(e.target.dataset.field&&e.target.dataset.field.startsWith('corr_')) updateCalcUI();
+  const chk=e.target.dataset.check||'';
+  if(chk==='autoCalc') updateCalcUI();
+  if(chk in FOLLOW) updateFollowups();
   if(e.target.dataset.field==='dob'||e.target.dataset.field==='date') updateAge();
   refresh();
 });
-$('#chkBands').addEventListener('change',e=>{ showBands=e.target.checked; markDirty(); renderChart(); });
-window.addEventListener('beforeunload',e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
+window.addEventListener('beforeunload',e=>{ if(dirty||settingsDirty){ e.preventDefault(); e.returnValue=''; } });
 
 /* ---------------- form state ---------------- */
 function today(){ const d=new Date(); return `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`; }
@@ -522,7 +831,7 @@ function getState(){
   const fields={}, checks={};
   $$('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
   $$('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
-  return {version:1,form:'abr',fields,checks,showBands};
+  return {version:2,form:'abr',fields,checks,showBands};
 }
 function applyState(s){
   s=s||{};
@@ -531,24 +840,38 @@ function applyState(s){
   $$('[data-check]').forEach(el=>{ el.checked=!!checks[el.dataset.check]; });
   showBands=s.showBands!==false;
   $('#chkBands').checked=showBands;
-  updateCalcUI(); refresh();
+  undoStack=[];
+  updateCalcUI(); updateFollowups(); refresh(); layoutSig();
 }
-function defaultCorrections(){ const o={}; STIM.forEach(s=>{ o['corr_'+s.key]=String(s.corr); }); return o; }
-function emptyState(){ return {fields:Object.assign({date:today()},defaultCorrections()),checks:{autoCalc:true},showBands}; }
+function emptyState(){ return {fields:{date:today()},checks:{autoCalc:true},showBands}; }
 
 /* ---------------- file actions ---------------- */
 function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },2000); }
 function safeName(s){ return (s||'').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'_'); }
+function embedJSON(html,id,obj){
+  const json=JSON.stringify(obj).replace(/</g,'\\u003c');
+  return html.replace(new RegExp('(<script type="application/json" id="'+id+'">)[\\s\\S]*?(<\\/script>)'),(m,a,b)=>a+json+b);
+}
+// Every file this form writes carries the letterhead and correction factors; only "Save evaluation" carries the patient.
+function buildFile(state){
+  let html=embedJSON(PRISTINE,'saved-state',state);
+  html=embedJSON(html,'letterhead',lhIsEmpty(lh)?null:lh);
+  return embedJSON(html,'settings',settingsIsDefault(settings)?null:settings);
+}
 function saveFile(){
   const st=getState();
-  const json=JSON.stringify(st).replace(/</g,'\\u003c');
-  const html=PRISTINE.replace(/(<script type="application\/json" id="saved-state">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+json+b);
   const name=`ABR_Report_${safeName(st.fields.patient)||'blank'}_${safeName(st.fields.date)||safeName(today())}.html`;
-  download(new Blob([html],{type:'text/html'}),name);
-  dirty=false; setStatus('Saved '+name,4000);
+  download(new Blob([buildFile(st)],{type:'text/html'}),name);
+  dirty=false; settingsDirty=false; setStatus('Saved '+name,4000);
+}
+function saveMaster(){
+  download(new Blob([buildFile(null)],{type:'text/html'}),'abr-report.html');
+  settingsDirty=false;
+  setStatus('Saved abr-report.html with your letterhead and correction factors. Use that file from now on.',6000);
 }
 $('#btnSave').addEventListener('click',saveFile);
-$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('New form',1500); });
+$('#btnMaster').addEventListener('click',saveMaster);
+$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; setStatus('Form cleared',1500); });
 $('#btnPrint').addEventListener('click',()=>window.print());
 
 let blankSnapshot=null;
@@ -556,7 +879,7 @@ function restoreAfterBlank(){ if(blankSnapshot){ const s=blankSnapshot; blankSna
 $('#btnPrintBlank').addEventListener('click',()=>{
   blankSnapshot=getState();
   const wasDirty=dirty;
-  applyState({fields:{},checks:{},showBands});
+  applyState({fields:{},checks:{autoCalc:true},showBands});
   window.print();
   restoreAfterBlank();
   dirty=wasDirty;
@@ -594,8 +917,131 @@ $('#btnCopy').addEventListener('click',()=>{
   } else { p.then(b=>download(b,pngName())); setStatus('Clipboard not available in this browser. Downloaded a PNG instead.',5000); }
 });
 
+/* ---------------- letterhead: logo, contact lines, signer, document barcode ----------------
+   A page opened from disk cannot write to its own file, so the letterhead lives only in the
+   files this form writes: every "Save evaluation" copy and the "Save master copy" download carry it
+   in the #letterhead block. Nothing is kept in the browser. */
+const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:'',bcPages:'first'};
+let lh={...LH_EMPTY};
+function lhNormalize(o){
+  o=o&&typeof o==='object'?o:{};
+  const t={...LH_EMPTY};
+  for(const k in LH_EMPTY) if(typeof o[k]==='string') t[k]=o[k];
+  t.contact=t.contact.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim();
+  t.signer1=t.signer1.slice(0,60).trim(); t.signer2=t.signer2.slice(0,60).trim();
+  t.docId=t.docId.replace(/[^\x20-\x7e]/g,'').slice(0,16).trim();
+  if(!['first','last','all'].includes(t.bcPages)) t.bcPages='first';
+  if(!/^data:image\/(png|jpeg|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(t.logo)||t.logo.length>800000) t.logo='';
+  return t;
+}
+function lhIsEmpty(t){ return !(t.logo||t.contact||t.signer1||t.signer2||t.docId); }
+function lhLoad(){
+  let emb=null; try{ emb=JSON.parse(document.getElementById('letterhead').textContent); }catch(e){ emb=null; }
+  return lhNormalize(emb);
+}
+
+// Code 128, subsets B and C. Widths of the 106 symbols as runs of bar,space,bar,space,bar,space; stop pattern appended.
+const C128='212222222122222221121223121322131222122213122312132212221213221312231212112232122132122231113222123122123221223211221132221231213212223112312131311222321122321221312212322112322211212123212321232121111323131123131321112313132113132311211313231113231311112133112331132131113123113321133121313121211331231131213113213311213131311123311321331121312113312311332111314111221411431111111224111422121124121421141122141221112214112412122114122411142112142211241211221114413111241112134111111242121142121241114212124112124211411212421112421211212141214121412121111143111341131141114113114311411113411311113141114131311141411131211412211214211232';
+function code128svg(text){
+  let vals;
+  if(/^\d+$/.test(text)&&text.length%2===0){ vals=[105]; for(let i=0;i<text.length;i+=2) vals.push(+text.slice(i,i+2)); }
+  else { vals=[104]; for(const ch of text) vals.push(ch.charCodeAt(0)-32); }
+  let sum=vals[0]; for(let i=1;i<vals.length;i++) sum+=vals[i]*i; vals.push(sum%103);
+  const runs=vals.map(v=>C128.substr(v*6,6)).join('')+'2331112';
+  const M=0.9, Q=10, HGT=29;                       // module width in px, quiet zone in modules, height in px
+  let x=Q, rects='';
+  for(let i=0;i<runs.length;i++){ const w=+runs[i]; if(i%2===0) rects+=`<rect x="${(x*M).toFixed(2)}" y="0" width="${(w*M).toFixed(2)}" height="${HGT}"/>`; x+=w; }
+  const tw=((x+Q)*M).toFixed(1);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${tw} ${HGT}" width="${tw}" height="${HGT}" shape-rendering="crispEdges" fill="#000">${rects}</svg>`;
+}
+
+function bcOnPage2(){ return !!lh.docId&&lh.bcPages!=='first'; }
+function layoutSig(){
+  const signer=!!(lh.signer1||lh.signer2);
+  const pnHidden=signer&&!$('[data-field=sigName]').value;
+  $('#sigPN').hidden=pnHidden;
+  $('#sig').style.gridTemplateColumns=[bcOnPage2()?'auto':'','2fr',pnHidden?'':'1.6fr','1fr'].filter(Boolean).join(' ');
+}
+function setBarcode(el,show){
+  if(show){ el.innerHTML=code128svg(lh.docId)+'<span></span>'; el.lastChild.textContent=lh.docId; el.hidden=false; }
+  else { el.innerHTML=''; el.hidden=true; }
+}
+function lhRender(){
+  const logo=$('#shLogo');
+  if(lh.logo){ logo.src=lh.logo; logo.hidden=false; } else { logo.removeAttribute('src'); logo.hidden=true; }
+  const c=$('#shContact'); c.textContent=lh.contact; c.hidden=!lh.contact;
+  $('.head').classList.toggle('plain',!lh.logo&&!lh.contact);
+  const sg=[lh.signer1,lh.signer2].filter(Boolean).join('\n');
+  $('#shSigner').textContent=sg; $('#shSigner').hidden=!sg; $('#sigLabel').hidden=!!sg;
+  setBarcode($('#shBarcode1'),!!lh.docId&&lh.bcPages!=='last');
+  setBarcode($('#shBarcode2'),bcOnPage2());
+  layoutSig();
+}
+function lhFillDialog(){
+  $('#lhContact').value=lh.contact; $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId; $('#lhBcPages').value=lh.bcPages;
+  const pv=$('#lhLogoPreview');
+  if(lh.logo){ pv.src=lh.logo; pv.hidden=false; } else { pv.removeAttribute('src'); pv.hidden=true; }
+  $('#lhLogoNone').hidden=!!lh.logo; $('#lhLogoClear').disabled=!lh.logo;
+}
+function lhCommit(msg){ settingsDirty=true; lhRender(); setStatus(msg||'Letterhead set. Save a master copy to keep it.',3000); }
+
+function lhSetLogoFile(file){
+  if(!file) return;
+  const type=file.type;
+  if(type==='image/svg+xml'){
+    if(file.size>400000){ setStatus('That SVG is over 400 KB. Simplify it or use a PNG.',6000); return; }
+    file.text().then(t=>{
+      if(!/<svg[\s>]/i.test(t)){ setStatus('That file does not look like an SVG.',5000); return; }
+      lh.logo='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(t)));
+      lhCommit(); lhFillDialog();
+    });
+    return;
+  }
+  if(type!=='image/png'&&type!=='image/jpeg'){ setStatus('Use a PNG, JPG, or SVG image.',5000); return; }
+  const url=URL.createObjectURL(file), img=new Image();
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    const k=Math.min(1,1200/img.naturalWidth,400/img.naturalHeight);
+    const finish=dataUrl=>{ lh.logo=dataUrl; lhCommit(); lhFillDialog(); };
+    if(k===1&&file.size<=400000){ const r=new FileReader(); r.onload=()=>finish(r.result); r.readAsDataURL(file); return; }
+    const c=document.createElement('canvas'); c.width=Math.max(1,Math.round(img.naturalWidth*k)); c.height=Math.max(1,Math.round(img.naturalHeight*k));
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    finish(type==='image/jpeg'?c.toDataURL('image/jpeg',0.88):c.toDataURL('image/png'));
+  };
+  img.onerror=()=>{ URL.revokeObjectURL(url); setStatus('Could not read that image.',5000); };
+  img.src=url;
+}
+
+const lhDialog=$('#lhDialog');
+$('#btnLetterhead').addEventListener('click',()=>{ if(lhDialog.open){ lhDialog.close(); return; } lhFillDialog(); lhDialog.show(); });
+$('#lhDone').addEventListener('click',()=>lhDialog.close());
+$('#lhLogoPick').addEventListener('click',()=>$('#lhLogoFile').click());
+$('#lhLogoFile').addEventListener('change',e=>{ lhSetLogoFile(e.target.files[0]); e.target.value=''; });
+$('#lhLogoClear').addEventListener('click',()=>{ lh.logo=''; lhCommit('Logo removed'); lhFillDialog(); });
+$('#lhContact').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n');
+  if(fixed!==v) e.target.value=fixed;
+  lh.contact=fixed.trim(); lhCommit();
+});
+$('#lhSigner1').addEventListener('input',e=>{ lh.signer1=e.target.value.trim(); lhCommit(); });
+$('#lhSigner2').addEventListener('input',e=>{ lh.signer2=e.target.value.trim(); lhCommit(); });
+$('#lhDocId').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.replace(/[^\x20-\x7e]/g,'').slice(0,16);
+  if(fixed!==v) e.target.value=fixed;
+  lh.docId=fixed.trim(); lhCommit();
+});
+$('#lhBcPages').addEventListener('change',e=>{ lh.bcPages=e.target.value; lhCommit(); });
+$('#lhClear').addEventListener('click',()=>{
+  if(lhIsEmpty(lh)) return;
+  if(!confirm('Remove the logo, contact lines, signer, and document identifier?')) return;
+  lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
+});
+$('#lhMaster').addEventListener('click',saveMaster);
+$('[data-field=sigName]').addEventListener('input',layoutSig);
+
 /* ---------------- boot ---------------- */
-buildTables(); renderKey();
+buildTables(); buildCorrTable(); buildPalette(); updateToolUI(); renderKey();
+lh=lhLoad(); settings=settingsLoad(); lhRender(); fillCorrInputs();
 let saved=null;
 try{ saved=JSON.parse(document.getElementById('saved-state').textContent); }catch(e){ saved=null; }
 applyState(saved||emptyState());
