@@ -77,6 +77,8 @@ It works the same way as the audiogram: one file, opens in any browser, prints t
 > **Review draft. No state EHDI program has accepted this report yet.** Ask your state program before sending results on it. Until your program says yes, keep reporting on your state's own form or online system.
 >
 > It's shared now so EHDI programs and audiologists can review it. Every printed page says it's a review draft. Comments, and the list of states that accept it, are in [issue #1](https://github.com/citizenkade/audiology-forms/issues/1).
+>
+> **For EHDI programs:** a [one-page handout (PDF)](docs/ehdi/ehdi-report-handout.pdf) explains the report and what we're asking. Please pass it along to other programs.
 
 These are pictures too; clicking one downloads the real form.
 

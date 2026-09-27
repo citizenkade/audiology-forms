@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A standard infant hearing diagnostic report: for EHDI program review</title>
+<!--
+  Source for docs/ehdi/ehdi-report-handout.pdf. One US Letter page.
+  To rebuild after an edit, from the repo root:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+      --print-to-pdf=docs/ehdi/ehdi-report-handout.pdf "file://$PWD/docs/ehdi/handout/handout.html"
+  Then check it's still one page (pdfinfo). page-1.png and page-2.png are the README sample's printed pages.
+  When a state accepts the report, update the status box and the "Status" line in the footer.
+-->
+<style>
+:root{--ink:#1d1f24;--muted:#5d6270;--line:#c9ccd4;--blue:#1f4fd1;--amber:#fff6db;--amber-line:#d9b54a}
+*{box-sizing:border-box}
+@page{size:letter portrait;margin:0.5in}
+html,body{margin:0}
+body{font:9.8pt/1.36 -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
+.page{width:7.5in;margin:0 auto}
+a{color:var(--blue);text-decoration:none}
+.kicker{font-size:8pt;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:19pt;line-height:1.15;margin:4px 0 5px;letter-spacing:-.01em}
+.lede{font-size:11pt;margin:0 0 10px;color:#30333b}
+.status{background:var(--amber);border:1px solid var(--amber-line);border-radius:6px;padding:7px 11px;margin-bottom:12px;font-size:9.5pt}
+.status b{letter-spacing:.02em}
+.cols{display:grid;grid-template-columns:1fr 2.75in;gap:0.26in}
+h2{font-size:9pt;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px;color:var(--ink)}
+.cols section{margin-bottom:11px}
+p{margin:0 0 6px}
+ul{margin:0;padding-left:15px}
+li{margin:0 0 3px}
+.cite{font-size:7.5pt;color:var(--muted)}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:5px}
+.thumbs img{width:100%;display:block;border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.caption{font-size:7.5pt;color:var(--muted);margin-bottom:11px}
+.ask{border-top:2px solid var(--ink);padding-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0.28in}
+.ask ol{margin:0;padding-left:17px}
+.ask li{margin-bottom:4px}
+.links p{margin:0 0 5px}
+.links .k{display:block;font-size:7.5pt;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.links a{font-size:9pt;word-break:break-all}
+.foot{margin-top:10px;border-top:1px solid var(--line);padding-top:5px;font-size:7.5pt;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker">For EHDI program coordinators and data staff</div>
+  <h1>A free, standard infant hearing report for any state</h1>
+  <p class="lede">A form audiologists could use to send infant diagnostic results to your Early Hearing Detection and Intervention program. We'd like your program to review it.</p>
+
+  <div class="status"><b>Review draft.</b> No state EHDI program has accepted this report yet. We're asking programs to look at it before any audiologist uses it. Every printed page of the report says the same.</div>
+
+  <div class="cols">
+    <div>
+      <section>
+        <h2>Why</h2>
+        <p>Every state collects diagnostic results on its own form, with its own labels, answer choices, and order. Audiologists who see children from more than one state juggle several. And many results never arrive: in a national survey of 1,024 audiology facilities, the most common reason for not reporting to the state program was not knowing how (60%).</p>
+        <p class="cite">Chung W, et al. Reporting newborn audiologic results to state EHDI programs. <i>Ear &amp; Hearing</i> 2017;38(5):638–642.</p>
+      </section>
+      <section>
+        <h2>How it was built</h2>
+        <ul>
+          <li>We read the diagnostic reporting forms and rules of all 50 states and DC.</li>
+          <li>The 30 state forms with a field list ask 748 things between them. This report covers 730. The other 18 are left out on purpose: details of the earlier screening, state bookkeeping, early intervention enrollment dates, and a signature line.</li>
+          <li>Terms follow JCIH 2019 and ASHA. A pediatric audiologist reviewed every field.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>What your staff will see</h2>
+        <ul>
+          <li><b>Record-matching keys in one place:</b> other names the child may be filed under, the birth mother's name, and record numbers.</li>
+          <li><b>Results for each ear:</b> hearing status, type, permanence, and degree. Degree prints with its dB range and is rated by the worst threshold from 500 to 4000 Hz.</li>
+          <li><b>An honest "not yet determined"</b> choice on every question, and congenital CMV on its own line.</li>
+          <li><b>The follow-up answer first</b> on page 2: continue monitoring, or no further follow-up needed.</li>
+          <li><b>Your program's sending details and deadline</b> printed on the report, with the source and the date last checked.</li>
+        </ul>
+      </section>
+    </div>
+    <div>
+      <div class="thumbs"><img src="page-1.png" alt="Printed page 1 of a sample report"><img src="page-2.png" alt="Printed page 2 of a sample report"></div>
+      <div class="caption">A sample report: two US Letter pages. An optional third page adds risk indicators (JCIH 2019), test results by ear, and a parent permission section.</div>
+      <section>
+        <h2>What it is, and isn't</h2>
+        <ul>
+          <li>One file that opens in any web browser and prints to PDF. Nothing to install and no account.</li>
+          <li>Nothing typed in it leaves the audiologist's computer. There's no server.</li>
+          <li>It works alongside your form or online system, not instead of it. For portal states, the printout can be the sheet staff type from.</li>
+          <li>Free and open source (MIT license).</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <div class="ask">
+    <div>
+      <h2>What we're asking your program</h2>
+      <ol>
+        <li>Would you accept this report, by fax, by email, or as the sheet your staff type from?</li>
+        <li>If not, what would it need to change?</li>
+        <li>Is your state's entry right: how to send it, where, and by when?</li>
+      </ol>
+    </div>
+    <div class="links">
+      <p><span class="k">See the report, with pictures</span><a href="https://github.com/citizenkade/audiology-forms#ehdi-report">github.com/citizenkade/audiology-forms#ehdi-report</a></p>
+      <p><span class="k">Download it</span><a href="https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html">ehdi-report.html, from the latest release</a><br>Or find the download link on that page.</p>
+      <p><span class="k">Comment, or tell us your program accepts it</span><a href="https://github.com/citizenkade/audiology-forms/issues/1">github.com/citizenkade/audiology-forms/issues/1</a><br>Or reply to whoever sent you this.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Please share this with other EHDI programs. Part of Audiology Forms, a free collection of forms for audiologists.</span><span>Status as of September 27, 2026</span></div>
+</div>
+</body>
+</html>
