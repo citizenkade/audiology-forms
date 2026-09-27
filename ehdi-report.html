@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infant Hearing (EHDI) Diagnostic Report</title>
+<style>
+:root{--ink:#222;--line:#999;--muted:#666;--red:#d11a2a;--blue:#1f4fd1}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#e9eaee;font:13px/1.35 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink)}
+[hidden]{display:none!important}
+
+/* ---------- toolbar (screen only) ---------- */
+.toolbar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #d0d2d8;padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.tb-group{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tb-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;margin-right:4px}
+button.tb{padding:5px 10px;border:1px solid #cfd2d8;border-radius:6px;background:#fff;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222}
+button.tb:hover{border-color:#999}
+button.tb.primary{background:#1f4fd1;color:#fff;border-color:#1f4fd1}
+button.tb.primary:hover{background:#1a43b3}
+button.tb:disabled{opacity:.5;cursor:default}
+select.tb{padding:4px 6px;border:1px solid #cfd2d8;border-radius:6px;background:#fff;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222;max-width:190px}
+.status{font-size:12px;color:#555;min-width:180px}
+.sep{width:1px;height:22px;background:#e0e2e8}
+
+/* ---------- the sheets ---------- */
+.sheet{width:8.5in;min-height:11in;margin:18px auto;background:#fff;padding:0.35in;box-shadow:0 2px 14px rgba(0,0,0,.15);font-size:10.5px;line-height:1.25;display:flex;flex-direction:column}
+.sheet:last-of-type{margin-bottom:40px}
+.sheet>*{flex:none}
+.sheet.unused{min-height:0;box-shadow:none;background:transparent;border:1px dashed #b9bcc6}
+h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.subtitle{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:2px}
+.head{display:grid;grid-template-columns:2in 1fr 2in;align-items:center;gap:0.12in;margin-bottom:5px}
+.head.plain{grid-template-columns:1fr}
+.head.plain .logo,.head.plain .contact{display:none}
+.head .logo img{display:block;max-width:2in;max-height:0.45in}
+.head .contact{font-size:8px;line-height:1.25;color:var(--muted);text-align:right;white-space:pre-line;overflow:hidden}
+.meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:9.5px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3px 0;margin-bottom:2px}
+.meta .checks{gap:2px 10px}
+.p2head{display:flex;justify-content:space-between;gap:12px;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding-bottom:3px;margin-bottom:0.08in;white-space:nowrap;overflow:hidden}
+.sec{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin:0.08in 0 3px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sec .aside{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:8.5px}
+.opt{font-style:normal;text-transform:none;letter-spacing:0;color:#8a90a0;font-size:7.5px;margin-left:3px}
+.fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
+.field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:2px 5px 1px;min-height:0.34in;min-width:0}
+.field label.fl{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.field input[type=text],.field input:not([type]){width:100%;border:0;background:transparent;font:inherit;font-size:11px;padding:1px 0;outline:none;color:var(--ink)}
+.field input:focus{background:#f5f7ff}
+.field input.calc{color:#333}
+.field .checks{padding-top:3px}
+.field .checks input[type=text]{width:0.45in;flex:none;border:0;border-bottom:1px solid #bbb;font-size:10px;padding:0}
+.span2{grid-column:span 2}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}
+.box{border:1px solid var(--line);padding:4px 6px}
+.box h2{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 3px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+button.linkbtn{border:0;background:none;padding:0;font:inherit;color:var(--blue);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+button.linkbtn:hover{text-decoration-style:solid}
+.cond-row{display:flex;gap:6px;align-items:baseline;margin:2px 0}
+.cond-row .cl{font-size:9px;color:var(--muted);min-width:1in;flex:none}
+.checks{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline}
+.checks label{display:inline-flex;align-items:center;gap:3px;font-size:10px;white-space:nowrap}
+.checks .ear{font-weight:600;font-size:9.5px}
+.checks .ear.r{color:var(--red)}.checks .ear.l{color:var(--blue)}
+input[type=checkbox],input[type=radio]{width:11px;height:11px;margin:0;accent-color:#222;vertical-align:middle}
+.inline-field{display:inline-flex;gap:4px;align-items:baseline;flex:1;min-width:0}
+.inline-field span{font-size:9px;color:var(--muted);white-space:nowrap}
+.inline-field input{flex:1;border:0;border-bottom:1px solid #bbb;background:transparent;font:inherit;font-size:10.5px;outline:none;min-width:0;color:var(--ink)}
+.inline-field input:focus{background:#f5f7ff}
+.inline-field.short{flex:none}
+.inline-field.short input{width:0.85in;flex:none}
+.followup{display:none;gap:8px;align-items:baseline;font-size:9.5px;color:#444;white-space:nowrap}
+.followup.on{display:inline-flex}
+.followup .q{color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0.12in}
+.two.results{align-items:start}
+table.mx,table.results{width:100%;border-collapse:collapse}
+table.mx td,table.mx th{border:1px solid var(--line);padding:0 4px;font-size:9.5px;height:0.138in;line-height:1.05}
+table.mx th{background:#f2f2f2;font-weight:600;font-size:9px;text-align:center;width:0.48in}
+table.mx th.r,table.results th.r{color:var(--red)} table.mx th.l,table.results th.l{color:var(--blue)}
+table.mx td.c{text-align:center}
+table.mx td.c input{display:block;margin:0 auto}
+table.mx tr.gh td{background:#f6f6f6;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:#555;font-weight:600;height:0.125in}
+table.mx .rng{float:right;color:var(--muted);font-size:8.5px;padding-left:6px}
+table.results th,table.results td{border:1px solid var(--line);padding:2px 4px;font-size:9.5px;text-align:left;height:0.18in}
+table.results th{background:#f2f2f2;font-weight:600;text-align:center}
+table.results th:first-child{text-align:left}
+table.results td.c{text-align:center}
+table.results td.lab{white-space:nowrap;width:1%}
+table.results td input{width:100%;border:0;background:transparent;font:inherit;outline:none;color:var(--ink);padding:0}
+table.results td.n input{text-align:center}
+table.results td input:focus{background:#f5f7ff}
+.foot{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.3}
+.hint-line{font-size:9px;color:#4a5a8a;background:#f3f5fc;border:1px solid #dfe4f5;border-radius:4px;padding:2px 6px;margin-top:4px}
+.laterality{font-size:9.5px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink)}
+.laterality b{font-weight:600}
+.comments{border:1px solid var(--line);padding:4px 6px;white-space:pre-wrap;font-size:11px;outline:none}
+.comments:focus{background:#fbfcff}
+.fu-bar{border:2px solid #333;padding:5px 8px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:11.5px;font-weight:700}
+.fu-bar .checks label{font-size:11.5px;font-weight:600;gap:5px}
+.fu-bar input[type=checkbox]{width:13px;height:13px}
+.sendto{border:1px solid #333;padding:5px 8px;margin-top:0.12in}
+.sendto .st-prog{font-weight:700;font-size:10.5px}
+.sendto .st-line{margin-top:2px;font-size:10px}
+.sendto .st-line .k{color:var(--muted);font-size:9px;display:inline-block;min-width:0.55in;margin-right:6px}
+.sendto .st-note{color:var(--muted);font-size:8.5px}
+.sendto .st-src{margin-top:3px;font-size:8px;color:var(--muted)}
+.sendto .st-warn{margin-top:3px;font-size:9px;color:#8a5a00}
+.sendto a{color:var(--blue)}
+.sendto .st-empty{color:var(--muted);font-size:10px}
+.risk{columns:2;column-gap:0.2in}
+.risk label{display:flex;gap:4px;align-items:flex-start;font-size:9.5px;margin:0 0 3px;break-inside:avoid}
+.risk label input{flex:none;position:relative;top:1px}
+.risk .no{color:var(--muted);min-width:0.18in;flex:none;text-align:right}
+.consent-text{font-size:10px;margin:2px 0 4px}
+.sig{display:grid;grid-template-columns:2fr 1.6fr 1.2fr 1fr;gap:0.2in;margin-top:0.18in;align-items:start}
+.sig .line{border-bottom:1px solid #333;height:0.28in}
+.sig input{width:100%;height:0.28in;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
+.sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+.addbar{font-size:12px;color:#444;display:flex;flex-direction:column;gap:6px;padding:4px 0}
+.addbar .lead{color:var(--muted);font-size:11px}
+.addbar button.add{align-self:flex-start;padding:5px 10px;border:1px dashed #9aa3bd;border-radius:6px;background:#f7f8fc;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#1f3a8a}
+.addbar button.add:hover{background:#eef1fb;border-style:solid}
+.optsec{margin-bottom:0.06in}
+.reporter-note{font-size:9px;color:#4a5a8a;margin-top:3px}
+.bc{display:flex;flex-direction:column;align-items:center;gap:2px}
+.bc svg{display:block;height:0.3in}
+.bc span{font-size:8px;white-space:nowrap}
+.pfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:0.08in;font-size:8px;color:var(--muted)}
+.pfoot .pageno{margin-left:auto}
+
+/* ---------- dialogs (screen only) ---------- */
+dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-height:calc(100vh - 70px);overflow:auto;border:1px solid #cfd2d8;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.2);padding:14px 16px;font:13px/1.4 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222;z-index:10;background:#fff}
+dialog.lh.wide{width:430px}
+.lh h3{margin:0 0 12px;font-size:14px}
+.lh .row{margin-bottom:13px}
+.lh label.t{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;margin-bottom:3px}
+.lh input[type=text],.lh input[type=number],.lh textarea,.lh select{width:100%;border:1px solid #cfd2d8;border-radius:6px;padding:5px 7px;font:inherit;resize:vertical;color:#222;background:#fff}
+.lh input:focus,.lh textarea:focus,.lh select:focus{outline:none;border-color:#1f4fd1}
+.lh .hint{font-size:11px;color:#666;margin-top:3px}
+.lh .logo-preview{display:flex;align-items:center;gap:10px;margin-bottom:6px;min-height:40px}
+.lh .logo-preview img{max-width:200px;max-height:48px;border:1px dashed #ccc;padding:2px;background:#fff}
+.lh .btns{display:flex;gap:6px;flex-wrap:wrap}
+.lh .foot{border-top:1px solid #eee;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:inherit}
+.lh .note{font-size:11px;color:#666;margin-bottom:10px}
+.lh .inline{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#666}
+.lh .inline select{width:auto}
+.lh .pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:letter portrait;margin:0.35in}
+  body{background:#fff}
+  .toolbar,dialog,.screen-only,.opt{display:none!important}
+  .sheet{width:auto;min-height:10.1in;margin:0;padding:0;box-shadow:none;break-after:page}
+  .sheet.last{break-after:auto}
+  .sheet.unused{display:none!important}
+  ::placeholder{color:transparent}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .field input:focus,table.results td input:focus,.comments:focus,.inline-field input:focus{background:transparent}
+  .sendto a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="tb-group">
+    <span class="tb-label">State</span>
+    <select class="tb" data-field="stateCode" id="stateSel" title="Where to send this report and by when"><option value="">Choose…</option></select>
+  </div>
+  <div class="sep"></div>
+  <div class="tb-group">
+    <button class="tb primary" id="btnPrint" title="Opens the print dialog. Choose 'Save as PDF' as the destination.">Print / Save as PDF</button>
+    <button class="tb" id="btnPrintBlank" title="Prints an empty form, with your clinic details and state filled in">Print blank form</button>
+  </div>
+  <div class="sep"></div>
+  <div class="tb-group">
+    <button class="tb" id="btnImport" title="Pick an ABR report or audiogram you saved with Save evaluation. Its name, dates, tests, thresholds, and ABR recommendations fill in the empty parts of this report. Nothing you've typed here is overwritten.">Fill from a saved ABR or audiogram…</button>
+    <button class="tb" id="btnUndoImport" hidden title="Put this report back the way it was before the fill">Undo fill</button>
+    <input type="file" id="importFile" accept=".html,.htm,text/html" hidden>
+  </div>
+  <div class="sep"></div>
+  <div class="tb-group">
+    <button class="tb" id="btnSave" title="Downloads a copy of this report with everything filled in, so you can reopen it later">Save evaluation</button>
+    <button class="tb" id="btnMaster" title="Downloads a blank copy with your letterhead, your Reported by details, your state, and any changes to the state's sending details built in. Use it instead of this file from now on.">Save master copy</button>
+    <button class="tb" id="btnNew">Clear form</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, and a document barcode.">Letterhead…</button>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<!-- ================= PAGE 1: who, and what was found ================= -->
+<div class="sheet" id="sheet1">
+  <div class="head">
+    <div class="logo"><img id="shLogo" alt="" hidden></div>
+    <div><h1>Infant Hearing Diagnostic Report</h1><div class="subtitle">For the state Early Hearing Detection and Intervention (EHDI) program</div></div>
+    <div class="contact" id="shContact" hidden></div>
+  </div>
+
+  <div class="meta">
+    <span class="checks"><span class="cl" style="color:var(--muted);font-size:9px">This report is</span>
+      <label><input type="checkbox" data-check="kindNew" data-group="kind"> New</label>
+      <label><input type="checkbox" data-check="kindUpdate" data-group="kind"> An update</label>
+      <label><input type="checkbox" data-check="kindCorrection" data-group="kind"> A correction to an earlier report</label>
+      <i class="opt">optional</i></span>
+    <span class="inline-field short"><span>Date of this report</span><input data-field="reportDate" placeholder="MM/DD/YYYY" autocomplete="off"></span>
+  </div>
+
+  <div class="sec">Child and record matching<span class="aside screen-only">State databases match records strictly. Every name and number here helps them find this child.</span></div>
+  <div class="fields">
+    <div class="field span3"><label class="fl">Child's name (last, first, middle)</label><input data-field="childName" autocomplete="off"></div>
+    <div class="field"><label class="fl">Date of birth</label><input data-field="childDob" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Sex assigned at birth</label><span class="checks">
+      <label><input type="checkbox" data-check="sexF" data-group="sex"> Female</label>
+      <label><input type="checkbox" data-check="sexM" data-group="sex"> Male</label>
+      <label><input type="checkbox" data-check="sexU" data-group="sex"> Unknown</label></span></div>
+
+    <div class="field span3"><label class="fl">Place of birth (hospital, birthing center, or home)</label><input data-field="birthPlace" autocomplete="off"></div>
+    <div class="field"><label class="fl">City</label><input data-field="birthCity" autocomplete="off"></div>
+    <div class="field"><label class="fl">County</label><input data-field="birthCounty" autocomplete="off"></div>
+    <div class="field"><label class="fl">State</label><input data-field="birthState" autocomplete="off"></div>
+
+    <div class="field span3"><label class="fl">Birth mother's name (last, first)</label><input data-field="motherName" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Her maiden name<i class="opt">optional</i></label><input data-field="motherMaiden" autocomplete="off"></div>
+    <div class="field"><label class="fl">Her date of birth<i class="opt">optional</i></label><input data-field="motherDob" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+
+    <div class="field span4"><label class="fl">Other names the child may be filed under<i class="opt">optional</i></label><input data-field="otherNames" placeholder="Name at birth, earlier or hyphenated surnames, spellings, also known as" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Multiple birth<i class="opt">optional</i></label><span class="checks">
+      <label><input type="checkbox" data-check="multSingle" data-group="mult"> Single</label>
+      <label><input type="checkbox" data-check="multTwin" data-group="mult"> Twin</label>
+      <label><input type="checkbox" data-check="multMore" data-group="mult"> Triplet+</label>
+      <label>Order <input type="text" data-field="multOrder" placeholder="A, B" autocomplete="off"></label></span></div>
+
+    <div class="field span3"><label class="fl">Clinic record number (MRN)<i class="opt">optional</i></label><input data-field="mrn" autocomplete="off"></div>
+    <div class="field span3"><label class="fl">Newborn screening kit, lab, or state ID number<i class="opt">optional</i></label><input data-field="nbsId" autocomplete="off"></div>
+  </div>
+
+  <div class="sec">Family and medical home</div>
+  <div class="fields">
+    <div class="field span2"><label class="fl">Parent or guardian (name, relationship)</label><input data-field="guardianName" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Phone(s)</label><input data-field="guardianPhone" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Email<i class="opt">optional</i></label><input data-field="guardianEmail" autocomplete="off"></div>
+
+    <div class="field span4"><label class="fl">Mailing address</label><input data-field="guardianAddress" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Language used at home<i class="opt">optional</i></label><input data-field="homeLanguage" autocomplete="off"></div>
+
+    <div class="field span3"><label class="fl">Another caregiver or contact (name, relationship, phone)<i class="opt">optional</i></label><input data-field="otherContact" autocomplete="off"></div>
+    <div class="field span3"><label class="fl">Foster care or adoption (who to contact)<i class="opt">optional</i></label><input data-field="custody" autocomplete="off"></div>
+
+    <div class="field span6"><label class="fl">Primary care provider (name, practice, phone, fax)</label><input data-field="pcp" autocomplete="off"></div>
+  </div>
+
+  <div class="sec">This visit</div>
+  <div class="fields">
+    <div class="field"><label class="fl">Date of evaluation</label><input data-field="visitDate" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+    <div class="field"><label class="fl">Age at evaluation</label><input data-field="age" class="calc" readonly tabindex="-1" title="Calculated from the date of birth and the date of evaluation"></div>
+    <div class="field span2"><label class="fl">Visit<i class="opt">optional</i></label><span class="checks">
+      <label><input type="checkbox" data-check="seqFirst" data-group="seq"> First diagnostic visit</label>
+      <label><input type="checkbox" data-check="seqFollow" data-group="seq"> Follow-up</label></span></div>
+    <div class="field span2"><label class="fl">Test conditions<i class="opt">optional</i></label><span class="checks">
+      <label><input type="checkbox" data-check="condSleep"> Natural sleep</label>
+      <label><input type="checkbox" data-check="condSedated"> Sedated</label></span></div>
+  </div>
+  <div class="box" style="border-top:0">
+    <div class="cond-row"><span class="cl">Reason for evaluation</span><span class="checks">
+      <label><input type="checkbox" data-check="rsnScreen"> Did not pass newborn screening</label>
+      <label><input type="checkbox" data-check="rsnRisk"> Risk indicator</label>
+      <label><input type="checkbox" data-check="rsnConcern"> Family or doctor concern</label>
+      <label><input type="checkbox" data-check="rsnMonitor"> Monitoring</label>
+      <label><input type="checkbox" data-check="rsnReferred"> Referred from elsewhere</label></span></div>
+    <div class="cond-row"><span class="cl">Visit outcome</span><span class="checks">
+      <label><input type="checkbox" data-check="outDone" data-group="out"> Completed</label>
+      <label><input type="checkbox" data-check="outIncomplete" data-group="out"> Incomplete, more testing needed</label>
+      <label><input type="checkbox" data-check="outCNT" data-group="out"> Could not test</label>
+      <label><input type="checkbox" data-check="outNoShow" data-group="out"> Did not show</label>
+      <label><input type="checkbox" data-check="outDeclined" data-group="out"> Parent declined</label>
+      <label><input type="checkbox" data-check="outNoContact" data-group="out"> Unable to contact</label></span></div>
+    <div class="cond-row followup" id="incRow"><span class="cl">Incomplete because</span><span class="checks">
+      <label><input type="checkbox" data-check="incMiddleEar"> Middle ear dysfunction</label>
+      <label><input type="checkbox" data-check="incState"> Infant woke or would not settle</label></span>
+      <span class="inline-field"><span>Other</span><input data-field="incOther" autocomplete="off"></span></div>
+    <div class="cond-row"><span class="cl">Newborn screening<i class="opt">optional</i></span><span class="checks">
+      <span class="ear r">Right</span>
+      <label><input type="checkbox" data-check="nbsRPass" data-group="nbsR"> Pass</label>
+      <label><input type="checkbox" data-check="nbsRFail" data-group="nbsR"> Fail</label>
+      <label><input type="checkbox" data-check="nbsRNot" data-group="nbsR"> Not screened</label>
+      <span class="ear l" style="margin-left:6px">Left</span>
+      <label><input type="checkbox" data-check="nbsLPass" data-group="nbsL"> Pass</label>
+      <label><input type="checkbox" data-check="nbsLFail" data-group="nbsL"> Fail</label>
+      <label><input type="checkbox" data-check="nbsLNot" data-group="nbsL"> Not screened</label>
+      <span style="margin-left:6px;color:var(--muted);font-size:9px">Method</span>
+      <label><input type="checkbox" data-check="nbsOAE"> OAE</label>
+      <label><input type="checkbox" data-check="nbsAABR"> AABR</label></span></div>
+    <div class="cond-row"><span class="cl">Congenital CMV</span><span class="checks">
+      <label><input type="checkbox" data-check="cmvPos" data-group="cmv"> Positive</label>
+      <label><input type="checkbox" data-check="cmvNeg" data-group="cmv"> Negative</label>
+      <label><input type="checkbox" data-check="cmvPending" data-group="cmv"> Result pending</label>
+      <label><input type="checkbox" data-check="cmvNot" data-group="cmv"> Not tested</label>
+      <label><input type="checkbox" data-check="cmvUnknown" data-group="cmv"> Unknown</label></span>
+      <span class="inline-field short"><span>Test date</span><input data-field="cmvDate" placeholder="MM/DD/YYYY" autocomplete="off"></span></div>
+    <div class="cond-row"><span class="cl">Tests performed</span><span class="checks">
+      <label><input type="checkbox" data-check="tTymp"> Tympanometry, probe tone</label>
+      <label><input type="checkbox" data-check="tymp226"> 226 Hz</label>
+      <label><input type="checkbox" data-check="tymp1000"> 1000 Hz</label>
+      <label><input type="checkbox" data-check="tReflex"> Acoustic reflexes</label>
+      <label><input type="checkbox" data-check="tDPOAE"> DPOAE</label>
+      <label><input type="checkbox" data-check="tTEOAE"> TEOAE</label>
+      <label><input type="checkbox" data-check="tClick"> Click ABR</label>
+      <label><input type="checkbox" data-check="tTone"> Tone-burst ABR</label>
+      <label><input type="checkbox" data-check="tBoneABR"> Bone-conduction ABR</label>
+      <label><input type="checkbox" data-check="tASSR"> ASSR</label>
+      <label><input type="checkbox" data-check="tBOA"> BOA</label>
+      <label><input type="checkbox" data-check="tVRA"> VRA</label>
+      <label><input type="checkbox" data-check="tCPA"> CPA</label>
+      <label><input type="checkbox" data-check="tConv"> Conventional audiometry</label>
+      <label><input type="checkbox" data-check="tSpeech"> Speech audiometry</label></span></div>
+  </div>
+
+  <div class="sec">Results for each ear<span class="laterality" id="laterality"></span></div>
+  <div class="two results">
+    <table class="mx" id="mxA"></table>
+    <table class="mx" id="mxB"></table>
+  </div>
+  <div class="hint-line screen-only" id="degHint" hidden></div>
+  <div class="fields" style="margin-top:0.08in">
+    <div class="field"><label class="fl" title="Date hearing loss was first confirmed">Loss first confirmed<i class="opt">optional</i></label><input data-field="dxDate" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+    <div class="field span3"><label class="fl">Onset<i class="opt">optional</i></label><span class="checks">
+      <label><input type="checkbox" data-check="onCong" data-group="onset"> Congenital</label>
+      <label><input type="checkbox" data-check="onAcq" data-group="onset"> Acquired</label>
+      <label><input type="checkbox" data-check="onProg" data-group="onset"> Progressive or late onset</label>
+      <label><input type="checkbox" data-check="onUnk" data-group="onset"> Unknown</label></span></div>
+    <div class="field span2"><label class="fl">Known or suspected cause<i class="opt">optional</i></label><input data-field="cause" autocomplete="off"></div>
+  </div>
+
+  <div class="pfoot"><div class="bc" id="bc1" hidden></div><span class="pageno">Page 1 of 2</span></div>
+</div>
+
+<!-- ================= PAGE 2: what happens next ================= -->
+<div class="sheet" id="sheet2">
+  <div class="p2head"><span>Infant Hearing Diagnostic Report</span><span class="who"></span><span class="pageno">Page 2 of 2</span></div>
+
+  <div class="sec" style="margin-top:0">Next steps</div>
+  <div class="fu-bar"><span>EHDI follow-up:</span><span class="checks">
+    <label><input type="checkbox" data-check="fuContinue" data-group="fu"> Continue monitoring</label>
+    <label><input type="checkbox" data-check="fuNone" data-group="fu"> No further follow-up needed</label></span></div>
+
+  <div class="fields" style="margin-top:0.08in">
+    <div class="field span4"><label class="fl">Next audiology visit (date, place, or interval)</label><input data-field="nextVisit" autocomplete="off"></div>
+    <div class="field span2"><label class="fl">Communication options discussed with family<i class="opt">optional</i></label><span class="checks">
+      <label><input type="checkbox" data-check="comYes" data-group="com"> Yes</label>
+      <label><input type="checkbox" data-check="comNo" data-group="com"> No</label>
+      <label><input type="checkbox" data-check="comNA" data-group="com"> Not applicable</label></span></div>
+  </div>
+
+  <div class="two" style="margin-top:0.08in">
+    <div class="box">
+      <h2>Amplification</h2>
+      <table class="results">
+        <tr><th>Device</th><th>Recommended</th><th>Fitted</th><th>Date fitted</th></tr>
+        <tr><td class="lab">Hearing aids</td><td class="c"><input type="checkbox" data-check="ampHARec"></td><td class="c"><input type="checkbox" data-check="ampHAFit"></td><td class="n"><input data-field="ampHADate" autocomplete="off"></td></tr>
+        <tr><td class="lab">Cochlear implant</td><td class="c"><input type="checkbox" data-check="ampCIRec"></td><td class="c"><input type="checkbox" data-check="ampCIFit"></td><td class="n"><input data-field="ampCIDate" autocomplete="off"></td></tr>
+        <tr><td class="lab">Bone-conduction device</td><td class="c"><input type="checkbox" data-check="ampBCRec"></td><td class="c"><input type="checkbox" data-check="ampBCFit"></td><td class="n"><input data-field="ampBCDate" autocomplete="off"></td></tr>
+        <tr><td class="lab"><span class="inline-field"><span>Other</span><input data-field="ampOther" autocomplete="off" style="width:0.8in"></span></td><td class="c"><input type="checkbox" data-check="ampOtherRec"></td><td class="c"><input type="checkbox" data-check="ampOtherFit"></td><td class="n"><input data-field="ampOtherDate" autocomplete="off"></td></tr>
+      </table>
+      <div class="checks" style="margin-top:4px">
+        <label><input type="checkbox" data-check="ampLoaner"> Loaner fitted</label>
+        <label><input type="checkbox" data-check="ampNone"> Not recommended at this time</label></div>
+    </div>
+    <div>
+      <div class="box">
+        <h2 id="eiTitle">Early intervention (Part C) referral</h2>
+        <div class="cond-row"><span class="checks"><label><input type="checkbox" data-check="eiReferred" data-group="ei"> Referred</label></span>
+          <span class="inline-field short"><span>on</span><input data-field="eiDate" placeholder="MM/DD/YYYY" autocomplete="off"></span></div>
+        <div class="cond-row"><span class="checks"><label><input type="checkbox" data-check="eiEnrolled" data-group="ei"> Already enrolled</label></span></div>
+        <div class="cond-row"><span class="checks"><label><input type="checkbox" data-check="eiNot" data-group="ei"> Not referred.</label></span>
+          <span class="inline-field"><span>Why</span><input data-field="eiWhy" autocomplete="off"></span></div>
+      </div>
+      <div class="box" style="margin-top:0.08in">
+        <h2>Results shared with</h2>
+        <div class="checks">
+          <label><input type="checkbox" data-check="shParent"> Parent or guardian</label>
+          <label><input type="checkbox" data-check="shPCP"> Primary care provider</label>
+          <label><input type="checkbox" data-check="shEI"> Early intervention</label>
+          <label><input type="checkbox" data-check="shENT"> ENT</label></div>
+        <div class="cond-row" style="margin-top:3px"><span class="inline-field short"><span>Date shared</span><input data-field="sharedDate" placeholder="MM/DD/YYYY" autocomplete="off"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:0.08in">
+    <h2>Other referrals</h2>
+    <div class="checks">
+      <label><input type="checkbox" data-check="refENT"> ENT (otolaryngology)</label>
+      <label><input type="checkbox" data-check="refGenetics"> Genetics</label>
+      <label><input type="checkbox" data-check="refOphth"> Ophthalmology</label>
+      <label><input type="checkbox" data-check="refSLP"> Speech-language</label>
+      <label><input type="checkbox" data-check="refFamily"> Family-to-family support</label>
+      <label><input type="checkbox" data-check="refMedHome"> Medical home</label>
+      <label><input type="checkbox" data-check="refSchool"> School-based or deaf and hard of hearing educational services</label>
+      <label><input type="checkbox" data-check="refOther"> Other</label>
+      <span class="inline-field" style="min-width:1.6in"><input data-field="refOtherText" autocomplete="off"></span></div>
+    <div class="cond-row" style="margin-top:3px"><span class="inline-field"><span>School district, for a school-based referral<i class="opt">optional</i></span><input data-field="schoolDistrict" autocomplete="off"></span></div>
+  </div>
+
+  <div class="sec">Recommendations</div>
+  <div class="comments" contenteditable="true" data-field="recommendations" style="min-height:1.45in"></div>
+  <div class="sec">Comments</div>
+  <div class="comments" contenteditable="true" data-field="comments" style="min-height:0.95in"></div>
+
+  <div class="sec">Reported by</div>
+  <div class="fields">
+    <div class="field span3"><label class="fl">Audiologist name and credentials</label><input data-field="repName" autocomplete="off"></div>
+    <div class="field"><label class="fl">License number</label><input data-field="repLicense" autocomplete="off"></div>
+    <div class="field"><label class="fl">Phone</label><input data-field="repPhone" autocomplete="off"></div>
+    <div class="field"><label class="fl">Fax</label><input data-field="repFax" autocomplete="off"></div>
+    <div class="field span3"><label class="fl">Clinic or facility</label><input data-field="repFacility" autocomplete="off"></div>
+    <div class="field span3"><label class="fl">Email</label><input data-field="repEmail" autocomplete="off"></div>
+    <div class="field span6"><label class="fl">Address</label><input data-field="repAddress" autocomplete="off"></div>
+  </div>
+  <div class="reporter-note screen-only" id="repNote" hidden>These differ from your master copy. Click <b>Save master copy</b> to have them fill in by themselves next time.</div>
+
+  <div class="sendto" id="sendto"></div>
+
+  <div class="pfoot"><div class="bc" id="bc2" hidden></div><span class="pageno">Page 2 of 2</span></div>
+</div>
+
+<!-- ================= PAGE 3: optional sections, printed only when one is added ================= -->
+<div class="sheet" id="sheet3">
+  <div class="p2head" id="p3head"><span>Infant Hearing Diagnostic Report</span><span class="who"></span><span class="pageno">Page 3 of 3</span></div>
+  <input type="checkbox" data-check="optRisk" hidden><input type="checkbox" data-check="optResults" hidden><input type="checkbox" data-check="optConsent" hidden>
+
+  <section class="optsec" data-opt="optRisk" hidden>
+    <div class="sec" style="margin-top:0">Risk indicators for hearing loss<span class="aside">JCIH 2019, Table 1 <button class="linkbtn screen-only" data-remove="optRisk">Remove section</button></span></div>
+    <div class="box"><div class="risk" id="riskList"></div></div>
+  </section>
+
+  <section class="optsec" data-opt="optResults" hidden>
+    <div class="sec">Test results by ear<span class="aside">NR = no response at the level given. M = masked. * = lowest level tested with a response. <button class="linkbtn screen-only" data-remove="optResults">Remove section</button></span></div>
+    <table class="results" id="thrTable"></table>
+    <table class="results" id="resTable" style="margin-top:0.06in"></table>
+  </section>
+
+  <section class="optsec" data-opt="optConsent" hidden>
+    <div class="sec">Parent or guardian permission to share results<span class="aside"><button class="linkbtn screen-only" data-remove="optConsent">Remove section</button></span></div>
+    <div class="box">
+      <div class="consent-text">I give permission for the audiologist and clinic named on this report to share these results with:</div>
+      <div class="checks">
+        <label><input type="checkbox" data-check="cnState"> The state EHDI program</label>
+        <label><input type="checkbox" data-check="cnEI"> Early intervention</label>
+        <label><input type="checkbox" data-check="cnSchool"> School-based or deaf and hard of hearing educational services</label>
+        <label><input type="checkbox" data-check="cnPCP"> Primary care provider</label>
+        <label><input type="checkbox" data-check="cnOther"> Other</label>
+        <span class="inline-field" style="min-width:1.6in"><input data-field="cnOtherText" autocomplete="off"></span></div>
+      <div class="sig">
+        <div><div class="line"></div><label>Parent or guardian signature</label></div>
+        <div><input data-field="cnName" autocomplete="off"><label>Printed name</label></div>
+        <div><input data-field="cnRel" autocomplete="off"><label>Relationship to child</label></div>
+        <div><input data-field="cnDate" autocomplete="off"><label>Date</label></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="addbar screen-only" id="addbar">
+    <div class="lead" id="addLead">Optional sections. Page 3 prints only when you add at least one.</div>
+    <button class="add" data-add="optRisk">+ Add risk indicators (JCIH 2019)</button>
+    <button class="add" data-add="optResults">+ Add test results by ear</button>
+    <button class="add" data-add="optConsent">+ Add parent permission to share results</button>
+  </div>
+
+  <div class="pfoot"><div class="bc" id="bc3" hidden></div><span class="pageno">Page 3 of 3</span></div>
+</div>
+
+<dialog class="lh" id="lhDialog">
+  <h3>Letterhead</h3>
+  <div class="note">Put your logo and office details on every printout. Changes show on the page right away. To keep them for next time, click <b>Save master copy</b> below and use that file from now on.</div>
+  <div class="row">
+    <label class="t">Logo</label>
+    <div class="logo-preview"><img id="lhLogoPreview" alt="" hidden><span class="hint" id="lhLogoNone">No logo</span></div>
+    <div class="btns"><button class="tb" id="lhLogoPick">Choose image…</button><button class="tb" id="lhLogoClear">Remove</button><input type="file" id="lhLogoFile" accept="image/png,image/jpeg,image/svg+xml" hidden></div>
+    <div class="hint">PNG, JPG, or SVG. Prints at the top left, up to 2 inches wide and half an inch tall. A wide logo looks best.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhContact">Office or organization</label>
+    <textarea id="lhContact" rows="4" placeholder="Clinic or office name&#10;Street address&#10;Phone&#10;Fax"></textarea>
+    <div class="hint">Up to 4 lines. Prints at the top right.</div>
+  </div>
+  <div class="row">
+    <label class="t" for="lhDocId">Document identifier</label>
+    <input type="text" id="lhDocId" maxlength="16" placeholder="e.g. EHDI Report">
+    <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
+    <div class="inline"><label for="lhBcPages">On page</label><select id="lhBcPages"><option value="first">First</option><option value="last">Last</option><option value="all">All</option></select></div>
+  </div>
+  <div class="foot">
+    <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead and settings built in. Use it instead of this file from now on.">Save master copy</button>
+    <span><button class="tb" id="lhClear">Clear all</button> <button class="tb primary" id="lhDone">Done</button></span>
+  </div>
+</dialog>
+
+<dialog class="lh wide" id="stDialog">
+  <h3 id="stTitle">Sending details</h3>
+  <div class="note" id="stNote">If something here is out of date, fix it. Your changes show on the report right away. To keep them, click <b>Save master copy</b> and use that file from now on.</div>
+  <div class="row"><label class="t" for="stProgram">Program</label><input type="text" id="stProgram"></div>
+  <div class="row"><label class="t" for="stRoute">How the state takes reports</label><select id="stRoute">
+    <option>Paper or PDF form</option><option>State online system</option><option>State online system or paper form</option><option>Your own clinical report</option><option>Not published</option></select></div>
+  <div class="row"><label class="t" for="stSendTo">Send to</label><textarea id="stSendTo" rows="3" placeholder="Fax: 555-555-0100&#10;Email: ehdi@state.gov — secure email only"></textarea>
+    <div class="hint">One per line, starting with Fax, Email, Phone, or Mail. Add a note after a dash. Start a line with "Contact" for a number that's for questions, not for sending reports.</div></div>
+  <div class="row"><label class="t">State online system</label><div class="pair"><input type="text" id="stPortalName" placeholder="Name"><input type="text" id="stPortalUrl" placeholder="https://"></div></div>
+  <div class="row"><label class="t">The state's own form</label><div class="pair"><input type="text" id="stFormName" placeholder="Name"><input type="text" id="stFormUrl" placeholder="https://"></div></div>
+  <div class="row"><label class="t" for="stDeadline">Deadline</label><textarea id="stDeadline" rows="2"></textarea>
+    <div class="inline"><label for="stDays">Days allowed</label><input type="number" id="stDays" min="0" max="120" style="width:70px"><span>Say "business days" in the deadline to skip weekends.</span></div></div>
+  <div class="row"><label class="t" for="stEI">Early intervention program name</label><input type="text" id="stEI" placeholder="e.g. First Steps"></div>
+  <div class="row"><label class="t" for="stWho">Who must report</label><textarea id="stWho" rows="2"></textarea></div>
+  <div class="foot">
+    <button class="tb" id="stMaster">Save master copy</button>
+    <span><button class="tb" id="stRevert" title="Throw away your changes to this state and use the published entry">Use published entry</button> <button class="tb primary" id="stDone">Done</button></span>
+  </div>
+</dialog>
+
+<script type="application/json" id="saved-state">null</script>
+<script type="application/json" id="letterhead">null</script>
+<script type="application/json" id="settings">null</script>
+<script type="application/json" id="state-reference">{"_about":"Per-state EHDI reporting reference for the EHDI diagnostic report form. Starting data from a 50-state + DC census (Project research, 2026-09-26/27). Every entry names its source and last-checked date; audiologists can edit their copy when an entry is stale. confidence: confirmed = route and deadline seen on state sources; partial = route confirmed, deadline or details missing; unverified = route not published.","states":{"AK":{"state":"Alaska","program":"Alaska Early Hearing Detection and Intervention (EHDI) / Universal Newborn Hearing Screening, Alaska Department of Health","program_url":"https://health.alaska.gov/en/services/newborn-hearing-screening/","route":"Not published","route_note":"","portal":null,"state_form":null,"send_to":[],"deadline":"at least monthly (7 AAC 27.620(b)(1)); no per-evaluation day count","deadline_days":null,"deadline_source":"https://www.akleg.gov/basis/aac.asp?media=print&secStart=7.27.620&secEnd=7.27.620","who_reports":"A person who provides audiological confirmatory evaluation and diagnostic services for newborns and infants screened under AS 47.20.310","ei_program":"","confidence":"unverified","last_checked":"2026-09-27"},"AL":{"state":"Alabama","program":"Alabama Newborn Hearing Screening Program (Alabama EHDI Program, \"Alabama's Listening!\"), Alabama Department of Public Health","program_url":"http://www.alabamapublichealth.gov/newbornscreening/newborn-hearing-screening.html","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Diagnostic Hearing Evaluation Form (Alabama Newborn Hearing Program)","number":"NBS.Hearing Diagnostic Reporting Form.2018","url":"http://www.alabamapublichealth.gov/newbornscreening/assets/diagnostichearingevaluationform.pdf"},"send_to":[{"method":"fax","value":"334-206-3791","kind":"send","note":"","source":"http://www.alabamapublichealth.gov/newbornscreening/newborn-hearing-screening.html"}],"deadline":"as soon as the initial diagnostic audiological evaluation is completed (no number of days given)","deadline_days":null,"deadline_source":"http://www.alabamapublichealth.gov/newbornscreening/assets/diagnostichearingevaluationform.pdf","who_reports":"Health care providers who perform hearing tests on newborns (the audiology provider completes the form)","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"AR":{"state":"Arkansas","program":"Arkansas Infant Hearing Program (EHDI), Arkansas Department of Health","program_url":"https://healthy.arkansas.gov/programs-services/community-family-child-health/family-health/infant-hearing/audiologist-information/","route":"State online system or paper form","route_note":"","portal":{"name":"ERAVE (Electronic Registry/Registration of Arkansas Vital Events)","url":"https://healthy.arkansas.gov/programs-services/certificates-records/erave/"},"state_form":{"name":"Arkansas Infant Hearing Diagnostic Test Battery (posted as 'Diagnostic Evaluation Form')","number":"","url":"https://healthy.arkansas.gov/wp-content/uploads/Diagnostic_Evaluation_Questionnaire.pdf"},"send_to":[],"deadline":"within 7 business days of the evaluation (to the Infant Hearing Program and the child's primary care provider)","deadline_days":7,"deadline_source":"https://healthy.arkansas.gov/wp-content/uploads/2021_Audiologists_Guide_for_Infant_Diagnostic_Evaluation_Booklet-FINAL-compressed.pdf","who_reports":"Physicians or other providers administering initial screening or follow-up care (audiologists report diagnostic evaluations)","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"AZ":{"state":"Arizona","program":"Arizona Early Hearing Detection and Intervention Program (AZ EHDI), Office of Newborn Screening, Arizona Department of Health Services","program_url":"https://azdhs.gov/preparedness/state-laboratory/newborn-screening/index.php","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Audiology Referral and Tracking Form (Office of Newborn Screening)","number":"FNBS-514 v.01 (approved 02/27/2020)","url":"https://azdhs.gov/documents/preparedness/state-laboratory/newborn-screening/forms/audiology-referral-tracking-form.pdf"},"send_to":[{"method":"fax","value":"602-364-1495","kind":"send","note":"Attach the written report (required by rule)","source":"https://azdhs.gov/includes/content/preparedness/state-laboratory/newborn-screening.php?cont=healthcare-providers-legal-requirements"},{"method":"email","value":"Hearing@azdhs.gov","kind":"send","note":"Secure email","source":"https://azdhs.gov/documents/preparedness/state-laboratory/newborn-screening/forms/audiology-referral-tracking-form.pdf"}],"deadline":"within one week of the test date (program page); rule R9-13-207(G) says tests performed each week are due by the sixth day of the following week","deadline_days":7,"deadline_source":"https://azdhs.gov/includes/content/preparedness/state-laboratory/newborn-screening.php?cont=healthcare-providers-legal-requirements","who_reports":"The health care facility, health care provider, or other person that performs the subsequent (including diagnostic) hearing test; the form is signed by the audiologist","ei_program":"AzEIP","confidence":"confirmed","last_checked":"2026-09-26"},"CA":{"state":"California","program":"California Newborn Hearing Screening Program (NHSP), Department of Health Care Services, with regional Hearing Coordination Centers","program_url":"https://www.dhcs.ca.gov/services/california-newborn-hearing-screening-program/nhsp-forms/","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Diagnostic Audiologic Evaluation Reporting Form (DRF)","number":"NHSP 300-1, region specific: DHCS 6113 Northern (Rev 05/2023); DHCS 6116 Southern","url":"https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"},"send_to":[{"method":"fax","value":"800-866-1074","kind":"send","note":"Northern California Hearing Coordination Center only; Southern regions use a different center","source":"https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"},{"method":"email","value":"HCCNorthern@natus.com","kind":"send","note":"Northern region only; secure email","source":"https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"}],"deadline":"within 7 days of the child's diagnostic audiologic evaluation (printed on the form)","deadline_days":7,"deadline_source":"https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf","who_reports":"All providers of audiological follow-up and diagnostic services under the program (HSC 124119(d))","ei_program":"Early Start","confidence":"confirmed","last_checked":"2026-09-27"},"CO":{"state":"Colorado","program":"Colorado Newborn Hearing Screening Program, Colorado Department of Public Health and Environment (CDPHE)","program_url":"https://cdphe.colorado.gov/center-for-health-and-environmental-data/registries-and-vital-statistics/newborn-hearing-screening-provider-resources","route":"State online system","route_note":"","portal":{"name":"Health Information Data System (HIDS) Newborn Hearing (NBH) application","url":""},"state_form":null,"send_to":[],"deadline":"no deadline for audiology results; the evaluation should occur within the first three months, and when permanent hearing loss is confirmed the referral to early intervention must happen within 48 hours","deadline_days":null,"deadline_source":"","who_reports":"The audiologist who performs the comprehensive evaluation communicates results to the Department; health professionals providing follow-up services enter results in the Department's data system after signing its confidentiality agreement","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"CT":{"state":"Connecticut","program":"Connecticut Early Hearing Detection and Intervention (EHDI) Program, Department of Public Health","program_url":"https://portal.ct.gov/DPH/Family-Health/EHDI/Home-page--Early-Hearing-Detection-and-Intervention-Program-Home-Page","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Diagnostic Audiology Reporting Form (CT DPH Early Hearing Detection and Intervention)","number":"Rev. 02/2012","url":"https://portal.ct.gov/dph/-/media/dph/ehdi/fillableauddxreportingformrev212pdf.pdf?rev=046113bfd0a846a39dfd613baaaa9d81&hash=BB834680FA7DCC1A4E1B803F5197A886"},"send_to":[{"method":"fax","value":"860-509-8132","kind":"send","note":"","source":"https://portal.ct.gov/dph/-/media/dph/ehdi/fillableauddxreportingformrev212pdf.pdf?rev=046113bfd0a846a39dfd613baaaa9d81&hash=BB834680FA7DCC1A4E1B803F5197A886"}],"deadline":"within 2 days following the appointment (fax to the EHDI Program)","deadline_days":2,"deadline_source":"https://portal.ct.gov/dph/-/media/dph/ehdi/hospital-ehdi-guidelines-2014.pdf?rev=c1bf93c3f2b14ff191f7d01f79371959&hash=49FEF2A50E4B655284C8D48255FAE0EF","who_reports":"The audiologist (initial diagnostic and any later audiological evaluation, for any child born in the last three years and any child under 5 diagnosed with hearing loss)","ei_program":"Birth to Three","confidence":"confirmed","last_checked":"2026-09-26"},"DC":{"state":"District of Columbia","program":"DC Early Hearing Detection and Intervention (DC EHDI) Program, Perinatal and Infant Health Division, DC Health","program_url":"https://dchealth.dc.gov/service/dc-early-hearing-detection-and-intervention-program-dc-ehdi-program","route":"Not published","route_note":"","portal":null,"state_form":null,"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"","ei_program":"","confidence":"unverified","last_checked":"2026-09-27"},"DE":{"state":"Delaware","program":"Delaware Early Hearing Detection and Intervention (EHDI) / Newborn Hearing Screening Program, Division of Public Health","program_url":"https://dhss.delaware.gov/dph/homepage/about/sections/newborn-screening-program/newborn-hearing-screening-program/","route":"Paper or PDF form","route_note":"No hearing-specific form: hearing loss is reported on the state's general Birth Defects Surveillance Form (not posted online), within 30 days by rule; the screening statute says 10 days","portal":null,"state_form":{"name":"Division of Public Health Birth Defects Surveillance Form (Birth Defects Registry)","number":"not posted; the old link (dhss.delaware.gov/dph/chca/files/bdrreportform.pdf) returns 404","url":"https://regulations.delaware.gov/AdminCode/title16/Department%20of%20Health%20and%20Social%20Services/Division%20of%20Public%20Health/Family%20Health%20Services/4101.shtml"},"send_to":[],"deadline":"same day as testing if at all possible; no later than 10 days following the testing date","deadline_days":10,"deadline_source":"https://www.delcode.delaware.gov/title16/c008a/index.html","who_reports":"Audiologists (all results of newborn, infant, and child hearing screenings and/or testing)","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"FL":{"state":"Florida","program":"Florida Newborn Hearing Screening Program / Early Hearing Detection and Intervention (EHDI) Program, Florida Department of Health","program_url":"https://floridanewbornscreening.com/hearing/early-hearing-and-intervention-programs/","route":"State online system","route_note":"","portal":{"name":"eReports (Florida Newborn Screening online portal, diagnostic module)","url":"https://www.floridanbs.com/weblogin.aspx?MsgNum=0&Locale=1033"},"state_form":null,"send_to":[],"deadline":"within two business days of the evaluation, via eReports (program page for audiologists); the statute, s. 383.145(3)(j), F.S., and the 2026 state guidelines set an outer limit of 7 days after receipt of results for any related diagnostic testing","deadline_days":2,"deadline_source":"https://floridanewbornscreening.com/hearing/for-hearing-specialists-providers/","who_reports":"Audiologists performing diagnostic hearing testing on children 0-3 years of age; the statute covers results of any related diagnostic testing","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"GA":{"state":"Georgia","program":"Georgia Early Hearing Detection and Intervention (EHDI) Program, Georgia Department of Public Health","program_url":"https://dph.georgia.gov/EHDI/ehdi-providers","route":"State online system or paper form","route_note":"","portal":{"name":"SendSS Audiology Portal","url":"https://sendss.state.ga.us/newsendss/index.html"},"state_form":{"name":"Surveillance of Hearing Loss in Infants and Young Children (Georgia EHDI Program)","number":"","url":"https://dph.georgia.gov/document/document/surveillance-hearing-lossaugust2023pdf/download"},"send_to":[{"method":"fax","value":"404-657-2773","kind":"send","note":"Paper form is for SendSS downtime or no access","source":"https://dph.georgia.gov/document/document/surveillance-hearing-lossaugust2023pdf/download"}],"deadline":"within 7 days of the evaluation for follow-up screening and diagnostic results on babies who did not pass in both ears (program page); within 7 days of diagnosis for hearing loss first confirmed or suspected permanent in a child up to age 5 (program page and the form, citing O.C.G.A. 31-12-2)","deadline_days":7,"deadline_source":"https://dph.georgia.gov/EHDI/ehdi-providers","who_reports":"Audiologists (all follow-up screening and diagnostic results for babies who did not pass in both ears); cases of hearing loss through age 5 are reported by the audiologist or physician who diagnoses","ei_program":"Babies Can't Wait","confidence":"confirmed","last_checked":"2026-09-26"},"HI":{"state":"Hawaii","program":"Hawaii Newborn Hearing Screening Program (NHSP), Children with Special Health Needs Branch, Hawaii Department of Health","program_url":"http://health.hawaii.gov/genetics/programs/nhsp/","route":"Not published","route_note":"","portal":null,"state_form":null,"send_to":[{"method":"fax","value":"808-733-9068","kind":"contact","note":"Program contact; no reporting route published","source":"http://health.hawaii.gov/genetics/programs/nhsp/"}],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Audiologists and physicians specialized in hearing function who perform diagnostic audiologic evaluations of infants: results for infants who do not pass screening and those diagnosed deaf or hard of hearing up to age 3","ei_program":"","confidence":"unverified","last_checked":"2026-09-27"},"IA":{"state":"Iowa","program":"Iowa Early Hearing Detection and Intervention (EHDI) Program, Iowa Department of Health and Human Services","program_url":"https://hhs.iowa.gov/programs/programs-and-services/ehdi","route":"State online system or paper form","route_note":"","portal":{"name":"Iowa Newborn Screening Information System (INSIS), the 'EHDI database'","url":""},"state_form":{"name":"Iowa's Early Hearing Detection and Intervention Diagnostic Reporting Form","number":"","url":"https://hhs.iowa.gov/media/514/download?inline%3Finline="},"send_to":[],"deadline":"within six working days of the assessment (641 IAC 3.8; the program page says six business days; the form says 'within 6 days of the hearing assessment in the EHDI database')","deadline_days":6,"deadline_source":"https://www.legis.iowa.gov/docs/iac/chapter/641.3.pdf","who_reports":"Any health care professional conducting newborn hearing screens, rescreens, or diagnostic audiologic assessments, for any child under 3 (physicians, audiologists, AEAs, birthing facilities)","ei_program":"Early ACCESS","confidence":"confirmed","last_checked":"2026-09-26"},"ID":{"state":"Idaho","program":"Idaho Sound Beginnings (Idaho newborn hearing screening program; Idaho Department of Health and Welfare with Idaho Educational Services for the Deaf and the Blind)","program_url":"https://healthandwelfare.idaho.gov/services-programs/children-families-older-adults/newborn-hearing-screening","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Audiology Results Form (Idaho Sound Beginnings / IESDB), birth to 5 years","number":"rev 9/22","url":"https://publicdocuments.dhw.idaho.gov/WebLink/DocView.aspx?id=36151"},"send_to":[{"method":"fax","value":"208-829-2848","kind":"send","note":"","source":"https://healthandwelfare.idaho.gov/services-programs/children-families-older-adults/newborn-hearing-screening"}],"deadline":"within 5 days of every evaluation (printed on the form)","deadline_days":5,"deadline_source":"https://publicdocuments.dhw.idaho.gov/WebLink/DocView.aspx?id=36151","who_reports":"Audiologists: 'Report ALL results to Idaho Sound Beginnings (Birth - 5)', including no-shows","ei_program":"Infant Toddler Program","confidence":"confirmed","last_checked":"2026-09-27"},"IL":{"state":"Illinois","program":"Illinois Early Hearing Detection and Intervention (EHDI) Program, Illinois Department of Public Health","program_url":"https://dph.illinois.gov/topics-services/life-stages-populations/newborn-screening/hearing.html","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Early Hearing Detection and Intervention (EHDI): Audiological Follow-up Report (linked as 'Audiological Evaluation Report')","number":"IOCI 14-342 1/15","url":"https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"},"send_to":[{"method":"fax","value":"217-557-5324","kind":"send","note":"","source":"https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"},{"method":"email","value":"dph.hearingreports@illinois.gov","kind":"send","note":"","source":"https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"}],"deadline":"within 7 days after the date of service or after an inquiry from the Department (77 Ill. Adm. Code 661.110(b), quoting Section 10 of the EHDI Act)","deadline_days":7,"deadline_source":"https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-77-SS-661.110","who_reports":"Physicians, APRNs, PAs, otolaryngologists, audiologists, ancillary providers, early intervention and parent-support programs, DHS, and UIC-DSCC: all hearing testing, treatment, and intervention outcomes for children birth through 6 years","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"IN":{"state":"Indiana","program":"Indiana Early Hearing Detection and Intervention (EHDI) Program, Indiana Department of Health","program_url":"https://www.in.gov/health/mch/families/ehdi-early-hearing-detection-and-intervention/providers","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Diagnostic Audiology Evaluation (DAE)","number":"State Form 53233 (R3 / 2-25)","url":"https://www.in.gov/dA/e4999d4df2/DAE-2025-53233-fill-in.pdf?language_id=1"},"send_to":[{"method":"fax","value":"317-925-2888","kind":"send","note":"","source":"https://www.in.gov/dA/e4999d4df2/DAE-2025-53233-fill-in.pdf?language_id=1"}],"deadline":"within five business days following the assessment (410 IAC 3-3-12(i)(4))","deadline_days":5,"deadline_source":"https://www.infanthearing.org/legislative/docs2022/rules-regulations/IN_Rules.pdf","who_reports":"Diagnostic audiology Level 1 facilities: results for each ear, reported regardless of findings; the form also covers children not screened and any child later diagnosed with permanent hearing loss","ei_program":"First Steps","confidence":"confirmed","last_checked":"2026-09-26"},"KS":{"state":"Kansas","program":"Kansas SoundBeginnings Newborn Hearing Screening Program (KDHE Early Hearing Detection and Intervention), Kansas Department of Health and Environment","program_url":"https://nbss.ks.gov/newborn-hearing-screening-program/information-for-health-care-professionals/","route":"State online system or paper form","route_note":"","portal":{"name":"Kansas Newborn Hearing Screening database (audiologists with access enter results and upload the written report)","url":""},"state_form":{"name":"Audiologic Assessment Report Form (Appendix B of the Kansas Guidelines for Infant Audiologic Assessment); current guidance is to fax the audiologist's own written report","number":"","url":"https://www.kdhe.ks.gov/DocumentCenter/View/8487/Kansas-Guidelines-for-Infant-Audiologic-Assessment-PDF"},"send_to":[{"method":"fax","value":"785-559-4240","kind":"send","note":"Preferred: fax your own written report","source":"https://nbss.ks.gov/newborn-hearing-screening-program/information-for-health-care-professionals/"}],"deadline":"within 7 days of the evaluation (Kansas Newborn Hearing Screening Guidelines, 2024, citing K.A.R. 28-4-605 to 611); the program page says fax 'as soon as possible'; the older audiology guidelines said within one month for hearing loss and immediately for normal results","deadline_days":7,"deadline_source":"https://nbss.ks.gov/wp-content/uploads/2024/08/Kansas-Hearing-Screening-Guidelines.pdf","who_reports":"Audiologists: all follow-ups on newborn screening referrals, including every newly confirmed permanent hearing loss through age eight (program page); by rule, each person who determines that a newborn or infant has hearing loss","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"KY":{"state":"Kentucky","program":"Kentucky Early Hearing Detection and Intervention (EHDI) Program, Office for Children with Special Health Care Needs (OCSHCN)","program_url":"https://www.chfs.ky.gov/agencies/ocshcn/Pages/newbornscreening.aspx","route":"State online system or paper form","route_note":"","portal":{"name":"KY-CHILD electronic information system","url":""},"state_form":{"name":"Audiology Update Form (AUF) Worksheet","number":"OCSHCN-E3 (06/2022)","url":"https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"},"send_to":[{"method":"fax","value":"502-429-7160","kind":"send","note":"","source":"https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"},{"method":"email","value":"ehdi@ky.gov","kind":"send","note":"Encrypted email","source":"https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"}],"deadline":"within forty-eight (48) hours of evaluation (regulation, for permanent hearing loss, via KY-CHILD); no-shows marked in KY-CHILD within 4 calendar days","deadline_days":2,"deadline_source":"https://apps.legislature.ky.gov/law/kar/titles/911/001/085/REG/","who_reports":"Approved Infant Audiological Assessment and Diagnostic Centers, upon completing diagnostic testing of a child birth to 3","ei_program":"First Steps","confidence":"confirmed","last_checked":"2026-09-26"},"LA":{"state":"Louisiana","program":"Louisiana Early Hearing Detection and Intervention Program (LA EHDI), Louisiana Department of Health, Office of Public Health, Bureau of Family Health","program_url":"https://ldh.la.gov/page/ehdi-healthcare-professionals-providers","route":"State online system or paper form","route_note":"","portal":{"name":"HiTrack (LA EHDI web-based data management system; the 2021 form footer calls it LA EHDI-IS)","url":"https://laehdiis.ldh.la.gov"},"state_form":{"name":"Follow-up Services Report (FSR), Children Birth - 3 years","number":"v. LA EHDI-IS 2021","url":"https://www.ldh.la.gov/assets/oph/Center-PHCH/Center-PH/cshs/EHDI/FollowUpServicesReport_2021.pdf"},"send_to":[{"method":"fax","value":"504-568-5854","kind":"send","note":"","source":"https://partnersforfamilyhealth.org/wp-content/uploads/2019/02/Audiologist-Follow-up-Services-Report.pdf"},{"method":"email","value":"laehdi@la.gov","kind":"send","note":"","source":"https://ldh.la.gov/page/ehdi-healthcare-professionals-providers"}],"deadline":"within 2 days of diagnosis for a child with permanent childhood hearing loss; all other results within 7 days of testing (program page; the 2021 form says within 7 days of appointment)","deadline_days":7,"deadline_source":"https://ldh.la.gov/page/ehdi-healthcare-professionals-providers","who_reports":"Audiologists (and other providers doing rescreening or diagnostic testing) for children birth to 5","ei_program":"","confidence":"confirmed","last_checked":"2026-09-27"},"MA":{"state":"Massachusetts","program":"Universal Newborn Hearing Screening Program (UNHSP), Massachusetts Department of Public Health","program_url":"https://www.mass.gov/universal-newborn-hearing-screening-program","route":"Not published","route_note":"","portal":null,"state_form":null,"send_to":[{"method":"email","value":"Newborn.Hearing@mass.gov","kind":"contact","note":"Program contact; reporting route for diagnostic centers not published","source":"https://www.mass.gov/info-details/universal-newborn-hearing-screening-materials-for-health-care-providers"}],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"DPH-approved pediatric audiological Diagnostic Centers (per the 2020 grant narrative; M.G.L. c.111 s.67F requires diagnostic exams to be offered at department-approved centers)","ei_program":"","confidence":"unverified","last_checked":"2026-09-27"},"MD":{"state":"Maryland","program":"Maryland Early Hearing Detection and Intervention (MD EHDI) Program / Infant Hearing Program, Office of Children and Youth with Specific Health Care Needs, Maryland Department of Health","program_url":"https://health.maryland.gov/phpa/cyshcn/Pages/Infant_Hearing_Program.aspx","route":"State online system","route_note":"","portal":{"name":"MD EHDI Department database (secure web-based system from OZ Systems)","url":""},"state_form":null,"send_to":[],"deadline":"within 2 business days: report results, recommendations and referrals, and confirm demographics in the Department database; within 7 business days notify early intervention of confirmed or strongly suspected permanent hearing status","deadline_days":2,"deadline_source":"https://www.infanthearing.org/legislative/docs2022/rules-regulations/MD_Rules.pdf","who_reports":"Any audiologist or licensed professional who performs a hearing screening or audiological diagnostic evaluation on a child under 5 who has a risk factor or did not receive or did not pass the birth screening","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"ME":{"state":"Maine","program":"Maine Newborn Hearing Program (MNHP), Maine CDC; family/professional site 'Earliest Interactions'","program_url":"https://www.maine.gov/dhhs/mecdc/healthy-living/maternal-and-child-health/newborn-screenings/newborn-hearing","route":"State online system","route_note":"","portal":{"name":"Maine Audiologic Assessment Report Form (online form in SMART CHSTS, Maine's newborn screening system)","url":"https://forms.smartchstsme.com/#/meaareport"},"state_form":null,"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Audiologists who test children 0-3 (the online form is listed under 'Audiologists' on the program's professional resources page)","ei_program":"CDS","confidence":"partial","last_checked":"2026-09-26"},"MI":{"state":"Michigan","program":"Michigan Early Hearing Detection and Intervention (EHDI) Program, MDHHS","program_url":"https://www.michigan.gov/mdhhs/adult-child-serv/childrenfamilies/ehdi/providers/audiologists---reporting-to-ehdi","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Early Hearing Detection and Intervention (EHDI) Program Reporting Form (instructions call it the Audiological/Medical Follow-up Service Report)","number":"FORMAUDMED, Revised 2018","url":"https://www.michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Adult-and-Childrens-Services/Children-and-Families/EHDI/FORMAUDMED.pdf?rev=d53f4c86a9ac41f880087d9d3bd98b58&hash=1B8D53A0D991AE9384D71DAD94181ACB"},"send_to":[{"method":"fax","value":"517-763-0183","kind":"send","note":"The state form or your own report","source":"https://www.michigan.gov/mdhhs/adult-child-serv/childrenfamilies/ehdi/providers/audiologists---reporting-to-ehdi"}],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Health professionals, hospitals, health departments, or other facilities that give an infant a hearing test or screen, including audiologists: all results under 12 months and any diagnosed hearing loss under 3 years","ei_program":"Early On","confidence":"partial","last_checked":"2026-09-26"},"MN":{"state":"Minnesota","program":"Minnesota Early Hearing Detection and Intervention (MDH-EHDI) Program, Minnesota Department of Health (Newborn Screening Program)","program_url":"https://www.health.state.mn.us/people/childrenyouth/improveehdi/pediatric.html","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Newborn Hearing Screening Audiology Follow-up Report Form","number":"REV 09/2025","url":"https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/audiologyreport.pdf"},"send_to":[{"method":"fax","value":"651-215-6285","kind":"send","note":"Include a copy of the visit summary","source":"https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/audiologyreport.pdf"}],"deadline":"within one week of the scheduled visit date (MDH audiology guidelines); statute says report 'according to the Department of Health recommendations'","deadline_days":7,"deadline_source":"https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/guideehdiaudiol.pdf","who_reports":"The professional conducting the diagnostic procedure (audiologists), for rescreens, diagnostic assessments, failed/rescheduled appointments, and all newly confirmed permanent hearing loss through age 10 years 11 months","ei_program":"Help Me Grow","confidence":"confirmed","last_checked":"2026-09-26"},"MO":{"state":"Missouri","program":"Missouri Newborn Hearing Screening Program, Bureau of Genetics and Healthy Childhood, Missouri Department of Health and Senior Services (DHSS)","program_url":"https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening","route":"State online system or paper form","route_note":"The state's Audiologic Diagnostic Form is named in its guidelines but not posted; direct database entry is the main route","portal":{"name":"DHSS newborn hearing database, direct entry (MOHSAIC)","url":""},"state_form":{"name":"Audiologic Diagnostic Form","number":"","url":"https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening/guidelines-and-forms"},"send_to":[{"method":"fax","value":"573-751-6185","kind":"send","note":"","source":"https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening/guidelines-and-forms"}],"deadline":"within 7 calendar days of completion of the diagnostic audiological assessment","deadline_days":7,"deadline_source":"https://s1.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c40-9.pdf","who_reports":"The audiologist reports all diagnostic audiological assessment results (19 CSR 40-9.040(4)).","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"MS":{"state":"Mississippi","program":"Early Hearing Detection and Intervention Program (EHDI-MS), Mississippi State Department of Health","program_url":"https://msdh.ms.gov/page/41,0,174,831.html","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Hearing Diagnostic Report","number":"Form 53 (F-53), revision 09/09/2024","url":"https://msdh.ms.gov/page/resources/7071.pdf"},"send_to":[{"method":"email","value":"EHDI@msdh.ms.gov","kind":"send","note":"The 2024 form says encrypted email","source":"https://msdh.ms.gov/page/resources/7071.pdf"},{"method":"fax","value":"601-576-7540","kind":"send","note":"Listed in the 2019 procedures; the 2024 form names email only","source":"https://msdh.ms.gov/page/resources/13135.pdf"}],"deadline":"within 48 hours of an appointment or event requiring a report (missed appointment, refusal)","deadline_days":2,"deadline_source":"https://msdh.ms.gov/page/resources/7071.pdf","who_reports":"Hearing diagnostic providers, including audiologists and otolaryngologists, for every child birth to 3 evaluated after a screening referral, plus no-shows, refusals, incomplete evaluations, and later changes in hearing status","ei_program":"First Steps","confidence":"confirmed","last_checked":"2026-09-26"},"MT":{"state":"Montana","program":"Montana Newborn Hearing Screening and Intervention (NBHSI) Program, Children's Special Health Services, Montana DPHHS","program_url":"https://dphhs.mt.gov/ecfsd/cshs/newbornscreeningprograms/NewbornHearingScreeningIntervention/","route":"State online system","route_note":"","portal":{"name":"HiTrack (the department's designated reporting software)","url":""},"state_form":null,"send_to":[],"deadline":"monthly: by the 15th day of each month for each infant assessed during the previous month","deadline_days":null,"deadline_source":"https://www.law.cornell.edu/regulations/montana/Mont-Admin-r-37.57.415","who_reports":"Each licensed audiologist to whom an infant is referred for audiological assessment after newborn hearing screening (ARM 37.57.415).","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"NC":{"state":"North Carolina","program":"North Carolina Early Hearing Detection and Intervention (NC EHDI) Program","program_url":"https://www.ncnewbornhearing.org/","route":"State online system","route_note":"","portal":{"name":"Hearing Link (EHDI-IS module of WCSWeb)","url":""},"state_form":null,"send_to":[],"deadline":"within 5 days of the appointment (diagnostic evaluations and amplification assessments for infants under 12 months, including missed appointments)","deadline_days":5,"deadline_source":"http://ncrules.state.nc.us/ncac/title%2010a%20-%20health%20and%20human%20services/chapter%2043%20-%20personal%20health/subchapter%20f/10a%20ncac%2043f%20.1204.html","who_reports":"All persons performing diagnostic auditory evaluations and amplification assessments for infants under 12 months (in practice, pediatric audiologists)","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"ND":{"state":"North Dakota","program":"North Dakota Early Hearing Detection and Intervention (ND EHDI), run by the ND Center for Persons with Disabilities (Minot State University) with ND HHS Newborn Screening","program_url":"https://www.hhs.nd.gov/newborn-screening","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Audiology ONLINE Reporting Form (also offered as an Audiology Reporting Fax Form)","number":"Fax form revised 4/19/2012","url":"https://www2.ndcpd.org/ehdi/AudiologyReportingForm.shtml"},"send_to":[{"method":"fax","value":"701-858-3483","kind":"send","note":"","source":"https://ndcpd.org/wp-content/uploads/sites/16/2021/04/Audiology-Reporting-Fax-Back-Form.pdf"}],"deadline":"none found; ND does not mandate newborn hearing screening, and hearing loss is not on the reportable conditions list","deadline_days":null,"deadline_source":"","who_reports":"Audiologists (provider FAQ: 'Audiologists typically report hearing loss cases'); reporting appears voluntary","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"NE":{"state":"Nebraska","program":"Nebraska Early Hearing Detection and Intervention (NE-EHDI) Program, Newborn Screening and Genetics Program, Nebraska DHHS","program_url":"https://dhhs.ne.gov/Pages/EHDI-Audiologists.aspx","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Audiologic Screening and Diagnostic Report Form (linked as 'Diagnostic Reporting Form')","number":"","url":"https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/Audiologic%20Reporting%20Form%202019.pdf"},"send_to":[{"method":"fax","value":"402-742-2395","kind":"send","note":"Your own report is accepted if it includes the listed items","source":"https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/Audiologic%20Reporting%20Form%202019.pdf"}],"deadline":"as soon as possible, but no later than 5 days after the evaluation","deadline_days":5,"deadline_source":"https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/NE-EHDI%20Summary%20&%20Reporting%20Guidelines%20for%20Audiologists.pdf","who_reports":"Audiologists, for all children birth to 3 who received a diagnostic evaluation or need further testing (also outpatient screens, late identifications, behavioral and ENT evaluations).","ei_program":"Early Development Network","confidence":"confirmed","last_checked":"2026-09-26"},"NH":{"state":"New Hampshire","program":"New Hampshire Early Hearing Detection and Intervention (EHDI) Program, NH Department of Health and Human Services","program_url":"https://www.dhhs.nh.gov/programs-services/health-care/hearing-detection-newborns/","route":"State online system","route_note":"","portal":{"name":"Auris (NH state database system; the rule calls it the EHDI database)","url":""},"state_form":null,"send_to":[{"method":"fax","value":"603-271-4519","kind":"send","note":"Secure fax, allowed by rule","source":"https://gc.nh.gov/rules/state_agencies/he-p3000.html"}],"deadline":"within 2 weeks of testing","deadline_days":14,"deadline_source":"https://gc.nh.gov/rules/state_agencies/he-p3000.html","who_reports":"Individuals conducting newborn hearing screening and diagnostic hearing evaluation; NH audiologists doing diagnostic evaluations also submit referral and follow-up information.","ei_program":"","confidence":"confirmed","last_checked":"2026-09-27"},"NJ":{"state":"New Jersey","program":"New Jersey Early Hearing Detection and Intervention (NJ EHDI) Program, Newborn Screening & Genetic Services, NJ Department of Health","program_url":"https://nj.gov/health/fhs/nbs/ehdi/","route":"State online system or paper form","route_note":"","portal":{"name":"EHDI module of the New Jersey Immunization Information System (NJIIS)","url":"https://njiis.nj.gov/njiis/index.htm"},"state_form":{"name":"Newborn Hearing Follow-Up Report","number":"SCH-2","url":"https://www.nj.gov/health/forms/sch-2.pdf"},"send_to":[],"deadline":"within 10 business days of the outpatient screening, rescreening or audiologic evaluation (and within 10 business days of diagnosing a permanent loss)","deadline_days":10,"deadline_source":"https://nj.gov/health/fhs/nbs/documents/newborn_hearing_rules.pdf","who_reports":"Anyone performing outpatient screening, rescreening or audiologic evaluation on a child under 3; the individual who diagnoses a permanent hearing loss.","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"NM":{"state":"New Mexico","program":"New Mexico Newborn Hearing Screening Program / Early Hearing Detection and Intervention (EHDI) Program, Children's Medical Services, NM Department of Health","program_url":"https://nmhealth.org/about/phd/fhb/cms/nbhs/","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Report of Audiological/Screening/Diagnostic Results (ROAR)","number":"","url":"https://nmhealth.org/publication/view/form/1058/"},"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Audiologists, for diagnostic results on children from birth through age 4 (program page).","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"NV":{"state":"Nevada","program":"Nevada Early Hearing Detection and Intervention (EHDI) Program, Division of Public and Behavioral Health","program_url":"http://dpbh.nv.gov/Programs/EHDI/EHDI-Home/","route":"State online system or paper form","route_note":"","portal":{"name":"EHDI Data Portal","url":""},"state_form":{"name":"Audiological Follow-Up Reporting Form (2025, fillable)","number":"","url":"https://www.dpbh.nv.gov/contentassets/b4c90b81fba24635875925d885b07c98/2025-audio-follow-up-reporting-form-fillable.pdf"},"send_to":[{"method":"email","value":"nvehdi@health.nv.gov","kind":"send","note":"Or the EHDI Data Portal","source":"https://www.dpbh.nv.gov/contentassets/b4c90b81fba24635875925d885b07c98/2025-audio-follow-up-reporting-form-fillable.pdf"}],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Physicians, audiologists, and other persons or entities performing a newborn hearing screen, rescreen, or a diagnostic hearing assessment after a failed screen (program page).","ei_program":"Nevada Early Intervention Services","confidence":"partial","last_checked":"2026-09-26"},"NY":{"state":"New York","program":"New York State Newborn Hearing Screening / Early Hearing Detection and Intervention Program, NYS Department of Health","program_url":"https://www.health.ny.gov/community/infants_children/early_intervention/newborn_hearing_screening/","route":"State online system","route_note":"","portal":{"name":"Early Hearing Detection and Intervention - Information System (EHDI-IS)","url":""},"state_form":null,"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Anyone who performs an infant hearing screening and/or diagnostic audiological evaluation on a child under six months of age (10 NYCRR 69-8.7).","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"OH":{"state":"Ohio","program":"Ohio Department of Health Infant Hearing Program (Ohio EHDI)","program_url":"https://odh.ohio.gov/know-our-programs/infant-hearing-program/providers","route":"State online system","route_note":"","portal":{"name":"ODH electronic UNHS Follow-up Hearing Evaluation Reporting Form (Hi*Track web submission link)","url":""},"state_form":null,"send_to":[],"deadline":"within seven business days of the diagnostic hearing evaluation","deadline_days":7,"deadline_source":"https://odh.ohio.gov/know-our-programs/infant-hearing-program/providers","who_reports":"Any audiologist that conducts a diagnostic hearing evaluation of a newborn, infant, or child under 36 months referred to them; required for infants who did not pass screening and for children diagnosed with hearing loss","ei_program":"","confidence":"partial","last_checked":"2026-09-27"},"OK":{"state":"Oklahoma","program":"Oklahoma Newborn Hearing Screening Program / Oklahoma EHDI (Oklahoma State Department of Health, Screening and Special Services)","program_url":"https://oklahoma.gov/health/services/children-family-health/screening-and-special-services/newborn-screening-program/newborn-hearing-screening/audiologists.html","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Diagnostic Hearing Evaluation Results","number":"ODH 1455","url":"https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/family-health/newborn-screening/hearing/ODH%201455%20Diagnostic%20Hearing%20Evaluation%20Results%20Form.pdf"},"send_to":[{"method":"fax","value":"405-900-7554","kind":"send","note":"","source":"https://oklahoma.gov/health/services/children-family-health/screening-and-special-services/newborn-screening-program/newborn-hearing-screening/audiologists.html"}],"deadline":"no day count found for diagnostic results; the rule says audiologists forward follow-up results 'in a manner and time frame deemed appropriate' by OSDH. The program page's 7-day rule (OAC 310:540) is stated for hearing screening results.","deadline_days":null,"deadline_source":"https://oklahoma.gov/content/dam/ok/en/health/health2/documents/newborn-hearing-screening-rules.pdf","who_reports":"Audiologists or physicians completing follow-up hearing evaluations; the program asks for diagnostic results for children 0-3","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"OR":{"state":"Oregon","program":"Oregon Health Authority Early Hearing Detection and Intervention (EHDI) Program","program_url":"https://www.oregon.gov/oha/ph/HealthyPeopleFamilies/Babies/HealthScreening/HearingScreening/Pages/index.aspx","route":"State online system or paper form","route_note":"","portal":{"name":"Oregon EHDI Information System (EHDI-IS)","url":""},"state_form":{"name":"Diagnostic Audiology Reporting Form (Rev 03/02/2026)","number":"","url":"https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/EHDI%20Diagnostic%20Audiology%20Reporting%20Form%20(March%202026)_Fillable.pdf"},"send_to":[{"method":"fax","value":"971-673-0251","kind":"send","note":"Only when EHDI-IS is unavailable","source":"https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/EHDI%20Diagnostic%20Audiology%20Reporting%20Form%20(March%202026)_Fillable.pdf"}],"deadline":"within 10 days of the evaluation","deadline_days":10,"deadline_source":"https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/OHA%20EHDI%20Audiologic%20Reporting%20Protocol%20(March%202026).pdf","who_reports":"Audiologists serving children under 36 months: required for children who referred on or missed the newborn screen, and for any child under 36 months identified as deaf or hard of hearing","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"PA":{"state":"Pennsylvania","program":"Pennsylvania Department of Health Newborn Hearing Screening and Intervention Program (Division of Newborn Screening and Genetics, DNSG)","program_url":"https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-providers.html","route":"State online system","route_note":"","portal":{"name":"Pennsylvania Internet Case Management System (iCMS, Neometrics)","url":""},"state_form":null,"send_to":[{"method":"fax","value":"717-705-9386","kind":"contact","note":"Program contact; results go through iCMS","source":"https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-contact"},{"method":"email","value":"nbhs@pa.gov","kind":"contact","note":"Program contact","source":"https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-contact"}],"deadline":"within ten days of the evaluation","deadline_days":10,"deadline_source":"https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/programs/infant-and-children-health/Instructions%20for%20Audiologists.pdf","who_reports":"Audiologists; all diagnostic evaluation results for children birth to age five, including no-shows and unsuccessful testing, plus EI referral date","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"RI":{"state":"Rhode Island","program":"Rhode Island Early Hearing Detection and Intervention (RI-EHDI) / Newborn Hearing Screening Program, RI Department of Health","program_url":"http://www.health.ri.gov/newbornscreening/hearing/","route":"State online system","route_note":"","portal":{"name":"KIDSNET (RIDOH integrated child health information system)","url":""},"state_form":null,"send_to":[{"method":"fax","value":"401-276-7813","kind":"send","note":"","source":"http://www.health.ri.gov/newborn-screening/information/healthcare-professionals/newborn-hearing-screening-information"}],"deadline":"none found","deadline_days":null,"deadline_source":"","who_reports":"Audiologists (with hospitals and other service providers): results for every infant; per RIDOH guidelines, diagnostic results for infants who did not pass screening and those identified with hearing impairment","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"SC":{"state":"South Carolina","program":"First Sound (South Carolina Early Hearing Detection and Intervention), SC Department of Public Health","program_url":"https://dph.sc.gov/health-wellness/child-teen-health/early-childhood/newborn-infant-safety/newborn-hearing-identifying","route":"Not published","route_note":"","portal":null,"state_form":null,"send_to":[{"method":"fax","value":"803-898-4453","kind":"contact","note":"Program referral fax; no reporting route published","source":"https://dph.sc.gov/health-wellness/child-teen-health/early-childhood/newborn-infant-safety/newborn-hearing-identifying"}],"deadline":"none found","deadline_days":null,"deadline_source":"","who_reports":"Audiologists must follow department reporting procedures (with hospitals and early interventionists), per statute","ei_program":"","confidence":"unverified","last_checked":"2026-09-27"},"SD":{"state":"South Dakota","program":"South Dakota Department of Health Newborn Screening Program - Newborn Hearing Screening (SD EHDI)","program_url":"https://doh.sd.gov/programs/newborn-screening/","route":"State online system or paper form","route_note":"","portal":{"name":"SD DOH Electronic Vital Records and Screening System (EVRSS)","url":""},"state_form":{"name":"Audiology Reporting Form (linked as 'Newborn Hearing Screening Provider Form'; includes Authorization to Release Information)","number":"","url":"https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"},"send_to":[{"method":"email","value":"dohnewbornscreening@state.sd.us","kind":"send","note":"","source":"https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"},{"method":"fax","value":"866-579-8246","kind":"send","note":"","source":"https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"}],"deadline":"none found; administrative rules require hearing screening but set no reporting deadline for audiologists","deadline_days":null,"deadline_source":"","who_reports":"Providers reporting hearing screening and hearing diagnostic results (audiologists for diagnostics); rule 44:19:01:04 puts the screening duty on birth providers and midwives","ei_program":"Birth to Three","confidence":"partial","last_checked":"2026-09-26"},"TN":{"state":"Tennessee","program":"Tennessee Department of Health Newborn Screening Program - Newborn Hearing Screening","program_url":"https://www.tn.gov/health/nbs.html","route":"State online system or paper form","route_note":"","portal":{"name":"Remote Diagnostics (RDx) portal","url":"https://newborn.health.tn.gov/toolbar/login.aspx"},"state_form":{"name":"Audiology Hearing Screen and/or Diagnostic Evaluation Results (linked as \"Audiology Reporting Form\")","number":"","url":"https://www.tn.gov/content/dam/tn/health/docs/2026-Tennessee-Audiology-Reporting-Form.docx"},"send_to":[{"method":"fax","value":"615-532-8555","kind":"send","note":"","source":"https://www.tn.gov/content/dam/tn/health/docs/2026-Tennessee-Audiology-Reporting-Form.docx"}],"deadline":"No deadline found for diagnostic results. The program's best-practice document says rescreen results should be reported within 7 days of screening.","deadline_days":null,"deadline_source":"","who_reports":"Audiologists performing rescreening or diagnostic testing (per the program's best-practice recommendations).","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"TX":{"state":"Texas","program":"Texas Early Hearing Detection and Intervention (TEHDI), Department of State Health Services","program_url":"http://www.dshs.texas.gov/tehdi","route":"State online system or paper form","route_note":"","portal":{"name":"TEHDI Management Information System (TEHDI MIS)","url":"https://www.tehdi.com/tehdi2/Index.aspx"},"state_form":{"name":"Texas Early Hearing Detection and Intervention Reporting Form - Diagnostic Evaluation (linked as \"Texas Audiological Diagnostic Assessment Form\")","number":"","url":"http://www.dshs.texas.gov/sites/default/files/tehdi/pdf/tehdi-diagnostic-reporting-form.pdf"},"send_to":[],"deadline":"within five calendar days after the date of the patient encounter (entered in the TEHDI MIS)","deadline_days":5,"deadline_source":"http://www.dshs.texas.gov/tehdi","who_reports":"Any healthcare provider who performs initial hearing screening, follow-up screening, diagnostic evaluations, follow-up care, or interventions.","ei_program":"ECI","confidence":"confirmed","last_checked":"2026-09-26"},"UT":{"state":"Utah","program":"Utah Early Hearing Detection and Intervention (EHDI) Program, DHHS Office of Children with Special Health Care Needs","program_url":"https://familyhealth.utah.gov/cshcn/ehdi/","route":"Your own clinical report","route_note":"","portal":null,"state_form":null,"send_to":[{"method":"email","value":"ehdi@utah.gov","kind":"send","note":"Send your written report","source":"https://familyhealth.utah.gov/wp-content/uploads/Office_CSHCN/pdf/ehdi/Utah-EHDI-Well-baby-Protocol.pdf"},{"method":"fax","value":"801-536-0492","kind":"send","note":"","source":"https://familyhealth.utah.gov/cshcn/ehdi/"}],"deadline":"within seven days (to the birth institution and to the Department)","deadline_days":7,"deadline_source":"https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R398-2-6","who_reports":"Persons who conduct any procedure necessary to complete an infant's hearing screening or audiological diagnostic assessment.","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"VA":{"state":"Virginia","program":"Virginia Early Hearing Detection and Intervention Program, Virginia Department of Health","program_url":"http://www.vdh.virginia.gov/early-hearing-detection-and-intervention/","route":"State online system or paper form","route_note":"","portal":{"name":"Virginia Infant Screening and Infant Tracking System (VISITS II), part of VVESTS","url":""},"state_form":{"name":"Hearing Screening/Diagnostic Reporting Form","number":"","url":"https://www.vdh.virginia.gov/content/uploads/sites/109/2023/06/New-Audiological-Reporting-Form-updated-9.2023.pdf"},"send_to":[{"method":"fax","value":"804-864-7771","kind":"send","note":"Paper form is for when VISITS can't be used","source":"https://www.vdh.virginia.gov/content/uploads/sites/109/2023/06/New-Audiological-Reporting-Form-updated-9.2023.pdf"}],"deadline":"within two weeks of the visit (regulation); the program protocol asks for seven days, no later than fourteen days","deadline_days":14,"deadline_source":"https://law.lis.virginia.gov/admincode/title12/agency5/chapter80/section95/","who_reports":"Persons who provide audiological services after discharge and determine that a child failed a screening, was not successfully tested, or has a hearing loss.","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"},"VT":{"state":"Vermont","program":"Vermont Early Hearing Detection & Intervention (VTEHDI) Program, Vermont Department of Health","program_url":"https://www.healthvermont.gov/family/health-care-children-youth/vermont-early-hearing-detection-intervention-program","route":"State online system","route_note":"","portal":{"name":"Vermont Public Health Patient Profile - hearing screening registry (Hearing application, Diagnosis tab)","url":""},"state_form":null,"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"Health care professionals send hearing screening and diagnostic results to VTEHDI (program page); no named duty for audiologists was found.","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"WA":{"state":"Washington","program":"Early Hearing Detection, Diagnosis and Intervention (EHDDI) Program, Washington State Department of Health","program_url":"https://doh.wa.gov/public-health-provider-resources/healthcare-professions-and-facilities/patient-care-resources/early-hearing-loss/resources-providers/reporting-ehddi","route":"State online system or paper form","route_note":"","portal":{"name":"EHDDI Web Application","url":""},"state_form":{"name":"EHDDI Program Hearing Evaluation Form (linked as \"Diagnostic Evaluation form\")","number":"DOH 344-045","url":"https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/344-045HearingEvaluationForm.doc"},"send_to":[{"method":"fax","value":"206-364-0074","kind":"send","note":"","source":"https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/344-045HearingEvaluationForm.doc"}],"deadline":"No number of days stated; the audiology best-practice protocol says to share findings with EHDDI 'in a timely manner' after each diagnostic assessment.","deadline_days":null,"deadline_source":"","who_reports":"Audiologists doing diagnostic evaluations for babies who did not pass newborn screening, or who passed but have risk factors (per the program's reporting page and audiologist guide).","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"WI":{"state":"Wisconsin","program":"Wisconsin Sound Beginnings (WSB), Wisconsin Department of Health Services Newborn Screening Program","program_url":"https://www.dhs.wisconsin.gov/newbornscreening/hearing.htm","route":"State online system","route_note":"","portal":{"name":"WE-TRAC (Wisconsin EHDI Tracking, Referral And Coordination system)","url":"https://phin.wisconsin.gov/wetrac2"},"state_form":null,"send_to":[],"deadline":"","deadline_days":null,"deadline_source":"","who_reports":"WE-TRAC users (hospitals, midwives, audiologists); audiologists enter diagnostic information there. No legal duty for audiologists found.","ei_program":"","confidence":"partial","last_checked":"2026-09-26"},"WV":{"state":"West Virginia","program":"West Virginia Newborn Hearing Screening Project (NHS), Office of Maternal, Child and Family Health","program_url":"https://www.wvdhhr.org/nhs/audiologists.asp","route":"Paper or PDF form","route_note":"","portal":null,"state_form":{"name":"Early Hearing Detection and Intervention (EHDI) Reporting Form (linked as \"WV NHS Screening/Audiological Evaluation Form\")","number":"","url":"http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf"},"send_to":[{"method":"fax","value":"304-558-3510","kind":"send","note":"","source":"http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf"}],"deadline":"within 10 days of the visit","deadline_days":10,"deadline_source":"http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf","who_reports":"The outpatient screening or audiologic evaluation facility (the form's evaluator); the rule itself names no audiologist duty.","ei_program":"Birth to Three","confidence":"confirmed","last_checked":"2026-09-26"},"WY":{"state":"Wyoming","program":"Wyoming Early Hearing Detection and Intervention (EHDI) Program","program_url":"https://www.wyomingehdi.org/","route":"State online system","route_note":"","portal":{"name":"Wyoming EHDI Information System (EHDI-IS)","url":"https://ehdi.health.wyo.gov"},"state_form":null,"send_to":[],"deadline":"within fifteen (15) calendar days of completed evaluations","deadline_days":15,"deadline_source":"https://www.law.cornell.edu/regulations/wyoming/agency-048/subagency-0035/chapter-2/048-2-Wyo-Code-R-SSSS-2-7","who_reports":"An audiologist who completes a diagnostic audiologic evaluation from a Wyoming Newborn Screening referral.","ei_program":"","confidence":"confirmed","last_checked":"2026-09-26"}}}</script>
+<script>
+(function(){
+'use strict';
+// Capture the page exactly as it was loaded, before any script changes it. Used by "Save evaluation" and "Save master copy".
+const PRISTINE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const statusEl=$('#status');
+function setStatus(msg,ms){ statusEl.textContent=msg||''; if(ms){ clearTimeout(setStatus.t); setStatus.t=setTimeout(()=>{ if(statusEl.textContent===msg) statusEl.textContent=''; },ms); } }
+let dirty=false;          // report changed since it was opened or saved
+let autoVisitDate=false;  // the date of evaluation is still today's default, so a fill may replace it
+let settingsDirty=false;  // letterhead or state edits changed and not yet saved into a master copy
+function markDirty(){ dirty=true; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function field(name){ return document.querySelector(`[data-field="${name}"]`); }
+function chk(name){ return document.querySelector(`[data-check="${name}"]`); }
+function val(name){ const el=field(name); if(!el) return ''; return (el.isContentEditable?el.innerText:el.value).trim(); }
+
+/* ---------------- results for each ear: option matrices ----------------
+   Every choice is a checkbox; data-group makes a set single-choice while still letting a second click clear it.
+   Keys are group_option_ear, e.g. dg_3_R is "moderate" for the right ear. */
+const EARS=['R','L'];
+const MX_A=[
+  {g:'st',title:'Hearing status',opts:[['typ','Typical hearing (normal)'],['loss','Hearing loss'],['tbd','Not yet determined'],['cnt','Could not test']]},
+  {g:'ty',title:'Type',opts:[['sn','Sensorineural'],['c','Conductive'],['m','Mixed'],['ansd','Auditory neuropathy spectrum disorder (ANSD)'],['tbd','Not yet determined']]},
+  {g:'pm',title:'Permanence',opts:[['perm','Permanent (confirmed)'],['trans','Transient'],['int','Intermittent or fluctuating'],['tbd','Not yet known (preliminary)']]},
+];
+const DEGREES=[['0','Typical (normal)','−10 to 15'],['1','Slight','16–25'],['2','Mild','26–40'],['3','Moderate','41–55'],['4','Moderately severe','56–70'],['5','Severe','71–90'],['6','Profound','91+']];
+const MX_B=[
+  {g:'dg',title:'Degree, rated by the worst threshold (dB HL)',opts:[...DEGREES,['tbd','Not yet determined','']]},
+  {g:'cf',title:'Configuration',optional:true,opts:[['flat','Flat'],['slope','Sloping'],['rise','Rising'],['other','Other']]},
+  {g:'an',title:'Outer ear anomaly',optional:true,multi:true,opts:[['atresia','Atresia'],['microtia','Microtia']]},
+];
+function buildMatrix(el,spec){
+  // The first group's title shares the Right/Left header row; later groups get a title row of their own.
+  const title=s=>`${esc(s.title)}${s.optional?'<i class="opt">optional</i>':''}`;
+  let h=`<tr class="gh"><td>${title(spec[0])}</td><th class="r">Right</th><th class="l">Left</th></tr>`;
+  spec.forEach((s,i)=>{
+    if(i) h+=`<tr class="gh"><td colspan="3">${title(s)}</td></tr>`;
+    s.opts.forEach(o=>{
+      h+=`<tr><td>${esc(o[1])}${o[2]?`<span class="rng">${esc(o[2])}</span>`:''}</td>`;
+      EARS.forEach(e=>{ h+=`<td class="c"><input type="checkbox" data-check="${s.g}_${o[0]}_${e}"${s.multi?'':` data-group="${s.g}_${e}"`} aria-label="${esc(o[1])}, ${e==='R'?'right':'left'} ear"></td>`; });
+      h+='</tr>';
+    });
+  });
+  el.innerHTML=h;
+}
+function groupValue(g,ear){ const c=$$(`[data-group="${g}_${ear}"]`).find(x=>x.checked); return c?c.dataset.check.split('_')[1]:''; }
+
+/* ---------------- risk indicators, JCIH 2019 Table 1 (ear pits and tags removed in 2019) ---------------- */
+const RISKS=[
+  ['1','Family history of early, progressive, or delayed onset permanent childhood hearing loss'],
+  ['2','Neonatal intensive care of more than 5 days'],
+  ['3','Hyperbilirubinemia with exchange transfusion, regardless of length of stay'],
+  ['4','Aminoglycoside administration for more than 5 days'],
+  ['5','Asphyxia or hypoxic ischemic encephalopathy'],
+  ['6','Extracorporeal membrane oxygenation (ECMO)'],
+  ['7a','In utero infections such as herpes, rubella, syphilis, and toxoplasmosis'],
+  ['7b','In utero infection with cytomegalovirus (CMV)'],
+  ['7c','Mother with Zika; infant with no laboratory evidence and no clinical findings'],
+  ['7d','Mother with Zika; infant with laboratory evidence of Zika, with or without clinical findings'],
+  ['8','Certain birth conditions or findings: craniofacial malformations (microtia or atresia, ear dysplasia, oral facial clefting, white forelock, microphthalmia); congenital microcephaly; congenital or acquired hydrocephalus; temporal bone abnormalities'],
+  ['9','Syndromes associated with atypical hearing thresholds'],
+  ['10','Culture-positive infections associated with sensorineural hearing loss, including confirmed bacterial and viral (especially herpes viruses and varicella) meningitis or encephalitis'],
+  ['11','Events associated with hearing loss: significant head trauma (especially basal skull or temporal bone fractures); chemotherapy'],
+  ['12','Caregiver concern regarding hearing, speech, language, developmental delay, or developmental regression'],
+];
+function buildRisks(){
+  let h='';
+  RISKS.forEach(r=>{ h+=`<label><input type="checkbox" data-check="rk_${r[0]}"><span class="no">${r[0]}.</span><span>${esc(r[1])}</span></label>`; });
+  h+=`<label><input type="checkbox" data-check="rk_none"><span class="no"></span><span>None identified</span></label>`;
+  $('#riskList').innerHTML=h;
+}
+
+/* ---------------- test results by ear (optional page 3) ---------------- */
+const TFREQ=['500','1000','2000','4000'];
+const THR_ROWS=[['estAir','ABR or ASSR, air (dB eHL)'],['estBone','ABR, bone (dB eHL)'],['behAir','Behavioral, air (dB HL)'],['behBone','Behavioral, bone (dB HL)']];
+const RES_ROWS=[['tymp','Tympanometry'],['reflex','Acoustic reflexes'],['oae','Otoacoustic emissions'],['click','Click ABR'],['speech','Speech audiometry']];
+function buildResults(){
+  let h='<tr><th rowspan="2">Thresholds</th><th class="r" colspan="4">Right</th><th class="l" colspan="4">Left</th></tr><tr>';
+  EARS.forEach(()=>TFREQ.forEach(f=>{ h+=`<th>${f<1000?f:(f/1000)+'k'}</th>`; }));
+  h+='</tr>';
+  THR_ROWS.forEach(r=>{
+    h+=`<tr><td class="lab">${esc(r[1])}</td>`;
+    EARS.forEach(e=>TFREQ.forEach(f=>{ h+=`<td class="n"><input data-field="tr_${r[0]}_${e}_${f}" autocomplete="off"></td>`; }));
+    h+='</tr>';
+  });
+  $('#thrTable').innerHTML=h;
+  let g='<tr><th>Test</th><th class="r">Right</th><th class="l">Left</th></tr>';
+  RES_ROWS.forEach(r=>{ g+=`<tr><td class="lab">${esc(r[1])}</td>`+EARS.map(e=>`<td><input data-field="res_${r[0]}_${e}" autocomplete="off"></td>`).join('')+'</tr>'; });
+  $('#resTable').innerHTML=g;
+}
+
+/* ---------------- degree: the worst air threshold, 500 to 4000 Hz ---------------- */
+function parseLevel(str){
+  const s=(str||'').trim(); if(!s) return null;
+  const m=s.match(/-?\d+(\.\d+)?/); if(!m) return null;
+  return {db:parseFloat(m[0]),nr:/\bNR\b|no\s*resp/i.test(s),star:/\*/.test(s),masked:/(^|[^a-z])m(?![a-z])/i.test(s)};
+}
+// A no-response at 70 means the threshold is worse than 70, so it rates one step past the level.
+function degreeOf(p){ const d=p.nr?p.db+1:p.db; return d<=15?0:d<=25?1:d<=40?2:d<=55?3:d<=70?4:d<=90?5:6; }
+function worstAir(ear){
+  let worst=null;
+  ['estAir','behAir'].forEach(row=>TFREQ.forEach(f=>{
+    const p=parseLevel(val(`tr_${row}_${ear}_${f}`)); if(!p) return;
+    const eff=p.nr?p.db+1:p.db;
+    if(!worst||eff>worst.eff) worst={...p,eff,freq:f,row};
+  }));
+  return worst;
+}
+function updateDegreeHint(){
+  const bits=[];
+  EARS.forEach(e=>{ const w=worstAir(e); if(w) bits.push(`${e==='R'?'right':'left'} ${w.nr?'NR ':''}${w.db} at ${w.freq} Hz, ${DEGREES[degreeOf(w)][1].toLowerCase()}`); });
+  const el=$('#degHint');
+  el.hidden=!bits.length;
+  el.textContent=bits.length?`Worst air threshold in the page 3 results table (500–4000 Hz): ${bits.join('; ')}.`:'';
+}
+
+/* ---------------- calculated lines: age, laterality, running headers ---------------- */
+function parseDate(str){ if(!str) return null; const d=new Date(str.trim()); return isNaN(d)?null:d; }
+function fmtDate(d){ return `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`; }
+function today(){ return fmtDate(new Date()); }
+function todayISO(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function updateAge(){
+  const dob=parseDate(val('childDob')), ev=parseDate(val('visitDate')), out=field('age');
+  if(!dob||!ev||ev<dob){ out.value=''; return; }
+  const days=Math.floor((ev-dob)/864e5);
+  let y=ev.getFullYear()-dob.getFullYear(), m=ev.getMonth()-dob.getMonth();
+  if(ev.getDate()<dob.getDate()) m--;
+  if(m<0){ y--; m+=12; }
+  const months=y*12+m;
+  out.value=days<14?`${days} days`:months<1?`${Math.floor(days/7)} weeks`:months<24?`${months} month${months===1?'':'s'}`:`${y} yr ${m} mo`;
+}
+function updateLaterality(){
+  const s={R:groupValue('st','R'),L:groupValue('st','L')};
+  const name={R:'right',L:'left'};
+  let t='';
+  if(s.R==='loss'&&s.L==='loss') t='Bilateral hearing loss';
+  else if(s.R==='loss'||s.L==='loss'){
+    const a=s.R==='loss'?'R':'L', b=a==='R'?'L':'R';
+    t=s[b]==='typ'?`Unilateral hearing loss, ${name[a]} ear`:`Hearing loss in the ${name[a]} ear; ${name[b]} ear not yet determined`;
+  }
+  else if(s.R==='typ'&&s.L==='typ') t='Typical hearing in both ears';
+  else if(s.R||s.L) t='Not yet determined';
+  $('#laterality').innerHTML=t?`<b>Laterality:</b> ${esc(t)}`:'';
+}
+function updateHeads(){
+  const bits=[val('childName'),val('childDob')?'DOB '+val('childDob'):'',val('visitDate')?'Evaluated '+val('visitDate'):''].filter(Boolean);
+  $$('.p2head .who').forEach(el=>{ el.textContent=bits.join(' · '); });
+}
+function updateFollowups(){
+  const on=chk('outIncomplete').checked;
+  $('#incRow').classList.toggle('on',on);
+  if(!on){ chk('incMiddleEar').checked=false; chk('incState').checked=false; field('incOther').value=''; }
+}
+
+/* ---------------- optional sections and page count ---------------- */
+const OPTS=['optRisk','optResults','optConsent'];
+function updateOptional(){
+  let any=false;
+  OPTS.forEach(k=>{
+    const on=chk(k).checked; any=any||on;
+    $(`section[data-opt="${k}"]`).hidden=!on;
+    $(`button[data-add="${k}"]`).hidden=on;
+  });
+  const all=OPTS.every(k=>chk(k).checked);
+  $('#addbar').hidden=all;
+  $('#addLead').textContent=any?'More optional sections:':'Optional sections. Page 3 prints only when you add at least one.';
+  $('#sheet3').classList.toggle('unused',!any);
+  $('#p3head').hidden=!any;
+  $('#sheet3 .pfoot').hidden=!any;
+  $('#sheet2').classList.toggle('last',!any);
+  $('#sheet3').classList.toggle('last',any);
+  const total=any?3:2;
+  $$('.pageno').forEach(el=>{ const n=el.closest('.sheet').id.slice(-1); el.textContent=`Page ${n} of ${total}`; });
+  lhRenderBarcodes();
+}
+$$('button[data-add]').forEach(b=>b.addEventListener('click',()=>{
+  chk(b.dataset.add).checked=true; markDirty(); updateOptional();
+  const sec=$(`section[data-opt="${b.dataset.add}"]`); sec.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+$$('button[data-remove]').forEach(b=>b.addEventListener('click',()=>{
+  chk(b.dataset.remove).checked=false; markDirty(); updateOptional();
+  setStatus('Section removed from the printout. What you typed in it is kept if you add it back.',4000);
+}));
+
+/* ---------------- state reference: where to send it and by when ----------------
+   The published entries live in #state-reference, spliced in from data/ehdi-state-reference.json.
+   The audiologist's changes live in settings.stateEdits, which "Save master copy" carries, like the letterhead. */
+let REF={states:{}};
+try{ REF=JSON.parse(document.getElementById('state-reference').textContent)||REF; }catch(e){}
+const SETTINGS_EMPTY={state:'',reporter:{},stateEdits:{}};
+const REPORTER_KEYS=['repName','repLicense','repPhone','repFax','repFacility','repAddress','repEmail'];
+let settings={...SETTINGS_EMPTY};
+function settingsNormalize(o){
+  o=o&&typeof o==='object'?o:{};
+  const t={state:'',reporter:{},stateEdits:{}};
+  if(typeof o.state==='string'&&REF.states[o.state]) t.state=o.state;
+  REPORTER_KEYS.forEach(k=>{ if(o.reporter&&typeof o.reporter[k]==='string'&&o.reporter[k].trim()) t.reporter[k]=o.reporter[k].slice(0,200); });
+  if(o.stateEdits&&typeof o.stateEdits==='object') for(const k in o.stateEdits){ if(REF.states[k]&&o.stateEdits[k]&&typeof o.stateEdits[k]==='object') t.stateEdits[k]=o.stateEdits[k]; }
+  return t;
+}
+function settingsLoad(){ let emb=null; try{ emb=JSON.parse(document.getElementById('settings').textContent); }catch(e){ emb=null; } return settingsNormalize(emb); }
+function settingsIsEmpty(t){ return !t.state&&!Object.keys(t.reporter).length&&!Object.keys(t.stateEdits).length; }
+function entry(code){ return code?(settings.stateEdits[code]||REF.states[code]||null):null; }
+
+function buildStateSelect(){
+  const sel=$('#stateSel');
+  Object.keys(REF.states).map(k=>[k,REF.states[k].state]).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,n])=>{
+    const o=document.createElement('option'); o.value=k; o.textContent=n; sel.appendChild(o);
+  });
+}
+function host(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
+function link(u,text){ return /^https?:\/\//i.test(u||'')?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(text)}</a>`:esc(text); }
+const METHOD={fax:'Fax',email:'Email',phone:'Phone',mail:'Mail'};
+function dueDate(e){
+  if(!e||!e.deadline_days) return null;
+  const v=parseDate(val('visitDate')); if(!v) return null;
+  const biz=/business|working/i.test(e.deadline||'');
+  const d=new Date(v);
+  if(biz){ let n=e.deadline_days; while(n>0){ d.setDate(d.getDate()+1); const w=d.getDay(); if(w!==0&&w!==6) n--; } }
+  else d.setDate(d.getDate()+e.deadline_days);
+  return {d,biz};
+}
+function renderSendTo(){
+  const code=val('stateCode'), e=entry(code), box=$('#sendto');
+  const ei=e&&e.ei_program?e.ei_program:'';
+  $('#eiTitle').textContent=ei?`Early intervention (Part C) referral: ${ei}`:'Early intervention (Part C) referral';
+  if(!e){
+    box.innerHTML='<div class="sec" style="margin-top:0">Send this report to</div><div class="st-empty screen-only">Choose a state in the toolbar to show where to send this report and by when.</div>';
+    box.classList.add('screen-only');
+    return;
+  }
+  box.classList.remove('screen-only');
+  const edited=!!settings.stateEdits[code], pub=REF.states[code]||{};
+  const send=(e.send_to||[]).filter(s=>s.kind!=='contact'), contact=(e.send_to||[]).filter(s=>s.kind==='contact');
+  let h=`<div class="sec" style="margin-top:0">Send this report to<span class="aside screen-only"><button class="linkbtn" id="stEdit">Fix or update these details</button></span></div>`;
+  h+=`<div class="st-prog">${link(e.program_url,e.program||e.state)}</div>`;
+  const how=[];
+  send.forEach(s=>{ how.push(`${METHOD[s.method]||'Send'} ${esc(s.value)}${s.note?` <span class="st-note">(${esc(s.note)})</span>`:''}`); });
+  if(e.portal&&e.portal.name) how.push(`Online: ${link(e.portal.url,e.portal.name)}`);
+  if(how.length) h+=`<div class="st-line"><span class="k">How</span>${how.join(' · ')}</div>`;
+  else h+=`<div class="st-line"><span class="k">How</span>${esc(e.route||'Not published')}. Contact the program to ask how they take diagnostic results.</div>`;
+  if(e.route) h+=`<div class="st-line screen-only"><span class="k">Route</span>${esc(e.route)}${/online/i.test(e.route)?'. If you enter results online, this printout can be the sheet you type from.':''}</div>`;
+  if(e.deadline){
+    const dd=dueDate(e);
+    h+=`<div class="st-line"><span class="k">Due</span>${dd?`<b>by ${dd.d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</b>, ${e.deadline_days} ${dd.biz?'business days (not counting holidays)':'days'} after the evaluation. The state's rule: `:''}${esc(e.deadline)}</div>`;
+  }
+  if(contact.length) h+=`<div class="st-line screen-only"><span class="k">Questions</span>${contact.map(s=>`${METHOD[s.method]||''} ${esc(s.value)}${s.note?` (${esc(s.note)})`:''}`).join(' · ')}</div>`;
+  if(e.state_form&&e.state_form.name) h+=`<div class="st-line screen-only"><span class="k">State form</span>${link(e.state_form.url,e.state_form.name)}</div>`;
+  if(e.who_reports) h+=`<div class="st-line screen-only"><span class="k">Who reports</span>${esc(e.who_reports)}</div>`;
+  const src=e.deadline_source||(send[0]&&send[0].source)||e.program_url;
+  h+=`<div class="st-src">${edited?`Updated by this clinic ${esc(e.edited||'')}. Published entry last checked ${esc(pub.last_checked||'')}.`:`Reference last checked ${esc(e.last_checked||'')}.`}${src&&!edited?` Source: ${link(src,host(src))}.`:''}</div>`;
+  if(!edited&&e.confidence==='unverified') h+=`<div class="st-warn screen-only">This state doesn't publish how to send diagnostic results. Confirm with the program, then fix the details here.</div>`;
+  else if(!edited&&e.confidence==='partial') h+=`<div class="st-warn screen-only">Partly confirmed: the route is on state sources, but the deadline or details may be missing. Check before relying on it.</div>`;
+  box.innerHTML=h;
+  $('#stEdit').addEventListener('click',openStateDialog);
+}
+
+/* ---- editing a state's entry ---- */
+const stDialog=$('#stDialog');
+function sendToText(list){ return (list||[]).map(s=>`${s.kind==='contact'?'Contact ':''}${METHOD[s.method]||'Other'}: ${s.value}${s.note?' — '+s.note:''}`).join('\n'); }
+function parseSendTo(text,old){
+  return text.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{
+    const m=l.match(/^(contact\s+)?(fax|email|e-mail|phone|mail)\s*:\s*(.+)$/i);
+    let method='other', kind='send', rest=l;
+    if(m){ kind=m[1]?'contact':'send'; method=m[2].toLowerCase().replace('e-mail','email'); rest=m[3]; }
+    const parts=rest.split(/\s+(?:—|–|--|-)\s+/);
+    const value=parts.shift().trim(), note=parts.join(' — ').trim();
+    const prev=(old||[]).find(s=>s.method===method&&s.value===value);
+    return {method,value,kind,note,source:prev?prev.source:''};
+  });
+}
+function fillStateDialog(){
+  const code=val('stateCode'), e=entry(code); if(!e) return;
+  $('#stTitle').textContent=`Sending details: ${e.state}`;
+  $('#stProgram').value=e.program||''; $('#stRoute').value=e.route||'Not published';
+  $('#stSendTo').value=sendToText(e.send_to);
+  $('#stPortalName').value=e.portal?e.portal.name||'':''; $('#stPortalUrl').value=e.portal?e.portal.url||'':'';
+  $('#stFormName').value=e.state_form?e.state_form.name||'':''; $('#stFormUrl').value=e.state_form?e.state_form.url||'':'';
+  $('#stDeadline').value=e.deadline||''; $('#stDays').value=e.deadline_days==null?'':e.deadline_days;
+  $('#stEI').value=e.ei_program||''; $('#stWho').value=e.who_reports||'';
+  $('#stRevert').disabled=!settings.stateEdits[code];
+}
+function openStateDialog(){ if(!val('stateCode')) return; fillStateDialog(); stDialog.show(); }
+function readStateDialog(){
+  const code=val('stateCode'), base=entry(code); if(!base) return;
+  const days=parseInt($('#stDays').value,10);
+  const pn=$('#stPortalName').value.trim(), pu=$('#stPortalUrl').value.trim(), fn=$('#stFormName').value.trim(), fu=$('#stFormUrl').value.trim();
+  settings.stateEdits[code]={...base,
+    program:$('#stProgram').value.trim(), route:$('#stRoute').value,
+    send_to:parseSendTo($('#stSendTo').value,base.send_to),
+    portal:pn||pu?{name:pn||pu,url:pu}:null, state_form:fn||fu?{name:fn||fu,number:base.state_form?base.state_form.number||'':'',url:fu}:null,
+    deadline:$('#stDeadline').value.trim(), deadline_days:isNaN(days)?null:days,
+    ei_program:$('#stEI').value.trim(), who_reports:$('#stWho').value.trim(), edited:todayISO()};
+  settingsDirty=true; $('#stRevert').disabled=false; renderSendTo();
+}
+stDialog.addEventListener('input',readStateDialog);
+stDialog.addEventListener('change',readStateDialog);
+$('#stDone').addEventListener('click',()=>stDialog.close());
+$('#stRevert').addEventListener('click',()=>{
+  const code=val('stateCode'); if(!settings.stateEdits[code]) return;
+  if(!confirm('Throw away your changes to this state and use the published entry?')) return;
+  delete settings.stateEdits[code]; settingsDirty=true; fillStateDialog(); renderSendTo(); setStatus('Using the published entry',3000);
+});
+$('#stMaster').addEventListener('click',saveMaster);
+
+/* ---------------- reported by: remembered in the master copy ---------------- */
+function reporterFields(){ const r={}; REPORTER_KEYS.forEach(k=>{ const v=val(k); if(v) r[k]=v; }); return r; }
+function updateReporterNote(){
+  const cur=reporterFields(), saved=settings.reporter;
+  const differs=Object.keys(cur).length>0&&REPORTER_KEYS.some(k=>(cur[k]||'')!==(saved[k]||''));
+  $('#repNote').hidden=!differs;
+}
+
+/* ---------------- refresh on any edit ---------------- */
+function refresh(){ updateAge(); updateLaterality(); updateHeads(); updateDegreeHint(); updateReporterNote(); renderSendTo(); }
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(!t.matches('[data-field],[data-check]')) return;
+  const g=t.dataset.group;
+  if(g&&t.checked) $$(`[data-group="${g}"]`).forEach(x=>{ if(x!==t) x.checked=false; });
+  if(t.dataset.check==='outIncomplete'||g==='out') updateFollowups();
+  markDirty(); refresh();
+});
+document.addEventListener('input',e=>{ if(!e.target.matches('[data-field]')) return; if(e.target.dataset.field==='visitDate') autoVisitDate=false; markDirty(); refresh(); });
+window.addEventListener('beforeunload',e=>{ if(dirty||settingsDirty){ e.preventDefault(); e.returnValue=''; } });
+
+/* ---------------- form state ---------------- */
+function getState(){
+  const fields={}, checks={};
+  $$('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
+  $$('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
+  return {version:1,form:'ehdi',fields,checks};
+}
+function applyState(s){
+  s=s||{};
+  const fields=s.fields||{}, checks=s.checks||{};
+  $$('[data-field]').forEach(el=>{
+    const v=fields[el.dataset.field]||'';
+    if(el.isContentEditable) el.innerText=v;
+    else if(el.tagName==='SELECT') el.value=REF.states[v]?v:'';
+    else el.value=v;
+  });
+  $$('[data-check]').forEach(el=>{ el.checked=!!checks[el.dataset.check]; });
+  autoVisitDate=!!s.autoVisitDate;
+  updateFollowups(); updateOptional(); refresh();
+}
+function emptyState(){ return {fields:{visitDate:today(),stateCode:settings.state,...settings.reporter},checks:{},autoVisitDate:true}; }
+
+/* ---------------- file actions ---------------- */
+function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },2000); }
+function safeName(s){ return (s||'').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'_'); }
+function embedJSON(html,id,obj){
+  const json=JSON.stringify(obj).replace(/</g,'\\u003c');
+  return html.replace(new RegExp('(<script type="application/json" id="'+id+'">)[\\s\\S]*?(<\\/script>)'),(m,a,b)=>a+json+b);
+}
+// Every file this form writes carries the letterhead and settings; only "Save evaluation" carries the child.
+function buildFile(state){
+  let html=embedJSON(PRISTINE,'saved-state',state);
+  html=embedJSON(html,'letterhead',lhIsEmpty(lh)?null:lh);
+  return embedJSON(html,'settings',settingsIsEmpty(settings)?null:settings);
+}
+function saveFile(){
+  const st=getState();
+  const name=`EHDI_Report_${safeName(st.fields.childName)||'blank'}_${safeName(st.fields.visitDate)||safeName(today())}.html`;
+  download(new Blob([buildFile(st)],{type:'text/html'}),name);
+  dirty=false; settingsDirty=false; setStatus('Saved '+name,4000);
+}
+// The master copy remembers who reports and to which state, so a new report starts with them filled in.
+function saveMaster(){
+  settings.reporter=reporterFields();
+  settings.state=val('stateCode');
+  download(new Blob([buildFile(null)],{type:'text/html'}),'ehdi-report.html');
+  settingsDirty=false; updateReporterNote();
+  setStatus('Saved ehdi-report.html with your letterhead, Reported by details, and state. Use that file from now on.',6000);
+}
+$('#btnSave').addEventListener('click',saveFile);
+$('#btnMaster').addEventListener('click',saveMaster);
+$('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? Unsaved changes will be lost.')) return; applyState(emptyState()); dirty=false; hideUndoImport(); setStatus('Form cleared',1500); });
+$('#btnPrint').addEventListener('click',()=>window.print());
+
+let blankSnapshot=null;
+function restoreAfterBlank(){ if(blankSnapshot){ const s=blankSnapshot; blankSnapshot=null; applyState(s); } }
+$('#btnPrintBlank').addEventListener('click',()=>{
+  blankSnapshot={...getState(),autoVisitDate};
+  const wasDirty=dirty;
+  const opt={}; OPTS.forEach(k=>{ opt[k]=chk(k).checked; });
+  applyState({fields:{stateCode:val('stateCode'),...reporterFields()},checks:opt});
+  window.print();
+  restoreAfterBlank();
+  dirty=wasDirty;
+});
+window.addEventListener('afterprint',restoreAfterBlank);
+
+/* ---------------- fill from a saved ABR report or audiogram ----------------
+   Reads the saved-state block out of a file those forms wrote with "Save evaluation". Only empty
+   fields and unchosen options are filled, so nothing typed here is overwritten. Free-text narrative
+   (history, interpretation, the audiogram's comments) is left behind on purpose. */
+const ABR_RECS={rec3:'Otolaryngology (ENT) evaluation',rec4:'Repeat ABR',rec5:'Behavioral audiologic evaluation (VRA / CPA)',rec6:'Hearing aid evaluation and fitting',rec7:'Cochlear implant candidacy evaluation',rec8:'Referral to early intervention services',rec9:'Speech-language evaluation',rec10:'Genetics evaluation and counseling',rec11:'Ophthalmology evaluation',rec12:'Medical management of middle ear status, with repeat testing after resolution',rec13:'Continued hearing aid use during all waking hours'};
+let undoImport=null;
+function hideUndoImport(){ undoImport=null; $('#btnUndoImport').hidden=true; }
+function readSaved(html){
+  const m=html.match(/<script type="application\/json" id="saved-state">([\s\S]*?)<\/script>/);
+  if(!m) return {err:"That file isn't one of these forms. Pick an ABR report or audiogram saved with Save evaluation."};
+  let s=null; try{ s=JSON.parse(m[1]); }catch(e){ return {err:"That file's saved data couldn't be read."}; }
+  if(!s) return {err:'That file is a blank form, not a saved evaluation.'};
+  if(s.form==='ehdi') return {err:'That file is an EHDI report. Open it directly in your browser instead.'};
+  if(s.form==='abr') return {kind:'ABR report',s};
+  if(Array.isArray(s.points)) return {kind:'audiogram',s};
+  return {err:"That file's saved data isn't from the ABR report or the audiogram."};
+}
+function importState(kind,s){
+  const f=s.fields||{}, c=s.checks||{}, done=new Set();
+  const put=(key,v,what)=>{ const el=field(key); v=(v==null?'':String(v)).trim(); if(!el||!v) return; const cur=el.isContentEditable?el.innerText.trim():el.value.trim(); if(cur) return; if(el.isContentEditable) el.innerText=v; else el.value=v; done.add(what); };
+  const tick=(key,what)=>{ const el=chk(key); if(!el||el.checked) return; const g=el.dataset.group; if(g&&$$(`[data-group="${g}"]`).some(x=>x.checked)) return; el.checked=true; done.add(what); };
+  const any=keys=>keys.some(k=>(f[k]||'').trim());
+  let degreeNote='';
+  if(autoVisitDate&&(f.date||'').trim()){ field('visitDate').value=''; autoVisitDate=false; }
+  if(kind==='ABR report'){
+    put('childName',f.patient,'name'); put('childDob',f.dob,'date of birth'); put('visitDate',f.date,'date of evaluation'); put('mrn',f.id,'record number');
+    if(c.sSleep) tick('condSleep','test conditions'); if(c.sSedated||c.sAnesthesia) tick('condSedated','test conditions');
+    const earKeys=(ears,stims)=>ears.flatMap(e=>stims.map(st=>`nhl_${e}_${st}`)).concat(ears.flatMap(e=>stims.map(st=>`ehl_${e}_${st}`)));
+    if(c.stClick||any(earKeys(['R','L'],['click']))) tick('tClick','tests performed');
+    if(c.stToneburst||any(earKeys(['R','L'],['500','1000','2000','4000','8000']))) tick('tTone','tests performed');
+    if(any(earKeys(['RB','LB'],['click','500','1000','2000','4000']))) tick('tBoneABR','tests performed');
+    if(c.pt226||c.pt1000||any(['tympR','tympL'])){ tick('tTymp','tests performed'); if(c.pt226) tick('tymp226','tests performed'); if(c.pt1000) tick('tymp1000','tests performed'); }
+    const oaeHas=c.oaeRPass||c.oaeRAbsent||c.oaeLPass||c.oaeLAbsent;
+    if(oaeHas&&/\bDP/i.test(f.oaeType||'')) tick('tDPOAE','tests performed');
+    if(oaeHas&&/\bTE/i.test(f.oaeType||'')) tick('tTEOAE','tests performed');
+    EARS.forEach(e=>{
+      TFREQ.forEach(fr=>{ put(`tr_estAir_${e}_${fr}`,f[`ehl_${e}_${fr}`],'thresholds'); put(`tr_estBone_${e}_${fr}`,f[`ehl_${e}B_${fr}`],'thresholds'); });
+      const clickV=(f[`nhl_${e}_click`]||'').trim();
+      if(clickV) put(`res_click_${e}`,/\d/.test(clickV)?`${clickV} dB nHL`:clickV,'click ABR');
+      const probe=c.pt1000&&!c.pt226?'1000 Hz probe: ':c.pt226&&!c.pt1000?'226 Hz probe: ':'';
+      if((f[`tymp${e}`]||'').trim()) put(`res_tymp_${e}`,probe+f[`tymp${e}`],'tympanometry');
+      const st=c[`oae${e}Pass`]?'Present':c[`oae${e}Absent`]?'Absent':c[`oae${e}NT`]?'Not tested':'';
+      put(`res_oae_${e}`,[st,f[`oae${e}Notes`]].filter(x=>(x||'').trim()).join(', '),'OAEs');
+    });
+    if(c.rec1) tick('shParent','results shared with');
+    if(c.rec2) tick('shPCP','results shared with');
+    if(c.rec3) tick('refENT','referrals'); if(c.rec9) tick('refSLP','referrals'); if(c.rec10) tick('refGenetics','referrals'); if(c.rec11) tick('refOphth','referrals');
+    if(c.rec6) tick('ampHARec','amplification');
+    if(c.rec8) tick('eiReferred','early intervention');
+    const next=[c.rec4?`Repeat ABR${(f.rec4x||'').trim()?': '+f.rec4x.trim():''}`:'',c.rec5?`Behavioral evaluation${(f.rec5x||'').trim()?': '+f.rec5x.trim():''}`:''].filter(Boolean).join('; ');
+    put('nextVisit',next,'next audiology visit');
+    const recs=Object.keys(ABR_RECS).filter(k=>c[k]).map(k=>{ const x=(f[k+'x']||'').trim(); return ABR_RECS[k]+(x?`: ${x}`:''); });
+    [['rec14','rec14x'],['rec15','rec15x']].forEach(([k,x])=>{ if(c[k]&&(f[x]||'').trim()) recs.push(f[x].trim()); });
+    if(recs.length) put('recommendations',recs.map(r=>'• '+r).join('\n'),'recommendations');
+  } else {
+    put('childName',f.student,'name'); put('childDob',f.dob,'date of birth'); put('visitDate',f.date,'date of evaluation');
+    if(c.mConv) tick('tConv','tests performed'); if(c.mCPA) tick('tCPA','tests performed'); if(c.mVRA) tick('tVRA','tests performed');
+    if(any(['tympTypeR','tympTypeL','ecvR','ecvL','tppR','tppL','admR','admL'])) tick('tTymp','tests performed');
+    if(any(['reflexR','reflexL'])) tick('tReflex','tests performed');
+    if(any(['srtR','srtL','sdtR','sdtL','wrsR','wrsL','srtSF','sdtSF','wrsSF'])) tick('tSpeech','tests performed');
+    const pts=(s.points||[]).filter(p=>p&&typeof p.db==='number');
+    const series={RA:['behAir','R'],RAM:['behAir','R'],LA:['behAir','L'],LAM:['behAir','L'],RB:['behBone','R'],RBM:['behBone','R'],LB:['behBone','L'],LBM:['behBone','L']};
+    pts.forEach(p=>{ const m=series[p.type]; if(!m||!TFREQ.includes(String(p.freq))) return; put(`tr_${m[0]}_${m[1]}_${p.freq}`,`${p.nr?'NR ':''}${p.db}${p.type.endsWith('M')?'M':''}`,'thresholds'); });
+    EARS.forEach(e=>{
+      const ty=[(f[`tympType${e}`]||'').trim()?`Type ${f[`tympType${e}`].trim()}`:'',(f[`ecv${e}`]||'').trim()?`ECV ${f[`ecv${e}`].trim()}`:'',(f[`tpp${e}`]||'').trim()?`TPP ${f[`tpp${e}`].trim()}`:'',(f[`adm${e}`]||'').trim()?`admittance ${f[`adm${e}`].trim()}`:''].filter(Boolean).join(', ');
+      put(`res_tymp_${e}`,ty,'tympanometry');
+      put(`res_reflex_${e}`,f[`reflex${e}`],'acoustic reflexes');
+      const st=c[`oae${e}Pass`]?'Pass':c[`oae${e}Refer`]?'Refer':c[`oae${e}NT`]?'Not tested':'';
+      put(`res_oae_${e}`,[st,(f.oaeType||'').trim()].filter(Boolean).join(', '),'OAEs');
+      const sp=[(f[`srt${e}`]||'').trim()?`SRT ${f[`srt${e}`].trim()}`:'',(f[`sdt${e}`]||'').trim()?`SDT ${f[`sdt${e}`].trim()}`:'',(f[`wrs${e}`]||'').trim()?`WRS ${f[`wrs${e}`].trim()}${(f[`wrsLevel${e}`]||'').trim()?' at '+f[`wrsLevel${e}`].trim():''}`:''].filter(Boolean).join(', ');
+      put(`res_speech_${e}`,sp,'speech audiometry');
+    });
+    if(pts.some(p=>p.type==='S'||p.type==='A')) degreeNote=' Sound-field and aided thresholds were left out: they aren\'t ear-specific.';
+  }
+  // Rate degree by the worst air threshold that now sits in the results table, where the ear has no degree yet.
+  const rated=[];
+  EARS.forEach(e=>{ const w=worstAir(e); if(!w||groupValue('dg',e)) return; const d=degreeOf(w); chk(`dg_${d}_${e}`).checked=true; rated.push(`${e==='R'?'right':'left'} ${DEGREES[d][1].toLowerCase()}`); done.add('degree'); });
+  if(RES_ROWS.some(r=>EARS.some(e=>val(`res_${r[0]}_${e}`)))||THR_ROWS.some(r=>EARS.some(e=>TFREQ.some(fr=>val(`tr_${r[0]}_${e}_${fr}`))))) chk('optResults').checked=true;
+  return {done:[...done],rated,degreeNote};
+}
+$('#btnImport').addEventListener('click',()=>$('#importFile').click());
+$('#importFile').addEventListener('change',e=>{
+  const file=e.target.files[0]; e.target.value='';
+  if(!file) return;
+  file.text().then(html=>{
+    const r=readSaved(html);
+    if(r.err){ setStatus(r.err,7000); return; }
+    const before={...getState(),autoVisitDate};
+    const res=importState(r.kind,r.s);
+    updateFollowups(); updateOptional(); refresh();
+    if(!res.done.length){ setStatus(`Nothing to fill from that ${r.kind}: the parts it covers are already filled in here.`,7000); return; }
+    undoImport=before; $('#btnUndoImport').hidden=false; markDirty();
+    setStatus(`Filled from the ${r.kind}: ${res.done.join(', ')}.${res.rated.length?` Degree rated by the worst threshold (${res.rated.join(', ')}); check it.`:''} Type, permanence, and status are yours to choose.${res.degreeNote}`,15000);
+  },()=>setStatus('Could not read that file.',5000));
+});
+$('#btnUndoImport').addEventListener('click',()=>{ if(!undoImport) return; applyState(undoImport); hideUndoImport(); setStatus('Fill undone',2500); });
+
+/* ---------------- letterhead: logo, contact lines, document barcode ----------------
+   Same design as the ABR report and audiogram. A page opened from disk cannot write to its own file,
+   so the letterhead lives only in the files this form writes. The signer lines are kept in the data
+   so a letterhead moves between forms intact, but this report has no signature, so they don't print. */
+const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:'',bcPages:'first'};
+let lh={...LH_EMPTY};
+function lhNormalize(o){
+  o=o&&typeof o==='object'?o:{};
+  const t={...LH_EMPTY};
+  for(const k in LH_EMPTY) if(typeof o[k]==='string') t[k]=o[k];
+  t.contact=t.contact.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim();
+  t.signer1=t.signer1.slice(0,60).trim(); t.signer2=t.signer2.slice(0,60).trim();
+  t.docId=t.docId.replace(/[^\x20-\x7e]/g,'').slice(0,16).trim();
+  if(!['first','last','all'].includes(t.bcPages)) t.bcPages='first';
+  if(!/^data:image\/(png|jpeg|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(t.logo)||t.logo.length>800000) t.logo='';
+  return t;
+}
+function lhIsEmpty(t){ return !(t.logo||t.contact||t.signer1||t.signer2||t.docId); }
+function lhLoad(){ let emb=null; try{ emb=JSON.parse(document.getElementById('letterhead').textContent); }catch(e){ emb=null; } return lhNormalize(emb); }
+
+// Code 128, subsets B and C. Widths of the 106 symbols as runs of bar,space,bar,space,bar,space; stop pattern appended.
+const C128='212222222122222221121223121322131222122213122312132212221213221312231212112232122132122231113222123122123221223211221132221231213212223112312131311222321122321221312212322112322211212123212321232121111323131123131321112313132113132311211313231113231311112133112331132131113123113321133121313121211331231131213113213311213131311123311321331121312113312311332111314111221411431111111224111422121124121421141122141221112214112412122114122411142112142211241211221114413111241112134111111242121142121241114212124112124211411212421112421211212141214121412121111143111341131141114113114311411113411311113141114131311141411131211412211214211232';
+function code128svg(text){
+  let vals;
+  if(/^\d+$/.test(text)&&text.length%2===0){ vals=[105]; for(let i=0;i<text.length;i+=2) vals.push(+text.slice(i,i+2)); }
+  else { vals=[104]; for(const ch of text) vals.push(ch.charCodeAt(0)-32); }
+  let sum=vals[0]; for(let i=1;i<vals.length;i++) sum+=vals[i]*i; vals.push(sum%103);
+  const runs=vals.map(v=>C128.substr(v*6,6)).join('')+'2331112';
+  const M=0.9, Q=10, HGT=29;                       // module width in px, quiet zone in modules, height in px
+  let x=Q, rects='';
+  for(let i=0;i<runs.length;i++){ const w=+runs[i]; if(i%2===0) rects+=`<rect x="${(x*M).toFixed(2)}" y="0" width="${(w*M).toFixed(2)}" height="${HGT}"/>`; x+=w; }
+  const tw=((x+Q)*M).toFixed(1);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${tw} ${HGT}" width="${tw}" height="${HGT}" shape-rendering="crispEdges" fill="#000">${rects}</svg>`;
+}
+function setBarcode(el,show){
+  if(show){ el.innerHTML=code128svg(lh.docId)+'<span></span>'; el.lastChild.textContent=lh.docId; el.hidden=false; }
+  else { el.innerHTML=''; el.hidden=true; }
+}
+// Page 3 prints only when an optional section is on, so "last" means page 2 or page 3.
+function lhRenderBarcodes(){
+  const last=$('#sheet3').classList.contains('unused')?2:3;
+  [1,2,3].forEach(n=>{
+    const show=!!lh.docId&&n<=last&&(lh.bcPages==='all'||(lh.bcPages==='first'&&n===1)||(lh.bcPages==='last'&&n===last));
+    setBarcode($('#bc'+n),show);
+  });
+}
+function lhRender(){
+  const logo=$('#shLogo');
+  if(lh.logo){ logo.src=lh.logo; logo.hidden=false; } else { logo.removeAttribute('src'); logo.hidden=true; }
+  const c=$('#shContact'); c.textContent=lh.contact; c.hidden=!lh.contact;
+  $('.head').classList.toggle('plain',!lh.logo&&!lh.contact);
+  lhRenderBarcodes();
+}
+function lhFillDialog(){
+  $('#lhContact').value=lh.contact; $('#lhDocId').value=lh.docId; $('#lhBcPages').value=lh.bcPages;
+  const pv=$('#lhLogoPreview');
+  if(lh.logo){ pv.src=lh.logo; pv.hidden=false; } else { pv.removeAttribute('src'); pv.hidden=true; }
+  $('#lhLogoNone').hidden=!!lh.logo; $('#lhLogoClear').disabled=!lh.logo;
+}
+function lhCommit(msg){ settingsDirty=true; lhRender(); setStatus(msg||'Letterhead set. Save a master copy to keep it.',3000); }
+function lhSetLogoFile(file){
+  if(!file) return;
+  const type=file.type;
+  if(type==='image/svg+xml'){
+    if(file.size>400000){ setStatus('That SVG is over 400 KB. Simplify it or use a PNG.',6000); return; }
+    file.text().then(t=>{
+      if(!/<svg[\s>]/i.test(t)){ setStatus('That file does not look like an SVG.',5000); return; }
+      lh.logo='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(t)));
+      lhCommit(); lhFillDialog();
+    });
+    return;
+  }
+  if(type!=='image/png'&&type!=='image/jpeg'){ setStatus('Use a PNG, JPG, or SVG image.',5000); return; }
+  const url=URL.createObjectURL(file), img=new Image();
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    const k=Math.min(1,1200/img.naturalWidth,400/img.naturalHeight);
+    const finish=dataUrl=>{ lh.logo=dataUrl; lhCommit(); lhFillDialog(); };
+    if(k===1&&file.size<=400000){ const r=new FileReader(); r.onload=()=>finish(r.result); r.readAsDataURL(file); return; }
+    const c=document.createElement('canvas'); c.width=Math.max(1,Math.round(img.naturalWidth*k)); c.height=Math.max(1,Math.round(img.naturalHeight*k));
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    finish(type==='image/jpeg'?c.toDataURL('image/jpeg',0.88):c.toDataURL('image/png'));
+  };
+  img.onerror=()=>{ URL.revokeObjectURL(url); setStatus('Could not read that image.',5000); };
+  img.src=url;
+}
+const lhDialog=$('#lhDialog');
+$('#btnLetterhead').addEventListener('click',()=>{ if(lhDialog.open){ lhDialog.close(); return; } lhFillDialog(); lhDialog.show(); });
+$('#lhDone').addEventListener('click',()=>lhDialog.close());
+$('#lhLogoPick').addEventListener('click',()=>$('#lhLogoFile').click());
+$('#lhLogoFile').addEventListener('change',e=>{ lhSetLogoFile(e.target.files[0]); e.target.value=''; });
+$('#lhLogoClear').addEventListener('click',()=>{ lh.logo=''; lhCommit('Logo removed'); lhFillDialog(); });
+$('#lhContact').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n');
+  if(fixed!==v) e.target.value=fixed;
+  lh.contact=fixed.trim(); lhCommit();
+});
+$('#lhDocId').addEventListener('input',e=>{
+  const v=e.target.value, fixed=v.replace(/[^\x20-\x7e]/g,'').slice(0,16);
+  if(fixed!==v) e.target.value=fixed;
+  lh.docId=fixed.trim(); lhCommit();
+});
+$('#lhBcPages').addEventListener('change',e=>{ lh.bcPages=e.target.value; lhCommit(); });
+$('#lhClear').addEventListener('click',()=>{
+  if(lhIsEmpty(lh)) return;
+  if(!confirm('Remove the logo, contact lines, and document identifier?')) return;
+  lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
+});
+$('#lhMaster').addEventListener('click',saveMaster);
+
+/* ---------------- boot ---------------- */
+buildMatrix($('#mxA'),MX_A); buildMatrix($('#mxB'),MX_B); buildRisks(); buildResults(); buildStateSelect();
+lh=lhLoad(); settings=settingsLoad(); lhRender();
+let saved=null;
+try{ saved=JSON.parse(document.getElementById('saved-state').textContent); }catch(e){ saved=null; }
+applyState(saved||emptyState());
+dirty=false;
+})();
+</script>
+</body>
+</html>

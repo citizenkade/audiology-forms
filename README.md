@@ -8,6 +8,7 @@ They were made for educational audiologists who needed editable forms and couldn
 | --- | --- | --- |
 | **Audiogram** | Pure-tone audiogram with click-to-plot chart, speech audiometry, tympanometry, OAEs, and otoscopy. One page. | **[audiogram.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/audiogram.html)** |
 | **ABR report** | Auditory brainstem response evaluation with measured and estimated thresholds, an audiogram drawn from the estimates, and page two for OAEs, immittance, interpretation, and recommendations. Two pages. | **[abr-report.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/abr-report.html)** |
+| **EHDI report** | Infant hearing diagnostic report for your state's Early Hearing Detection and Intervention (EHDI) program. One standard report for any state, with where to send it and by when for all 50 states and DC. Two pages, plus an optional third. | **[ehdi-report.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)** |
 
 This page is a description of the forms, with download links and some pictures. The forms themselves are the files you download.
 
@@ -70,15 +71,42 @@ It works the same way as the audiogram: one file, opens in any browser, prints t
 - **Page 1** also holds the history, testing notes, click latencies, and otoscopy. **Page 2** holds otoacoustic emissions, immittance, a summary of hearing status, the interpretation, a recommendations checklist, and the signature. Two recommendations ask a follow-up question when ticked: whether a hearing aid consult was completed today, and whether a cochlear implant referral was placed today.
 - **Correction factors are saved with your letterhead.** Save a master copy (below) and a colleague who opens it gets the same corrections.
 
+## EHDI report
+
+These are pictures too; clicking one downloads the real form.
+
+Filling it in on screen. Choose your state in the toolbar, then work down the page. Most answers are checkboxes, with Right and Left columns for each ear.
+
+[![Screenshot of the EHDI report open in a web browser, with a sample infant's results](docs/ehdi/form-on-screen.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)
+
+What comes out of the printer. Pages 1 and 2 always print. Page 3 prints only when you add one of its optional sections.
+
+[![Screenshot of printed page 1](docs/ehdi/printed-page-1.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)
+
+[![Screenshot of printed page 2](docs/ehdi/printed-page-2.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)
+
+[![Screenshot of printed page 3](docs/ehdi/printed-page-3.png)](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)
+
+Every state collects infant diagnostic results on its own form, with its own labels and order. This is one standard report that covers what nearly every state form asks for. It follows JCIH 2019 and ASHA terms. It works alongside your state's form or online system; it doesn't replace them. Some states accept your own report, and others want their own form or portal. The printout can also be the sheet you type from.
+
+- **Page 1** is the child and what you found. It has the child's name, birth details, and the record-matching details state databases search by: other names, the birth mother's name, and record numbers. Then the family, primary care provider, this visit, tests performed, and the results for each ear.
+- **Results for each ear** are hearing status, type, permanence, and degree. Degree uses the ASHA bands, printed with their dB ranges, and is rated by the worst threshold from 500 to 4000 Hz. Every question has an honest "not yet determined" choice.
+- **Page 2** opens with the answer the state needs most: **EHDI follow-up: continue monitoring, or no further follow-up needed**. Then the next visit, amplification, early intervention referral, other referrals, who the results were shared with, recommendations, comments, and who reported.
+- **Page 3 is optional.** Click **+ Add** at the bottom of the form for any of three sections: risk indicators (JCIH 2019), test results by ear, and parent permission to share results. Remove a section and it stops printing.
+- **Send this report to**, at the bottom of page 2, shows your state program, how to send (fax, email, or online system), and the deadline. The due date is worked out from the date of evaluation. The entries come from each state's own published sources, with the source and the date last checked. They can go out of date. If yours is wrong, click **Fix or update these details** and correct it, then save a master copy to keep the change. Please also tell us through Issues so we can fix it for everyone.
+- **Fill from a saved ABR or audiogram…** reads an ABR report or audiogram you saved with **Save evaluation**. It fills in the name, dates, tests performed, thresholds, and, from the ABR, the recommendations and referrals. It rates the degree for you to check. It fills only empty boxes, so nothing you typed is overwritten, and **Undo fill** puts the form back.
+- **Your details are saved in the master copy.** Save a master copy (below) and it remembers the Reported by section and your state, as well as your letterhead.
+- **There is no signature line.** A few states ask for one; the review behind this form decided to leave it off.
+
 ## Your letterhead
 
-Both forms have a **Letterhead…** button in the toolbar that puts your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type, on the first page, the last page, or every page. Each is optional.
+All three forms have a **Letterhead…** button in the toolbar that puts your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type, on the first page, the last page, or every page. Each is optional. The EHDI report has no signature line, so its panel skips the name.
 
-The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy**, in the toolbar or in the panel. That downloads a blank copy of the form (`audiogram.html` or `abr-report.html`) with your letterhead built in, and for the ABR report your correction factors too. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Evaluations you save carry the letterhead too.
+The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy**, in the toolbar or in the panel. That downloads a blank copy of the form (`audiogram.html`, `abr-report.html`, or `ehdi-report.html`) with your letterhead built in. The ABR report's copy also keeps your correction factors. The EHDI report's copy also keeps your Reported by details, your state, and any fixes to its sending details. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Evaluations you save carry the letterhead too.
 
 ## Privacy
 
-Nothing you type leaves your computer. There is no server, no account, and no automatic saving. Student and patient information exists only in the PDFs and files you choose to save.
+Nothing you type leaves your computer. There is no server, no account, and no automatic saving. Student and patient information exists only in the PDFs and files you choose to save. The EHDI report doesn't send anything to your state; you send it yourself.
 
 ## Questions and requests
 

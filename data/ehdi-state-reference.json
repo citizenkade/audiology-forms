@@ -1,0 +1,1402 @@
+{
+  "_about": "Per-state EHDI reporting reference for the EHDI diagnostic report form. Starting data from a 50-state + DC census (Project research, 2026-09-26/27). Every entry names its source and last-checked date; audiologists can edit their copy when an entry is stale. confidence: confirmed = route and deadline seen on state sources; partial = route confirmed, deadline or details missing; unverified = route not published.",
+  "states": {
+    "AK": {
+      "state": "Alaska",
+      "program": "Alaska Early Hearing Detection and Intervention (EHDI) / Universal Newborn Hearing Screening, Alaska Department of Health",
+      "program_url": "https://health.alaska.gov/en/services/newborn-hearing-screening/",
+      "route": "Not published",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [],
+      "deadline": "at least monthly (7 AAC 27.620(b)(1)); no per-evaluation day count",
+      "deadline_days": null,
+      "deadline_source": "https://www.akleg.gov/basis/aac.asp?media=print&secStart=7.27.620&secEnd=7.27.620",
+      "who_reports": "A person who provides audiological confirmatory evaluation and diagnostic services for newborns and infants screened under AS 47.20.310",
+      "ei_program": "",
+      "confidence": "unverified",
+      "last_checked": "2026-09-27"
+    },
+    "AL": {
+      "state": "Alabama",
+      "program": "Alabama Newborn Hearing Screening Program (Alabama EHDI Program, \"Alabama's Listening!\"), Alabama Department of Public Health",
+      "program_url": "http://www.alabamapublichealth.gov/newbornscreening/newborn-hearing-screening.html",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Diagnostic Hearing Evaluation Form (Alabama Newborn Hearing Program)",
+        "number": "NBS.Hearing Diagnostic Reporting Form.2018",
+        "url": "http://www.alabamapublichealth.gov/newbornscreening/assets/diagnostichearingevaluationform.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "334-206-3791",
+          "kind": "send",
+          "note": "",
+          "source": "http://www.alabamapublichealth.gov/newbornscreening/newborn-hearing-screening.html"
+        }
+      ],
+      "deadline": "as soon as the initial diagnostic audiological evaluation is completed (no number of days given)",
+      "deadline_days": null,
+      "deadline_source": "http://www.alabamapublichealth.gov/newbornscreening/assets/diagnostichearingevaluationform.pdf",
+      "who_reports": "Health care providers who perform hearing tests on newborns (the audiology provider completes the form)",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "AR": {
+      "state": "Arkansas",
+      "program": "Arkansas Infant Hearing Program (EHDI), Arkansas Department of Health",
+      "program_url": "https://healthy.arkansas.gov/programs-services/community-family-child-health/family-health/infant-hearing/audiologist-information/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "ERAVE (Electronic Registry/Registration of Arkansas Vital Events)",
+        "url": "https://healthy.arkansas.gov/programs-services/certificates-records/erave/"
+      },
+      "state_form": {
+        "name": "Arkansas Infant Hearing Diagnostic Test Battery (posted as 'Diagnostic Evaluation Form')",
+        "number": "",
+        "url": "https://healthy.arkansas.gov/wp-content/uploads/Diagnostic_Evaluation_Questionnaire.pdf"
+      },
+      "send_to": [],
+      "deadline": "within 7 business days of the evaluation (to the Infant Hearing Program and the child's primary care provider)",
+      "deadline_days": 7,
+      "deadline_source": "https://healthy.arkansas.gov/wp-content/uploads/2021_Audiologists_Guide_for_Infant_Diagnostic_Evaluation_Booklet-FINAL-compressed.pdf",
+      "who_reports": "Physicians or other providers administering initial screening or follow-up care (audiologists report diagnostic evaluations)",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "AZ": {
+      "state": "Arizona",
+      "program": "Arizona Early Hearing Detection and Intervention Program (AZ EHDI), Office of Newborn Screening, Arizona Department of Health Services",
+      "program_url": "https://azdhs.gov/preparedness/state-laboratory/newborn-screening/index.php",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Audiology Referral and Tracking Form (Office of Newborn Screening)",
+        "number": "FNBS-514 v.01 (approved 02/27/2020)",
+        "url": "https://azdhs.gov/documents/preparedness/state-laboratory/newborn-screening/forms/audiology-referral-tracking-form.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "602-364-1495",
+          "kind": "send",
+          "note": "Attach the written report (required by rule)",
+          "source": "https://azdhs.gov/includes/content/preparedness/state-laboratory/newborn-screening.php?cont=healthcare-providers-legal-requirements"
+        },
+        {
+          "method": "email",
+          "value": "Hearing@azdhs.gov",
+          "kind": "send",
+          "note": "Secure email",
+          "source": "https://azdhs.gov/documents/preparedness/state-laboratory/newborn-screening/forms/audiology-referral-tracking-form.pdf"
+        }
+      ],
+      "deadline": "within one week of the test date (program page); rule R9-13-207(G) says tests performed each week are due by the sixth day of the following week",
+      "deadline_days": 7,
+      "deadline_source": "https://azdhs.gov/includes/content/preparedness/state-laboratory/newborn-screening.php?cont=healthcare-providers-legal-requirements",
+      "who_reports": "The health care facility, health care provider, or other person that performs the subsequent (including diagnostic) hearing test; the form is signed by the audiologist",
+      "ei_program": "AzEIP",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "CA": {
+      "state": "California",
+      "program": "California Newborn Hearing Screening Program (NHSP), Department of Health Care Services, with regional Hearing Coordination Centers",
+      "program_url": "https://www.dhcs.ca.gov/services/california-newborn-hearing-screening-program/nhsp-forms/",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Diagnostic Audiologic Evaluation Reporting Form (DRF)",
+        "number": "NHSP 300-1, region specific: DHCS 6113 Northern (Rev 05/2023); DHCS 6116 Southern",
+        "url": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "800-866-1074",
+          "kind": "send",
+          "note": "Northern California Hearing Coordination Center only; Southern regions use a different center",
+          "source": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"
+        },
+        {
+          "method": "email",
+          "value": "HCCNorthern@natus.com",
+          "kind": "send",
+          "note": "Northern region only; secure email",
+          "source": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf"
+        }
+      ],
+      "deadline": "within 7 days of the child's diagnostic audiologic evaluation (printed on the form)",
+      "deadline_days": 7,
+      "deadline_source": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/NHSP-300-1-Regions-AB-DHCS-6113.pdf",
+      "who_reports": "All providers of audiological follow-up and diagnostic services under the program (HSC 124119(d))",
+      "ei_program": "Early Start",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-27"
+    },
+    "CO": {
+      "state": "Colorado",
+      "program": "Colorado Newborn Hearing Screening Program, Colorado Department of Public Health and Environment (CDPHE)",
+      "program_url": "https://cdphe.colorado.gov/center-for-health-and-environmental-data/registries-and-vital-statistics/newborn-hearing-screening-provider-resources",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Health Information Data System (HIDS) Newborn Hearing (NBH) application",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "no deadline for audiology results; the evaluation should occur within the first three months, and when permanent hearing loss is confirmed the referral to early intervention must happen within 48 hours",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "The audiologist who performs the comprehensive evaluation communicates results to the Department; health professionals providing follow-up services enter results in the Department's data system after signing its confidentiality agreement",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "CT": {
+      "state": "Connecticut",
+      "program": "Connecticut Early Hearing Detection and Intervention (EHDI) Program, Department of Public Health",
+      "program_url": "https://portal.ct.gov/DPH/Family-Health/EHDI/Home-page--Early-Hearing-Detection-and-Intervention-Program-Home-Page",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Diagnostic Audiology Reporting Form (CT DPH Early Hearing Detection and Intervention)",
+        "number": "Rev. 02/2012",
+        "url": "https://portal.ct.gov/dph/-/media/dph/ehdi/fillableauddxreportingformrev212pdf.pdf?rev=046113bfd0a846a39dfd613baaaa9d81&hash=BB834680FA7DCC1A4E1B803F5197A886"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "860-509-8132",
+          "kind": "send",
+          "note": "",
+          "source": "https://portal.ct.gov/dph/-/media/dph/ehdi/fillableauddxreportingformrev212pdf.pdf?rev=046113bfd0a846a39dfd613baaaa9d81&hash=BB834680FA7DCC1A4E1B803F5197A886"
+        }
+      ],
+      "deadline": "within 2 days following the appointment (fax to the EHDI Program)",
+      "deadline_days": 2,
+      "deadline_source": "https://portal.ct.gov/dph/-/media/dph/ehdi/hospital-ehdi-guidelines-2014.pdf?rev=c1bf93c3f2b14ff191f7d01f79371959&hash=49FEF2A50E4B655284C8D48255FAE0EF",
+      "who_reports": "The audiologist (initial diagnostic and any later audiological evaluation, for any child born in the last three years and any child under 5 diagnosed with hearing loss)",
+      "ei_program": "Birth to Three",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "DC": {
+      "state": "District of Columbia",
+      "program": "DC Early Hearing Detection and Intervention (DC EHDI) Program, Perinatal and Infant Health Division, DC Health",
+      "program_url": "https://dchealth.dc.gov/service/dc-early-hearing-detection-and-intervention-program-dc-ehdi-program",
+      "route": "Not published",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "",
+      "ei_program": "",
+      "confidence": "unverified",
+      "last_checked": "2026-09-27"
+    },
+    "DE": {
+      "state": "Delaware",
+      "program": "Delaware Early Hearing Detection and Intervention (EHDI) / Newborn Hearing Screening Program, Division of Public Health",
+      "program_url": "https://dhss.delaware.gov/dph/homepage/about/sections/newborn-screening-program/newborn-hearing-screening-program/",
+      "route": "Paper or PDF form",
+      "route_note": "No hearing-specific form: hearing loss is reported on the state's general Birth Defects Surveillance Form (not posted online), within 30 days by rule; the screening statute says 10 days",
+      "portal": null,
+      "state_form": {
+        "name": "Division of Public Health Birth Defects Surveillance Form (Birth Defects Registry)",
+        "number": "not posted; the old link (dhss.delaware.gov/dph/chca/files/bdrreportform.pdf) returns 404",
+        "url": "https://regulations.delaware.gov/AdminCode/title16/Department%20of%20Health%20and%20Social%20Services/Division%20of%20Public%20Health/Family%20Health%20Services/4101.shtml"
+      },
+      "send_to": [],
+      "deadline": "same day as testing if at all possible; no later than 10 days following the testing date",
+      "deadline_days": 10,
+      "deadline_source": "https://www.delcode.delaware.gov/title16/c008a/index.html",
+      "who_reports": "Audiologists (all results of newborn, infant, and child hearing screenings and/or testing)",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "FL": {
+      "state": "Florida",
+      "program": "Florida Newborn Hearing Screening Program / Early Hearing Detection and Intervention (EHDI) Program, Florida Department of Health",
+      "program_url": "https://floridanewbornscreening.com/hearing/early-hearing-and-intervention-programs/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "eReports (Florida Newborn Screening online portal, diagnostic module)",
+        "url": "https://www.floridanbs.com/weblogin.aspx?MsgNum=0&Locale=1033"
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "within two business days of the evaluation, via eReports (program page for audiologists); the statute, s. 383.145(3)(j), F.S., and the 2026 state guidelines set an outer limit of 7 days after receipt of results for any related diagnostic testing",
+      "deadline_days": 2,
+      "deadline_source": "https://floridanewbornscreening.com/hearing/for-hearing-specialists-providers/",
+      "who_reports": "Audiologists performing diagnostic hearing testing on children 0-3 years of age; the statute covers results of any related diagnostic testing",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "GA": {
+      "state": "Georgia",
+      "program": "Georgia Early Hearing Detection and Intervention (EHDI) Program, Georgia Department of Public Health",
+      "program_url": "https://dph.georgia.gov/EHDI/ehdi-providers",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "SendSS Audiology Portal",
+        "url": "https://sendss.state.ga.us/newsendss/index.html"
+      },
+      "state_form": {
+        "name": "Surveillance of Hearing Loss in Infants and Young Children (Georgia EHDI Program)",
+        "number": "",
+        "url": "https://dph.georgia.gov/document/document/surveillance-hearing-lossaugust2023pdf/download"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "404-657-2773",
+          "kind": "send",
+          "note": "Paper form is for SendSS downtime or no access",
+          "source": "https://dph.georgia.gov/document/document/surveillance-hearing-lossaugust2023pdf/download"
+        }
+      ],
+      "deadline": "within 7 days of the evaluation for follow-up screening and diagnostic results on babies who did not pass in both ears (program page); within 7 days of diagnosis for hearing loss first confirmed or suspected permanent in a child up to age 5 (program page and the form, citing O.C.G.A. 31-12-2)",
+      "deadline_days": 7,
+      "deadline_source": "https://dph.georgia.gov/EHDI/ehdi-providers",
+      "who_reports": "Audiologists (all follow-up screening and diagnostic results for babies who did not pass in both ears); cases of hearing loss through age 5 are reported by the audiologist or physician who diagnoses",
+      "ei_program": "Babies Can't Wait",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "HI": {
+      "state": "Hawaii",
+      "program": "Hawaii Newborn Hearing Screening Program (NHSP), Children with Special Health Needs Branch, Hawaii Department of Health",
+      "program_url": "http://health.hawaii.gov/genetics/programs/nhsp/",
+      "route": "Not published",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "808-733-9068",
+          "kind": "contact",
+          "note": "Program contact; no reporting route published",
+          "source": "http://health.hawaii.gov/genetics/programs/nhsp/"
+        }
+      ],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists and physicians specialized in hearing function who perform diagnostic audiologic evaluations of infants: results for infants who do not pass screening and those diagnosed deaf or hard of hearing up to age 3",
+      "ei_program": "",
+      "confidence": "unverified",
+      "last_checked": "2026-09-27"
+    },
+    "IA": {
+      "state": "Iowa",
+      "program": "Iowa Early Hearing Detection and Intervention (EHDI) Program, Iowa Department of Health and Human Services",
+      "program_url": "https://hhs.iowa.gov/programs/programs-and-services/ehdi",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "Iowa Newborn Screening Information System (INSIS), the 'EHDI database'",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Iowa's Early Hearing Detection and Intervention Diagnostic Reporting Form",
+        "number": "",
+        "url": "https://hhs.iowa.gov/media/514/download?inline%3Finline="
+      },
+      "send_to": [],
+      "deadline": "within six working days of the assessment (641 IAC 3.8; the program page says six business days; the form says 'within 6 days of the hearing assessment in the EHDI database')",
+      "deadline_days": 6,
+      "deadline_source": "https://www.legis.iowa.gov/docs/iac/chapter/641.3.pdf",
+      "who_reports": "Any health care professional conducting newborn hearing screens, rescreens, or diagnostic audiologic assessments, for any child under 3 (physicians, audiologists, AEAs, birthing facilities)",
+      "ei_program": "Early ACCESS",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "ID": {
+      "state": "Idaho",
+      "program": "Idaho Sound Beginnings (Idaho newborn hearing screening program; Idaho Department of Health and Welfare with Idaho Educational Services for the Deaf and the Blind)",
+      "program_url": "https://healthandwelfare.idaho.gov/services-programs/children-families-older-adults/newborn-hearing-screening",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Audiology Results Form (Idaho Sound Beginnings / IESDB), birth to 5 years",
+        "number": "rev 9/22",
+        "url": "https://publicdocuments.dhw.idaho.gov/WebLink/DocView.aspx?id=36151"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "208-829-2848",
+          "kind": "send",
+          "note": "",
+          "source": "https://healthandwelfare.idaho.gov/services-programs/children-families-older-adults/newborn-hearing-screening"
+        }
+      ],
+      "deadline": "within 5 days of every evaluation (printed on the form)",
+      "deadline_days": 5,
+      "deadline_source": "https://publicdocuments.dhw.idaho.gov/WebLink/DocView.aspx?id=36151",
+      "who_reports": "Audiologists: 'Report ALL results to Idaho Sound Beginnings (Birth - 5)', including no-shows",
+      "ei_program": "Infant Toddler Program",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-27"
+    },
+    "IL": {
+      "state": "Illinois",
+      "program": "Illinois Early Hearing Detection and Intervention (EHDI) Program, Illinois Department of Public Health",
+      "program_url": "https://dph.illinois.gov/topics-services/life-stages-populations/newborn-screening/hearing.html",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Early Hearing Detection and Intervention (EHDI): Audiological Follow-up Report (linked as 'Audiological Evaluation Report')",
+        "number": "IOCI 14-342 1/15",
+        "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "217-557-5324",
+          "kind": "send",
+          "note": "",
+          "source": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"
+        },
+        {
+          "method": "email",
+          "value": "dph.hearingreports@illinois.gov",
+          "kind": "send",
+          "note": "",
+          "source": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/audiological-evaluation-report115-042116.pdf"
+        }
+      ],
+      "deadline": "within 7 days after the date of service or after an inquiry from the Department (77 Ill. Adm. Code 661.110(b), quoting Section 10 of the EHDI Act)",
+      "deadline_days": 7,
+      "deadline_source": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-77-SS-661.110",
+      "who_reports": "Physicians, APRNs, PAs, otolaryngologists, audiologists, ancillary providers, early intervention and parent-support programs, DHS, and UIC-DSCC: all hearing testing, treatment, and intervention outcomes for children birth through 6 years",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "IN": {
+      "state": "Indiana",
+      "program": "Indiana Early Hearing Detection and Intervention (EHDI) Program, Indiana Department of Health",
+      "program_url": "https://www.in.gov/health/mch/families/ehdi-early-hearing-detection-and-intervention/providers",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Diagnostic Audiology Evaluation (DAE)",
+        "number": "State Form 53233 (R3 / 2-25)",
+        "url": "https://www.in.gov/dA/e4999d4df2/DAE-2025-53233-fill-in.pdf?language_id=1"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "317-925-2888",
+          "kind": "send",
+          "note": "",
+          "source": "https://www.in.gov/dA/e4999d4df2/DAE-2025-53233-fill-in.pdf?language_id=1"
+        }
+      ],
+      "deadline": "within five business days following the assessment (410 IAC 3-3-12(i)(4))",
+      "deadline_days": 5,
+      "deadline_source": "https://www.infanthearing.org/legislative/docs2022/rules-regulations/IN_Rules.pdf",
+      "who_reports": "Diagnostic audiology Level 1 facilities: results for each ear, reported regardless of findings; the form also covers children not screened and any child later diagnosed with permanent hearing loss",
+      "ei_program": "First Steps",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "KS": {
+      "state": "Kansas",
+      "program": "Kansas SoundBeginnings Newborn Hearing Screening Program (KDHE Early Hearing Detection and Intervention), Kansas Department of Health and Environment",
+      "program_url": "https://nbss.ks.gov/newborn-hearing-screening-program/information-for-health-care-professionals/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "Kansas Newborn Hearing Screening database (audiologists with access enter results and upload the written report)",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Audiologic Assessment Report Form (Appendix B of the Kansas Guidelines for Infant Audiologic Assessment); current guidance is to fax the audiologist's own written report",
+        "number": "",
+        "url": "https://www.kdhe.ks.gov/DocumentCenter/View/8487/Kansas-Guidelines-for-Infant-Audiologic-Assessment-PDF"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "785-559-4240",
+          "kind": "send",
+          "note": "Preferred: fax your own written report",
+          "source": "https://nbss.ks.gov/newborn-hearing-screening-program/information-for-health-care-professionals/"
+        }
+      ],
+      "deadline": "within 7 days of the evaluation (Kansas Newborn Hearing Screening Guidelines, 2024, citing K.A.R. 28-4-605 to 611); the program page says fax 'as soon as possible'; the older audiology guidelines said within one month for hearing loss and immediately for normal results",
+      "deadline_days": 7,
+      "deadline_source": "https://nbss.ks.gov/wp-content/uploads/2024/08/Kansas-Hearing-Screening-Guidelines.pdf",
+      "who_reports": "Audiologists: all follow-ups on newborn screening referrals, including every newly confirmed permanent hearing loss through age eight (program page); by rule, each person who determines that a newborn or infant has hearing loss",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "KY": {
+      "state": "Kentucky",
+      "program": "Kentucky Early Hearing Detection and Intervention (EHDI) Program, Office for Children with Special Health Care Needs (OCSHCN)",
+      "program_url": "https://www.chfs.ky.gov/agencies/ocshcn/Pages/newbornscreening.aspx",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "KY-CHILD electronic information system",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Audiology Update Form (AUF) Worksheet",
+        "number": "OCSHCN-E3 (06/2022)",
+        "url": "https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "502-429-7160",
+          "kind": "send",
+          "note": "",
+          "source": "https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"
+        },
+        {
+          "method": "email",
+          "value": "ehdi@ky.gov",
+          "kind": "send",
+          "note": "Encrypted email",
+          "source": "https://www.chfs.ky.gov/agencies/ocshcn/Documents/AudiologyUpdateForm.pdf"
+        }
+      ],
+      "deadline": "within forty-eight (48) hours of evaluation (regulation, for permanent hearing loss, via KY-CHILD); no-shows marked in KY-CHILD within 4 calendar days",
+      "deadline_days": 2,
+      "deadline_source": "https://apps.legislature.ky.gov/law/kar/titles/911/001/085/REG/",
+      "who_reports": "Approved Infant Audiological Assessment and Diagnostic Centers, upon completing diagnostic testing of a child birth to 3",
+      "ei_program": "First Steps",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "LA": {
+      "state": "Louisiana",
+      "program": "Louisiana Early Hearing Detection and Intervention Program (LA EHDI), Louisiana Department of Health, Office of Public Health, Bureau of Family Health",
+      "program_url": "https://ldh.la.gov/page/ehdi-healthcare-professionals-providers",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "HiTrack (LA EHDI web-based data management system; the 2021 form footer calls it LA EHDI-IS)",
+        "url": "https://laehdiis.ldh.la.gov"
+      },
+      "state_form": {
+        "name": "Follow-up Services Report (FSR), Children Birth - 3 years",
+        "number": "v. LA EHDI-IS 2021",
+        "url": "https://www.ldh.la.gov/assets/oph/Center-PHCH/Center-PH/cshs/EHDI/FollowUpServicesReport_2021.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "504-568-5854",
+          "kind": "send",
+          "note": "",
+          "source": "https://partnersforfamilyhealth.org/wp-content/uploads/2019/02/Audiologist-Follow-up-Services-Report.pdf"
+        },
+        {
+          "method": "email",
+          "value": "laehdi@la.gov",
+          "kind": "send",
+          "note": "",
+          "source": "https://ldh.la.gov/page/ehdi-healthcare-professionals-providers"
+        }
+      ],
+      "deadline": "within 2 days of diagnosis for a child with permanent childhood hearing loss; all other results within 7 days of testing (program page; the 2021 form says within 7 days of appointment)",
+      "deadline_days": 7,
+      "deadline_source": "https://ldh.la.gov/page/ehdi-healthcare-professionals-providers",
+      "who_reports": "Audiologists (and other providers doing rescreening or diagnostic testing) for children birth to 5",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-27"
+    },
+    "MA": {
+      "state": "Massachusetts",
+      "program": "Universal Newborn Hearing Screening Program (UNHSP), Massachusetts Department of Public Health",
+      "program_url": "https://www.mass.gov/universal-newborn-hearing-screening-program",
+      "route": "Not published",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "email",
+          "value": "Newborn.Hearing@mass.gov",
+          "kind": "contact",
+          "note": "Program contact; reporting route for diagnostic centers not published",
+          "source": "https://www.mass.gov/info-details/universal-newborn-hearing-screening-materials-for-health-care-providers"
+        }
+      ],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "DPH-approved pediatric audiological Diagnostic Centers (per the 2020 grant narrative; M.G.L. c.111 s.67F requires diagnostic exams to be offered at department-approved centers)",
+      "ei_program": "",
+      "confidence": "unverified",
+      "last_checked": "2026-09-27"
+    },
+    "MD": {
+      "state": "Maryland",
+      "program": "Maryland Early Hearing Detection and Intervention (MD EHDI) Program / Infant Hearing Program, Office of Children and Youth with Specific Health Care Needs, Maryland Department of Health",
+      "program_url": "https://health.maryland.gov/phpa/cyshcn/Pages/Infant_Hearing_Program.aspx",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "MD EHDI Department database (secure web-based system from OZ Systems)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "within 2 business days: report results, recommendations and referrals, and confirm demographics in the Department database; within 7 business days notify early intervention of confirmed or strongly suspected permanent hearing status",
+      "deadline_days": 2,
+      "deadline_source": "https://www.infanthearing.org/legislative/docs2022/rules-regulations/MD_Rules.pdf",
+      "who_reports": "Any audiologist or licensed professional who performs a hearing screening or audiological diagnostic evaluation on a child under 5 who has a risk factor or did not receive or did not pass the birth screening",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "ME": {
+      "state": "Maine",
+      "program": "Maine Newborn Hearing Program (MNHP), Maine CDC; family/professional site 'Earliest Interactions'",
+      "program_url": "https://www.maine.gov/dhhs/mecdc/healthy-living/maternal-and-child-health/newborn-screenings/newborn-hearing",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Maine Audiologic Assessment Report Form (online form in SMART CHSTS, Maine's newborn screening system)",
+        "url": "https://forms.smartchstsme.com/#/meaareport"
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists who test children 0-3 (the online form is listed under 'Audiologists' on the program's professional resources page)",
+      "ei_program": "CDS",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "MI": {
+      "state": "Michigan",
+      "program": "Michigan Early Hearing Detection and Intervention (EHDI) Program, MDHHS",
+      "program_url": "https://www.michigan.gov/mdhhs/adult-child-serv/childrenfamilies/ehdi/providers/audiologists---reporting-to-ehdi",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Early Hearing Detection and Intervention (EHDI) Program Reporting Form (instructions call it the Audiological/Medical Follow-up Service Report)",
+        "number": "FORMAUDMED, Revised 2018",
+        "url": "https://www.michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Adult-and-Childrens-Services/Children-and-Families/EHDI/FORMAUDMED.pdf?rev=d53f4c86a9ac41f880087d9d3bd98b58&hash=1B8D53A0D991AE9384D71DAD94181ACB"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "517-763-0183",
+          "kind": "send",
+          "note": "The state form or your own report",
+          "source": "https://www.michigan.gov/mdhhs/adult-child-serv/childrenfamilies/ehdi/providers/audiologists---reporting-to-ehdi"
+        }
+      ],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Health professionals, hospitals, health departments, or other facilities that give an infant a hearing test or screen, including audiologists: all results under 12 months and any diagnosed hearing loss under 3 years",
+      "ei_program": "Early On",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "MN": {
+      "state": "Minnesota",
+      "program": "Minnesota Early Hearing Detection and Intervention (MDH-EHDI) Program, Minnesota Department of Health (Newborn Screening Program)",
+      "program_url": "https://www.health.state.mn.us/people/childrenyouth/improveehdi/pediatric.html",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Newborn Hearing Screening Audiology Follow-up Report Form",
+        "number": "REV 09/2025",
+        "url": "https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/audiologyreport.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "651-215-6285",
+          "kind": "send",
+          "note": "Include a copy of the visit summary",
+          "source": "https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/audiologyreport.pdf"
+        }
+      ],
+      "deadline": "within one week of the scheduled visit date (MDH audiology guidelines); statute says report 'according to the Department of Health recommendations'",
+      "deadline_days": 7,
+      "deadline_source": "https://www.health.state.mn.us/docs/people/childrenyouth/improveehdi/guideehdiaudiol.pdf",
+      "who_reports": "The professional conducting the diagnostic procedure (audiologists), for rescreens, diagnostic assessments, failed/rescheduled appointments, and all newly confirmed permanent hearing loss through age 10 years 11 months",
+      "ei_program": "Help Me Grow",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "MO": {
+      "state": "Missouri",
+      "program": "Missouri Newborn Hearing Screening Program, Bureau of Genetics and Healthy Childhood, Missouri Department of Health and Senior Services (DHSS)",
+      "program_url": "https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening",
+      "route": "State online system or paper form",
+      "route_note": "The state's Audiologic Diagnostic Form is named in its guidelines but not posted; direct database entry is the main route",
+      "portal": {
+        "name": "DHSS newborn hearing database, direct entry (MOHSAIC)",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Audiologic Diagnostic Form",
+        "number": "",
+        "url": "https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening/guidelines-and-forms"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "573-751-6185",
+          "kind": "send",
+          "note": "",
+          "source": "https://health.mo.gov/families/healthy-families/genetic-disease-early-childhood/newborn-hearing-screening/guidelines-and-forms"
+        }
+      ],
+      "deadline": "within 7 calendar days of completion of the diagnostic audiological assessment",
+      "deadline_days": 7,
+      "deadline_source": "https://s1.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c40-9.pdf",
+      "who_reports": "The audiologist reports all diagnostic audiological assessment results (19 CSR 40-9.040(4)).",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "MS": {
+      "state": "Mississippi",
+      "program": "Early Hearing Detection and Intervention Program (EHDI-MS), Mississippi State Department of Health",
+      "program_url": "https://msdh.ms.gov/page/41,0,174,831.html",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Hearing Diagnostic Report",
+        "number": "Form 53 (F-53), revision 09/09/2024",
+        "url": "https://msdh.ms.gov/page/resources/7071.pdf"
+      },
+      "send_to": [
+        {
+          "method": "email",
+          "value": "EHDI@msdh.ms.gov",
+          "kind": "send",
+          "note": "The 2024 form says encrypted email",
+          "source": "https://msdh.ms.gov/page/resources/7071.pdf"
+        },
+        {
+          "method": "fax",
+          "value": "601-576-7540",
+          "kind": "send",
+          "note": "Listed in the 2019 procedures; the 2024 form names email only",
+          "source": "https://msdh.ms.gov/page/resources/13135.pdf"
+        }
+      ],
+      "deadline": "within 48 hours of an appointment or event requiring a report (missed appointment, refusal)",
+      "deadline_days": 2,
+      "deadline_source": "https://msdh.ms.gov/page/resources/7071.pdf",
+      "who_reports": "Hearing diagnostic providers, including audiologists and otolaryngologists, for every child birth to 3 evaluated after a screening referral, plus no-shows, refusals, incomplete evaluations, and later changes in hearing status",
+      "ei_program": "First Steps",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "MT": {
+      "state": "Montana",
+      "program": "Montana Newborn Hearing Screening and Intervention (NBHSI) Program, Children's Special Health Services, Montana DPHHS",
+      "program_url": "https://dphhs.mt.gov/ecfsd/cshs/newbornscreeningprograms/NewbornHearingScreeningIntervention/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "HiTrack (the department's designated reporting software)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "monthly: by the 15th day of each month for each infant assessed during the previous month",
+      "deadline_days": null,
+      "deadline_source": "https://www.law.cornell.edu/regulations/montana/Mont-Admin-r-37.57.415",
+      "who_reports": "Each licensed audiologist to whom an infant is referred for audiological assessment after newborn hearing screening (ARM 37.57.415).",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "NC": {
+      "state": "North Carolina",
+      "program": "North Carolina Early Hearing Detection and Intervention (NC EHDI) Program",
+      "program_url": "https://www.ncnewbornhearing.org/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Hearing Link (EHDI-IS module of WCSWeb)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "within 5 days of the appointment (diagnostic evaluations and amplification assessments for infants under 12 months, including missed appointments)",
+      "deadline_days": 5,
+      "deadline_source": "http://ncrules.state.nc.us/ncac/title%2010a%20-%20health%20and%20human%20services/chapter%2043%20-%20personal%20health/subchapter%20f/10a%20ncac%2043f%20.1204.html",
+      "who_reports": "All persons performing diagnostic auditory evaluations and amplification assessments for infants under 12 months (in practice, pediatric audiologists)",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "ND": {
+      "state": "North Dakota",
+      "program": "North Dakota Early Hearing Detection and Intervention (ND EHDI), run by the ND Center for Persons with Disabilities (Minot State University) with ND HHS Newborn Screening",
+      "program_url": "https://www.hhs.nd.gov/newborn-screening",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Audiology ONLINE Reporting Form (also offered as an Audiology Reporting Fax Form)",
+        "number": "Fax form revised 4/19/2012",
+        "url": "https://www2.ndcpd.org/ehdi/AudiologyReportingForm.shtml"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "701-858-3483",
+          "kind": "send",
+          "note": "",
+          "source": "https://ndcpd.org/wp-content/uploads/sites/16/2021/04/Audiology-Reporting-Fax-Back-Form.pdf"
+        }
+      ],
+      "deadline": "none found; ND does not mandate newborn hearing screening, and hearing loss is not on the reportable conditions list",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists (provider FAQ: 'Audiologists typically report hearing loss cases'); reporting appears voluntary",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "NE": {
+      "state": "Nebraska",
+      "program": "Nebraska Early Hearing Detection and Intervention (NE-EHDI) Program, Newborn Screening and Genetics Program, Nebraska DHHS",
+      "program_url": "https://dhhs.ne.gov/Pages/EHDI-Audiologists.aspx",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Audiologic Screening and Diagnostic Report Form (linked as 'Diagnostic Reporting Form')",
+        "number": "",
+        "url": "https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/Audiologic%20Reporting%20Form%202019.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "402-742-2395",
+          "kind": "send",
+          "note": "Your own report is accepted if it includes the listed items",
+          "source": "https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/Audiologic%20Reporting%20Form%202019.pdf"
+        }
+      ],
+      "deadline": "as soon as possible, but no later than 5 days after the evaluation",
+      "deadline_days": 5,
+      "deadline_source": "https://dhhs.ne.gov/EHDIEarly%20Hearing%20Detection%20and%20Intervention/NE-EHDI%20Summary%20&%20Reporting%20Guidelines%20for%20Audiologists.pdf",
+      "who_reports": "Audiologists, for all children birth to 3 who received a diagnostic evaluation or need further testing (also outpatient screens, late identifications, behavioral and ENT evaluations).",
+      "ei_program": "Early Development Network",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "NH": {
+      "state": "New Hampshire",
+      "program": "New Hampshire Early Hearing Detection and Intervention (EHDI) Program, NH Department of Health and Human Services",
+      "program_url": "https://www.dhhs.nh.gov/programs-services/health-care/hearing-detection-newborns/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Auris (NH state database system; the rule calls it the EHDI database)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "603-271-4519",
+          "kind": "send",
+          "note": "Secure fax, allowed by rule",
+          "source": "https://gc.nh.gov/rules/state_agencies/he-p3000.html"
+        }
+      ],
+      "deadline": "within 2 weeks of testing",
+      "deadline_days": 14,
+      "deadline_source": "https://gc.nh.gov/rules/state_agencies/he-p3000.html",
+      "who_reports": "Individuals conducting newborn hearing screening and diagnostic hearing evaluation; NH audiologists doing diagnostic evaluations also submit referral and follow-up information.",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-27"
+    },
+    "NJ": {
+      "state": "New Jersey",
+      "program": "New Jersey Early Hearing Detection and Intervention (NJ EHDI) Program, Newborn Screening & Genetic Services, NJ Department of Health",
+      "program_url": "https://nj.gov/health/fhs/nbs/ehdi/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "EHDI module of the New Jersey Immunization Information System (NJIIS)",
+        "url": "https://njiis.nj.gov/njiis/index.htm"
+      },
+      "state_form": {
+        "name": "Newborn Hearing Follow-Up Report",
+        "number": "SCH-2",
+        "url": "https://www.nj.gov/health/forms/sch-2.pdf"
+      },
+      "send_to": [],
+      "deadline": "within 10 business days of the outpatient screening, rescreening or audiologic evaluation (and within 10 business days of diagnosing a permanent loss)",
+      "deadline_days": 10,
+      "deadline_source": "https://nj.gov/health/fhs/nbs/documents/newborn_hearing_rules.pdf",
+      "who_reports": "Anyone performing outpatient screening, rescreening or audiologic evaluation on a child under 3; the individual who diagnoses a permanent hearing loss.",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "NM": {
+      "state": "New Mexico",
+      "program": "New Mexico Newborn Hearing Screening Program / Early Hearing Detection and Intervention (EHDI) Program, Children's Medical Services, NM Department of Health",
+      "program_url": "https://nmhealth.org/about/phd/fhb/cms/nbhs/",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Report of Audiological/Screening/Diagnostic Results (ROAR)",
+        "number": "",
+        "url": "https://nmhealth.org/publication/view/form/1058/"
+      },
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists, for diagnostic results on children from birth through age 4 (program page).",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "NV": {
+      "state": "Nevada",
+      "program": "Nevada Early Hearing Detection and Intervention (EHDI) Program, Division of Public and Behavioral Health",
+      "program_url": "http://dpbh.nv.gov/Programs/EHDI/EHDI-Home/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "EHDI Data Portal",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Audiological Follow-Up Reporting Form (2025, fillable)",
+        "number": "",
+        "url": "https://www.dpbh.nv.gov/contentassets/b4c90b81fba24635875925d885b07c98/2025-audio-follow-up-reporting-form-fillable.pdf"
+      },
+      "send_to": [
+        {
+          "method": "email",
+          "value": "nvehdi@health.nv.gov",
+          "kind": "send",
+          "note": "Or the EHDI Data Portal",
+          "source": "https://www.dpbh.nv.gov/contentassets/b4c90b81fba24635875925d885b07c98/2025-audio-follow-up-reporting-form-fillable.pdf"
+        }
+      ],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Physicians, audiologists, and other persons or entities performing a newborn hearing screen, rescreen, or a diagnostic hearing assessment after a failed screen (program page).",
+      "ei_program": "Nevada Early Intervention Services",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "NY": {
+      "state": "New York",
+      "program": "New York State Newborn Hearing Screening / Early Hearing Detection and Intervention Program, NYS Department of Health",
+      "program_url": "https://www.health.ny.gov/community/infants_children/early_intervention/newborn_hearing_screening/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Early Hearing Detection and Intervention - Information System (EHDI-IS)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Anyone who performs an infant hearing screening and/or diagnostic audiological evaluation on a child under six months of age (10 NYCRR 69-8.7).",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "OH": {
+      "state": "Ohio",
+      "program": "Ohio Department of Health Infant Hearing Program (Ohio EHDI)",
+      "program_url": "https://odh.ohio.gov/know-our-programs/infant-hearing-program/providers",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "ODH electronic UNHS Follow-up Hearing Evaluation Reporting Form (Hi*Track web submission link)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "within seven business days of the diagnostic hearing evaluation",
+      "deadline_days": 7,
+      "deadline_source": "https://odh.ohio.gov/know-our-programs/infant-hearing-program/providers",
+      "who_reports": "Any audiologist that conducts a diagnostic hearing evaluation of a newborn, infant, or child under 36 months referred to them; required for infants who did not pass screening and for children diagnosed with hearing loss",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-27"
+    },
+    "OK": {
+      "state": "Oklahoma",
+      "program": "Oklahoma Newborn Hearing Screening Program / Oklahoma EHDI (Oklahoma State Department of Health, Screening and Special Services)",
+      "program_url": "https://oklahoma.gov/health/services/children-family-health/screening-and-special-services/newborn-screening-program/newborn-hearing-screening/audiologists.html",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Diagnostic Hearing Evaluation Results",
+        "number": "ODH 1455",
+        "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/family-health/newborn-screening/hearing/ODH%201455%20Diagnostic%20Hearing%20Evaluation%20Results%20Form.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "405-900-7554",
+          "kind": "send",
+          "note": "",
+          "source": "https://oklahoma.gov/health/services/children-family-health/screening-and-special-services/newborn-screening-program/newborn-hearing-screening/audiologists.html"
+        }
+      ],
+      "deadline": "no day count found for diagnostic results; the rule says audiologists forward follow-up results 'in a manner and time frame deemed appropriate' by OSDH. The program page's 7-day rule (OAC 310:540) is stated for hearing screening results.",
+      "deadline_days": null,
+      "deadline_source": "https://oklahoma.gov/content/dam/ok/en/health/health2/documents/newborn-hearing-screening-rules.pdf",
+      "who_reports": "Audiologists or physicians completing follow-up hearing evaluations; the program asks for diagnostic results for children 0-3",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "OR": {
+      "state": "Oregon",
+      "program": "Oregon Health Authority Early Hearing Detection and Intervention (EHDI) Program",
+      "program_url": "https://www.oregon.gov/oha/ph/HealthyPeopleFamilies/Babies/HealthScreening/HearingScreening/Pages/index.aspx",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "Oregon EHDI Information System (EHDI-IS)",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Diagnostic Audiology Reporting Form (Rev 03/02/2026)",
+        "number": "",
+        "url": "https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/EHDI%20Diagnostic%20Audiology%20Reporting%20Form%20(March%202026)_Fillable.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "971-673-0251",
+          "kind": "send",
+          "note": "Only when EHDI-IS is unavailable",
+          "source": "https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/EHDI%20Diagnostic%20Audiology%20Reporting%20Form%20(March%202026)_Fillable.pdf"
+        }
+      ],
+      "deadline": "within 10 days of the evaluation",
+      "deadline_days": 10,
+      "deadline_source": "https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/BABIES/HEALTHSCREENING/HEARINGSCREENING/Documents/OHA%20EHDI%20Audiologic%20Reporting%20Protocol%20(March%202026).pdf",
+      "who_reports": "Audiologists serving children under 36 months: required for children who referred on or missed the newborn screen, and for any child under 36 months identified as deaf or hard of hearing",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "PA": {
+      "state": "Pennsylvania",
+      "program": "Pennsylvania Department of Health Newborn Hearing Screening and Intervention Program (Division of Newborn Screening and Genetics, DNSG)",
+      "program_url": "https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-providers.html",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Pennsylvania Internet Case Management System (iCMS, Neometrics)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "717-705-9386",
+          "kind": "contact",
+          "note": "Program contact; results go through iCMS",
+          "source": "https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-contact"
+        },
+        {
+          "method": "email",
+          "value": "nbhs@pa.gov",
+          "kind": "contact",
+          "note": "Program contact",
+          "source": "https://www.pa.gov/agencies/health/programs/maternal-health-and-infant-care/newborn-screening/hearing/hearing-contact"
+        }
+      ],
+      "deadline": "within ten days of the evaluation",
+      "deadline_days": 10,
+      "deadline_source": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/programs/infant-and-children-health/Instructions%20for%20Audiologists.pdf",
+      "who_reports": "Audiologists; all diagnostic evaluation results for children birth to age five, including no-shows and unsuccessful testing, plus EI referral date",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "RI": {
+      "state": "Rhode Island",
+      "program": "Rhode Island Early Hearing Detection and Intervention (RI-EHDI) / Newborn Hearing Screening Program, RI Department of Health",
+      "program_url": "http://www.health.ri.gov/newbornscreening/hearing/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "KIDSNET (RIDOH integrated child health information system)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "401-276-7813",
+          "kind": "send",
+          "note": "",
+          "source": "http://www.health.ri.gov/newborn-screening/information/healthcare-professionals/newborn-hearing-screening-information"
+        }
+      ],
+      "deadline": "none found",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists (with hospitals and other service providers): results for every infant; per RIDOH guidelines, diagnostic results for infants who did not pass screening and those identified with hearing impairment",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "SC": {
+      "state": "South Carolina",
+      "program": "First Sound (South Carolina Early Hearing Detection and Intervention), SC Department of Public Health",
+      "program_url": "https://dph.sc.gov/health-wellness/child-teen-health/early-childhood/newborn-infant-safety/newborn-hearing-identifying",
+      "route": "Not published",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "803-898-4453",
+          "kind": "contact",
+          "note": "Program referral fax; no reporting route published",
+          "source": "https://dph.sc.gov/health-wellness/child-teen-health/early-childhood/newborn-infant-safety/newborn-hearing-identifying"
+        }
+      ],
+      "deadline": "none found",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists must follow department reporting procedures (with hospitals and early interventionists), per statute",
+      "ei_program": "",
+      "confidence": "unverified",
+      "last_checked": "2026-09-27"
+    },
+    "SD": {
+      "state": "South Dakota",
+      "program": "South Dakota Department of Health Newborn Screening Program - Newborn Hearing Screening (SD EHDI)",
+      "program_url": "https://doh.sd.gov/programs/newborn-screening/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "SD DOH Electronic Vital Records and Screening System (EVRSS)",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Audiology Reporting Form (linked as 'Newborn Hearing Screening Provider Form'; includes Authorization to Release Information)",
+        "number": "",
+        "url": "https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"
+      },
+      "send_to": [
+        {
+          "method": "email",
+          "value": "dohnewbornscreening@state.sd.us",
+          "kind": "send",
+          "note": "",
+          "source": "https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"
+        },
+        {
+          "method": "fax",
+          "value": "866-579-8246",
+          "kind": "send",
+          "note": "",
+          "source": "https://doh.sd.gov/media/v3lfitbj/fillable-doh-consent-diagnostic-reporting-form-finalized.pdf"
+        }
+      ],
+      "deadline": "none found; administrative rules require hearing screening but set no reporting deadline for audiologists",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Providers reporting hearing screening and hearing diagnostic results (audiologists for diagnostics); rule 44:19:01:04 puts the screening duty on birth providers and midwives",
+      "ei_program": "Birth to Three",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "TN": {
+      "state": "Tennessee",
+      "program": "Tennessee Department of Health Newborn Screening Program - Newborn Hearing Screening",
+      "program_url": "https://www.tn.gov/health/nbs.html",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "Remote Diagnostics (RDx) portal",
+        "url": "https://newborn.health.tn.gov/toolbar/login.aspx"
+      },
+      "state_form": {
+        "name": "Audiology Hearing Screen and/or Diagnostic Evaluation Results (linked as \"Audiology Reporting Form\")",
+        "number": "",
+        "url": "https://www.tn.gov/content/dam/tn/health/docs/2026-Tennessee-Audiology-Reporting-Form.docx"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "615-532-8555",
+          "kind": "send",
+          "note": "",
+          "source": "https://www.tn.gov/content/dam/tn/health/docs/2026-Tennessee-Audiology-Reporting-Form.docx"
+        }
+      ],
+      "deadline": "No deadline found for diagnostic results. The program's best-practice document says rescreen results should be reported within 7 days of screening.",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists performing rescreening or diagnostic testing (per the program's best-practice recommendations).",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "TX": {
+      "state": "Texas",
+      "program": "Texas Early Hearing Detection and Intervention (TEHDI), Department of State Health Services",
+      "program_url": "http://www.dshs.texas.gov/tehdi",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "TEHDI Management Information System (TEHDI MIS)",
+        "url": "https://www.tehdi.com/tehdi2/Index.aspx"
+      },
+      "state_form": {
+        "name": "Texas Early Hearing Detection and Intervention Reporting Form - Diagnostic Evaluation (linked as \"Texas Audiological Diagnostic Assessment Form\")",
+        "number": "",
+        "url": "http://www.dshs.texas.gov/sites/default/files/tehdi/pdf/tehdi-diagnostic-reporting-form.pdf"
+      },
+      "send_to": [],
+      "deadline": "within five calendar days after the date of the patient encounter (entered in the TEHDI MIS)",
+      "deadline_days": 5,
+      "deadline_source": "http://www.dshs.texas.gov/tehdi",
+      "who_reports": "Any healthcare provider who performs initial hearing screening, follow-up screening, diagnostic evaluations, follow-up care, or interventions.",
+      "ei_program": "ECI",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "UT": {
+      "state": "Utah",
+      "program": "Utah Early Hearing Detection and Intervention (EHDI) Program, DHHS Office of Children with Special Health Care Needs",
+      "program_url": "https://familyhealth.utah.gov/cshcn/ehdi/",
+      "route": "Your own clinical report",
+      "route_note": "",
+      "portal": null,
+      "state_form": null,
+      "send_to": [
+        {
+          "method": "email",
+          "value": "ehdi@utah.gov",
+          "kind": "send",
+          "note": "Send your written report",
+          "source": "https://familyhealth.utah.gov/wp-content/uploads/Office_CSHCN/pdf/ehdi/Utah-EHDI-Well-baby-Protocol.pdf"
+        },
+        {
+          "method": "fax",
+          "value": "801-536-0492",
+          "kind": "send",
+          "note": "",
+          "source": "https://familyhealth.utah.gov/cshcn/ehdi/"
+        }
+      ],
+      "deadline": "within seven days (to the birth institution and to the Department)",
+      "deadline_days": 7,
+      "deadline_source": "https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R398-2-6",
+      "who_reports": "Persons who conduct any procedure necessary to complete an infant's hearing screening or audiological diagnostic assessment.",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "VA": {
+      "state": "Virginia",
+      "program": "Virginia Early Hearing Detection and Intervention Program, Virginia Department of Health",
+      "program_url": "http://www.vdh.virginia.gov/early-hearing-detection-and-intervention/",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "Virginia Infant Screening and Infant Tracking System (VISITS II), part of VVESTS",
+        "url": ""
+      },
+      "state_form": {
+        "name": "Hearing Screening/Diagnostic Reporting Form",
+        "number": "",
+        "url": "https://www.vdh.virginia.gov/content/uploads/sites/109/2023/06/New-Audiological-Reporting-Form-updated-9.2023.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "804-864-7771",
+          "kind": "send",
+          "note": "Paper form is for when VISITS can't be used",
+          "source": "https://www.vdh.virginia.gov/content/uploads/sites/109/2023/06/New-Audiological-Reporting-Form-updated-9.2023.pdf"
+        }
+      ],
+      "deadline": "within two weeks of the visit (regulation); the program protocol asks for seven days, no later than fourteen days",
+      "deadline_days": 14,
+      "deadline_source": "https://law.lis.virginia.gov/admincode/title12/agency5/chapter80/section95/",
+      "who_reports": "Persons who provide audiological services after discharge and determine that a child failed a screening, was not successfully tested, or has a hearing loss.",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "VT": {
+      "state": "Vermont",
+      "program": "Vermont Early Hearing Detection & Intervention (VTEHDI) Program, Vermont Department of Health",
+      "program_url": "https://www.healthvermont.gov/family/health-care-children-youth/vermont-early-hearing-detection-intervention-program",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Vermont Public Health Patient Profile - hearing screening registry (Hearing application, Diagnosis tab)",
+        "url": ""
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Health care professionals send hearing screening and diagnostic results to VTEHDI (program page); no named duty for audiologists was found.",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "WA": {
+      "state": "Washington",
+      "program": "Early Hearing Detection, Diagnosis and Intervention (EHDDI) Program, Washington State Department of Health",
+      "program_url": "https://doh.wa.gov/public-health-provider-resources/healthcare-professions-and-facilities/patient-care-resources/early-hearing-loss/resources-providers/reporting-ehddi",
+      "route": "State online system or paper form",
+      "route_note": "",
+      "portal": {
+        "name": "EHDDI Web Application",
+        "url": ""
+      },
+      "state_form": {
+        "name": "EHDDI Program Hearing Evaluation Form (linked as \"Diagnostic Evaluation form\")",
+        "number": "DOH 344-045",
+        "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/344-045HearingEvaluationForm.doc"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "206-364-0074",
+          "kind": "send",
+          "note": "",
+          "source": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/344-045HearingEvaluationForm.doc"
+        }
+      ],
+      "deadline": "No number of days stated; the audiology best-practice protocol says to share findings with EHDDI 'in a timely manner' after each diagnostic assessment.",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "Audiologists doing diagnostic evaluations for babies who did not pass newborn screening, or who passed but have risk factors (per the program's reporting page and audiologist guide).",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "WI": {
+      "state": "Wisconsin",
+      "program": "Wisconsin Sound Beginnings (WSB), Wisconsin Department of Health Services Newborn Screening Program",
+      "program_url": "https://www.dhs.wisconsin.gov/newbornscreening/hearing.htm",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "WE-TRAC (Wisconsin EHDI Tracking, Referral And Coordination system)",
+        "url": "https://phin.wisconsin.gov/wetrac2"
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "",
+      "deadline_days": null,
+      "deadline_source": "",
+      "who_reports": "WE-TRAC users (hospitals, midwives, audiologists); audiologists enter diagnostic information there. No legal duty for audiologists found.",
+      "ei_program": "",
+      "confidence": "partial",
+      "last_checked": "2026-09-26"
+    },
+    "WV": {
+      "state": "West Virginia",
+      "program": "West Virginia Newborn Hearing Screening Project (NHS), Office of Maternal, Child and Family Health",
+      "program_url": "https://www.wvdhhr.org/nhs/audiologists.asp",
+      "route": "Paper or PDF form",
+      "route_note": "",
+      "portal": null,
+      "state_form": {
+        "name": "Early Hearing Detection and Intervention (EHDI) Reporting Form (linked as \"WV NHS Screening/Audiological Evaluation Form\")",
+        "number": "",
+        "url": "http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf"
+      },
+      "send_to": [
+        {
+          "method": "fax",
+          "value": "304-558-3510",
+          "kind": "send",
+          "note": "",
+          "source": "http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf"
+        }
+      ],
+      "deadline": "within 10 days of the visit",
+      "deadline_days": 10,
+      "deadline_source": "http://www.wvdhhr.org/nhs/provider/nhs_Audiological_Evaluation_Form.pdf",
+      "who_reports": "The outpatient screening or audiologic evaluation facility (the form's evaluator); the rule itself names no audiologist duty.",
+      "ei_program": "Birth to Three",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    },
+    "WY": {
+      "state": "Wyoming",
+      "program": "Wyoming Early Hearing Detection and Intervention (EHDI) Program",
+      "program_url": "https://www.wyomingehdi.org/",
+      "route": "State online system",
+      "route_note": "",
+      "portal": {
+        "name": "Wyoming EHDI Information System (EHDI-IS)",
+        "url": "https://ehdi.health.wyo.gov"
+      },
+      "state_form": null,
+      "send_to": [],
+      "deadline": "within fifteen (15) calendar days of completed evaluations",
+      "deadline_days": 15,
+      "deadline_source": "https://www.law.cornell.edu/regulations/wyoming/agency-048/subagency-0035/chapter-2/048-2-Wyo-Code-R-SSSS-2-7",
+      "who_reports": "An audiologist who completes a diagnostic audiologic evaluation from a Wyoming Newborn Screening referral.",
+      "ei_program": "",
+      "confidence": "confirmed",
+      "last_checked": "2026-09-26"
+    }
+  }
+}
