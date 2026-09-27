@@ -127,6 +127,14 @@ table.results td input:focus{background:#f5f7ff}
 .bc span{font-size:8px;white-space:nowrap}
 .pfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:0.08in;font-size:8px;color:var(--muted)}
 .pfoot .pageno{margin-left:auto}
+/* review-draft status: printed on every page, plus a banner on screen. Remove both once states accept the report. */
+.draftline{border:1px solid #333;padding:1px 6px;font-size:8.5px;line-height:1.2;text-align:center;margin:0 0 3px;color:var(--ink)}
+.head+.draftline{margin-top:-2px}
+.p2head+.draftline{margin-top:-2px;margin-bottom:7px}
+.draftline b{letter-spacing:.06em}
+.sheet.unused .draftline{display:none}
+.draft-banner{width:8.5in;margin:18px auto -6px;background:#fff6db;border:1px solid #e0c46c;border-radius:8px;padding:9px 14px;font-size:13px;color:#4a3b00;line-height:1.45}
+.draft-banner a{color:#1f4fd1}
 
 /* ---------- dialogs (screen only) ---------- */
 dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-height:calc(100vh - 70px);overflow:auto;border:1px solid #cfd2d8;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.2);padding:14px 16px;font:13px/1.4 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#222;z-index:10;background:#fff}
@@ -189,6 +197,8 @@ dialog.lh.wide{width:430px}
   <div class="status" id="status"></div>
 </div>
 
+<div class="draft-banner screen-only" id="draftBanner"><b>Review draft.</b> No state EHDI program has accepted this report yet. Ask your state program before using it. It's shared now so programs and audiologists can review it; every printed page says so. <a href="https://github.com/citizenkade/audiology-forms/issues/1" target="_blank" rel="noopener">Comments and state acceptance</a></div>
+
 <!-- ================= PAGE 1: who, and what was found ================= -->
 <div class="sheet" id="sheet1">
   <div class="head">
@@ -196,6 +206,7 @@ dialog.lh.wide{width:430px}
     <div><h1>Infant Hearing Diagnostic Report</h1><div class="subtitle">For the state Early Hearing Detection and Intervention (EHDI) program</div></div>
     <div class="contact" id="shContact" hidden></div>
   </div>
+  <div class="draftline"></div>
 
   <div class="meta">
     <span class="checks"><span class="cl" style="color:var(--muted);font-size:9px">This report is</span>
@@ -338,6 +349,7 @@ dialog.lh.wide{width:430px}
 <!-- ================= PAGE 2: what happens next ================= -->
 <div class="sheet" id="sheet2">
   <div class="p2head"><span>Infant Hearing Diagnostic Report</span><span class="who"></span><span class="pageno">Page 2 of 2</span></div>
+  <div class="draftline"></div>
 
   <div class="sec" style="margin-top:0">Next steps</div>
   <div class="fu-bar"><span>EHDI follow-up:</span><span class="checks">
@@ -427,6 +439,7 @@ dialog.lh.wide{width:430px}
 <!-- ================= PAGE 3: optional sections, printed only when one is added ================= -->
 <div class="sheet" id="sheet3">
   <div class="p2head" id="p3head"><span>Infant Hearing Diagnostic Report</span><span class="who"></span><span class="pageno">Page 3 of 3</span></div>
+  <div class="draftline"></div>
   <input type="checkbox" data-check="optRisk" hidden><input type="checkbox" data-check="optResults" hidden><input type="checkbox" data-check="optConsent" hidden>
 
   <section class="optsec" data-opt="optRisk" hidden>
@@ -1122,6 +1135,10 @@ $('#lhClear').addEventListener('click',()=>{
   lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
 });
 $('#lhMaster').addEventListener('click',saveMaster);
+
+/* ---------------- review-draft status line, one wording for every page ---------------- */
+const DRAFT_NOTICE='<b>REVIEW DRAFT</b> · Not yet accepted by any state EHDI program. Ask your state program before using it.';
+$$('.draftline').forEach(el=>{ el.innerHTML=DRAFT_NOTICE; });
 
 /* ---------------- boot ---------------- */
 buildMatrix($('#mxA'),MX_A); buildMatrix($('#mxB'),MX_B); buildRisks(); buildResults(); buildStateSelect();

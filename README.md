@@ -8,7 +8,7 @@ They were made for educational audiologists who needed editable forms and couldn
 | --- | --- | --- |
 | **Audiogram** | Pure-tone audiogram with click-to-plot chart, speech audiometry, tympanometry, OAEs, and otoscopy. One page. | **[audiogram.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/audiogram.html)** |
 | **ABR report** | Auditory brainstem response evaluation with measured and estimated thresholds, an audiogram drawn from the estimates, and page two for OAEs, immittance, interpretation, and recommendations. Two pages. | **[abr-report.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/abr-report.html)** |
-| **EHDI report** | Infant hearing diagnostic report for your state's Early Hearing Detection and Intervention (EHDI) program. One standard report for any state, with where to send it and by when for all 50 states and DC. Two pages, plus an optional third. | **[ehdi-report.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)** |
+| **EHDI report** *(review draft)* | **Not yet accepted by any state EHDI program; ask yours before using it.** Infant hearing diagnostic report for your state's Early Hearing Detection and Intervention (EHDI) program. One standard report for any state, with where to send it and by when for all 50 states and DC. Two pages, plus an optional third. | **[ehdi-report.html](https://github.com/citizenkade/audiology-forms/releases/latest/download/ehdi-report.html)** |
 
 This page is a description of the forms, with download links and some pictures. The forms themselves are the files you download.
 
@@ -72,6 +72,11 @@ It works the same way as the audiogram: one file, opens in any browser, prints t
 - **Correction factors are saved with your letterhead.** Save a master copy (below) and a colleague who opens it gets the same corrections.
 
 ## EHDI report
+
+> [!WARNING]
+> **Review draft. No state EHDI program has accepted this report yet.** Ask your state program before sending results on it. Until your program says yes, keep reporting on your state's own form or online system.
+>
+> It's shared now so EHDI programs and audiologists can review it. Every printed page says it's a review draft. Comments, and the list of states that accept it, are in [issue #1](https://github.com/citizenkade/audiology-forms/issues/1).
 
 These are pictures too; clicking one downloads the real form.
 
