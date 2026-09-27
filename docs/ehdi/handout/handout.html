@@ -55,14 +55,14 @@ li{margin:0 0 3px}
     <div>
       <section>
         <h2>Why</h2>
-        <p>Each state has its own reporting form, with its own labels, answer choices, and order. An audiologist who sees children from more than one state has to keep track of several forms. Some results never get reported at all. In a national survey of 1,024 audiology facilities, the most common reason for not reporting was not knowing how (60%).</p>
+        <p>Each state has its own reporting form, with its own labels and answer choices. An audiologist who sees children from more than one state has to keep track of several forms. Some results never get reported at all. In a national survey of 1,024 audiology facilities, the most common reason for not reporting was not knowing how (60%).</p>
         <p class="cite">Chung W, et al. Reporting newborn audiologic results to state EHDI programs. <i>Ear &amp; Hearing</i> 2017;38(5):638–642.</p>
       </section>
       <section>
         <h2>How we built it</h2>
         <ul>
           <li>We read the diagnostic reporting forms and rules for all 50 states and DC.</li>
-          <li>30 states have a form with a field list. Together those forms ask for 748 items, and this report covers 730 of them. We left out 18 on purpose: details of the earlier screening, state bookkeeping, early intervention enrollment dates, and a signature line.</li>
+          <li>We brought the fields from those forms into one standard set, with the same names, order, and answer choices for all 50 states and DC.</li>
           <li>The terms follow JCIH 2019 and ASHA. A pediatric audiologist reviewed every field.</li>
         </ul>
       </section>
