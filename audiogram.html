@@ -37,7 +37,7 @@ h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-al
 .head .contact .org{display:block;font-size:10px;font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:1px}
 .locpick{position:absolute;top:0.08in;right:0.3in;display:flex;align-items:center;gap:5px;font:11px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#666}
 .locpick[hidden]{display:none}
-.locpick select{font:inherit;color:#222;max-width:3in;border:1px solid #cfd2d8;border-radius:5px;padding:1px 4px;background:#fff}
+.locpick select{font:inherit;color:#222;max-width:5in;border:1px solid #cfd2d8;border-radius:5px;padding:1px 4px;background:#fff}
 .fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
 .field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.35in}
 .field label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
@@ -814,7 +814,14 @@ function lhRenderContact(){
   c.hidden=!txt;
   const sel=$('#shLocation');
   sel.innerHTML='';
-  lh.locations.forEach((s,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=s.split('\n')[0]||`Location ${i+1} (blank)`; sel.append(o); });
+  // Each option is named by its first line, the clinic name. Where two locations share it, the second
+  // line (usually the site) is added; if the labels still match, so is the location's number.
+  const ln=(s,n)=>(s.split('\n')[n]||'').trim();
+  const labels=lh.locations.map((s,i)=>{
+    const f=ln(s,0); if(!f) return `Location ${i+1} (blank)`;
+    return ln(s,1)&&lh.locations.some((t,j)=>j!==i&&ln(t,0)===f)?`${f} · ${ln(s,1)}`:f;
+  });
+  labels.forEach((l,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=labels.indexOf(l)!==labels.lastIndexOf(l)?`${l} (${i+1})`:l; sel.append(o); });
   sel.value=String(locIndex());
   $('#locPick').hidden=lh.locations.length<2;
 }
