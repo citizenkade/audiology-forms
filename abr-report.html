@@ -108,6 +108,12 @@ table.results td input.calc{background:#f7f7f7;color:#333}
 .sig input{width:100%;height:0.28in;border:0;border-bottom:1px solid #333;background:transparent;font:inherit;font-size:11px;outline:none;padding:2px 0;color:var(--ink)}
 .sig label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
 .sig .signer{font-size:8.5px;line-height:1.25;margin-top:2px;white-space:pre-line}
+.sig .line{position:relative}
+.sig .line img{position:absolute;left:0;bottom:-0.03in;height:0.42in;max-width:100%;object-fit:contain;object-position:left bottom}
+.sig .line span{position:absolute;left:0;right:0;bottom:6.8px;font-size:9.5px;font-style:italic;line-height:1.2}   /* baseline level with the Date text */
+.sig .line span.small{font-size:8px}
+.sig .line span.smaller{font-size:7px}
+.sigtools{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin-top:6px;font:11px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#666}
 .bc{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:end}
 .bc svg{display:block;height:0.3in}
 .bc span{font-size:8px;white-space:nowrap}
@@ -349,10 +355,11 @@ table.corr .dis{color:#bbb}
 
   <div class="sig" id="sig">
     <div class="bc" id="shBarcode2" hidden></div>
-    <div><div class="line"></div><label id="sigLabel">Audiologist signature</label><div class="signer" id="shSigner" hidden></div></div>
+    <div><div class="line"><div id="sigMark"></div></div><label id="sigLabel">Audiologist signature</label><div class="signer" id="shSigner" hidden></div></div>
     <div id="sigPN"><input data-field="sigName"><label>Printed name, credentials</label></div>
     <div><input data-field="sigDate"><label>Date</label></div>
   </div>
+  <div class="sigtools screen-only"><button type="button" class="linkbtn" id="btnSign"></button><button type="button" class="linkbtn" id="sigImgPick"></button><span id="sigNote"></span><input type="file" id="sigImgFile" accept="image/png,image/jpeg,image/webp" hidden></div>
 </div>
 
 <dialog class="lh" id="lhDialog">
@@ -416,7 +423,9 @@ const statusEl=$('#status');
 function setStatus(msg,ms){ statusEl.textContent=msg||''; if(ms){ clearTimeout(setStatus.t); setStatus.t=setTimeout(()=>{ if(statusEl.textContent===msg) statusEl.textContent=''; },ms); } }
 let dirty=false;          // evaluation changed since it was opened or saved
 let settingsDirty=false;  // letterhead or correction factors changed and not yet saved into a master copy
-function markDirty(){ dirty=true; }
+let esig=null;     // the signature on this report: null, {kind:'typed',name,at}, or {kind:'image'}
+// Any edit marks the evaluation unsaved and removes a signature (see "electronic signature" below).
+function markDirty(x){ dirty=true; const el=x&&x.target||x; if(esig&&!(el&&el.dataset&&el.dataset.field==='sigDate')) unsign(); }
 
 /* ---------------- stimuli, ears, threshold cells ----------------
    Stimuli are rows; ears are columns. 8 kHz bone conduction is not tested by ABR, so those cells are blocked.
@@ -824,10 +833,10 @@ function updateAge(){
 
 /* ---------------- refresh on any edit ---------------- */
 function refresh(){ if(autoCalcOn()) computeEstimated(); renderChart(); updateP2(); }
-document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(); refresh(); });
+document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(e.target); refresh(); });
 document.addEventListener('change',e=>{
   if(!e.target.matches('[data-field],[data-check]')) return;
-  markDirty();
+  markDirty(e.target);
   const chk=e.target.dataset.check||'';
   if(chk==='autoCalc') updateCalcUI();
   if(chk in FOLLOW) updateFollowups();
@@ -842,7 +851,7 @@ function getState(){
   const fields={}, checks={};
   $$('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
   $$('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
-  return {version:2,form:'abr',fields,checks,showBands,location:locIndex()};
+  return {version:2,form:'abr',fields,checks,showBands,location:locIndex(),esign:esignState()};
 }
 function applyState(s){
   s=s||{};
@@ -853,6 +862,7 @@ function applyState(s){
   $('#chkBands').checked=showBands;
   undoStack=[];
   updateCalcUI(); updateFollowups(); refresh(); layoutSig();
+  esig=esignLoad(s.esign); renderSig();
   if(Number.isInteger(s.location)) loc=s.location;   // older saves have none: keep the current location
   lhRenderContact();
 }
@@ -888,9 +898,9 @@ $('#btnNew').addEventListener('click',()=>{ if(dirty&&!confirm('Clear the form? 
 $('#btnPrint').addEventListener('click',()=>window.print());
 
 let blankSnapshot=null;
-function restoreAfterBlank(){ if(blankSnapshot){ const s=blankSnapshot; blankSnapshot=null; applyState(s); } }
+function restoreAfterBlank(){ if(blankSnapshot){ const b=blankSnapshot; blankSnapshot=null; applyState(b.state); esig=b.esig; renderSig(); } }
 $('#btnPrintBlank').addEventListener('click',()=>{
-  blankSnapshot=getState();
+  blankSnapshot={state:getState(),esig};   // esig too: an image signature isn't in the saved state
   const wasDirty=dirty;
   applyState({fields:{},checks:{autoCalc:true},showBands});
   window.print();
@@ -979,6 +989,7 @@ function layoutSig(){
   const pnHidden=signer&&!$('[data-field=sigName]').value;
   $('#sigPN').hidden=pnHidden;
   $('#sig').style.gridTemplateColumns=[bcOnPage2()?'auto':'','2fr',pnHidden?'':'1.6fr','1fr'].filter(Boolean).join(' ');
+  fitSig();
 }
 function setBarcode(el,show){
   if(show){ el.innerHTML=code128svg(lh.docId)+'<span></span>'; el.lastChild.textContent=lh.docId; el.hidden=false; }
@@ -1109,6 +1120,100 @@ $('#lhLocAdd').addEventListener('click',()=>{
   lh.locations.push(''); lhCommit(); lhFillLocs();
   const all=$('#lhLocs').querySelectorAll('textarea'); all[all.length-1].focus();
 });
+
+/* ---------------- electronic signature ----------------
+   "Sign" puts a signature on the line for this report: the audiologist's signature image if one is
+   loaded, otherwise "Electronically signed by" with their name and the time. The image is held in
+   memory for this visit to the page only and is never written into any file this form saves: those
+   files are shared and copied, and a stored image would sign every report and every blank form.
+   A typed signature is part of the evaluation and saves with it. Any change to the report after
+   signing removes the signature (the date beside it doesn't count), so a printout never shows a
+   signature over content that changed afterward. */
+let sigImage='';   // processed PNG data URL, this session only
+function esignState(){ return esig&&esig.kind==='typed'?{name:esig.name,at:esig.at}:undefined; }
+function esignLoad(o){ return o&&typeof o.name==='string'&&typeof o.at==='string'&&o.name?{kind:'typed',name:o.name.slice(0,80),at:o.at.slice(0,40)}:null; }
+function renderSig(){
+  const box=$('#sigMark'); box.textContent='';
+  if(esig&&esig.kind==='image'&&sigImage){ const im=new Image(); im.alt='Signature'; im.src=sigImage; box.append(im); }
+  else if(esig&&esig.kind==='typed'){ const s=document.createElement('span'); s.textContent=`Electronically signed by ${esig.name} on ${esig.at}`; box.append(s); fitSig(); }
+  $('#btnSign').textContent=esig?'Remove signature':sigImage?'Sign with your signature image':'Sign electronically';
+  $('#btnSign').title=esig?'':sigImage?'Puts your signature image on the line.':'Prints "Electronically signed by" with your name and the time on the line.';
+  $('#sigImgPick').textContent=sigImage?'Remove signature image':'Use a signature image…';
+  $('#sigImgPick').title=sigImage?'':'A scan or photo of your signature. It stays in this page until you close it and is never saved in any file.';
+  $('#sigImgPick').hidden=!!esig;
+  $('#sigNote').textContent=!esig?'':'Signed. Changing the report removes the signature.'+(esig.kind==='image'?' Your signature image isn\'t saved in any file.':'');
+}
+// A long name and credentials wrap upward from the line. Past two lines the text steps down in size,
+// so it never reaches the box above. The screen sheet is as wide as the printed page, so this holds in print.
+function fitSig(){
+  const s=$('#sigMark span'); if(!s) return;
+  s.classList.remove('small','smaller');
+  const over=()=>s.offsetHeight>2.5*parseFloat(getComputedStyle(s).lineHeight);
+  if(over()) s.classList.add('small');
+  if(over()) s.classList.replace('small','smaller');   // three lines at this size still clear the box above
+}
+function sign(){
+  if(esig){ esig=null; dirty=true; renderSig(); setStatus('Signature removed',2500); return; }
+  if(sigImage) esig={kind:'image'};
+  else {
+    const name=(lh.signer1||$('[data-field=sigName]').value.trim()).slice(0,80);
+    if(!name){ setStatus('Add your name first, under Letterhead… or in Printed name.',6000); return; }
+    esig={kind:'typed',name,at:today()+' at '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})};
+  }
+  const dt=$('[data-field=sigDate]'); if(!dt.value.trim()) dt.value=today();
+  dirty=true; renderSig(); setStatus('Signed',2500);
+}
+function unsign(){ esig=null; renderSig(); setStatus('Signature removed because the report changed. Sign again when it\'s final.',5000); }
+// A scan or photo becomes ink on a transparent background, trimmed to the signature, so it prints on
+// the line without a white box. A PNG that already has transparency keeps its own.
+function sigLoadImage(file){
+  if(!/^image\/(png|jpeg|webp)$/.test(file.type)){ setStatus('Use a PNG or JPG image of your signature.',5000); return; }
+  const url=URL.createObjectURL(file), img=new Image();
+  img.onerror=()=>{ URL.revokeObjectURL(url); setStatus('Could not read that image.',5000); };
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    const k=Math.min(1,1600/img.naturalWidth,1600/img.naturalHeight);
+    const w=Math.max(1,Math.round(img.naturalWidth*k)), h=Math.max(1,Math.round(img.naturalHeight*k)), N=w*h;
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    const g=c.getContext('2d'); g.drawImage(img,0,0,w,h);
+    const d=g.getImageData(0,0,w,h), p=d.data, lum=new Uint8Array(N), hist=new Uint32Array(256);
+    let opaque=0;
+    for(let i=0;i<N;i++){ const L=(p[i*4]*299+p[i*4+1]*587+p[i*4+2]*114)/1000|0; lum[i]=L; if(p[i*4+3]>128){ hist[L]++; opaque++; } }
+    const keepAlpha=opaque<N*0.8;
+    let paper=255;
+    if(!keepAlpha){ for(let L=255,acc=0;L>=0;L--){ acc+=hist[L]; if(acc>=opaque*0.1){ paper=L; break; } } }
+    const hi=paper-30, lo=paper*0.55;   // lighter than hi is paper; darker than lo is solid ink
+    if(!keepAlpha&&hi-lo<20){ setStatus('That image is too dark to find the signature. Try a photo on white paper.',6000); return; }
+    const rows=new Uint32Array(h), cols=new Uint32Array(w);
+    for(let i=0;i<N;i++){
+      let a=p[i*4+3];
+      if(!keepAlpha) a=a*Math.min(1,Math.max(0,(hi-lum[i])/(hi-lo)));
+      if(a<25) a=0;
+      p[i*4+3]=a;
+      if(a>60){ rows[i/w|0]++; cols[i%w]++; }
+    }
+    // Trim to the ink, ignoring rows and columns with only a stray speck or two.
+    const minR=Math.max(2,w*0.002), minC=Math.max(2,h*0.002);
+    let y0=0,y1=h-1,x0=0,x1=w-1;
+    while(y0<h&&rows[y0]<minR) y0++; while(y1>y0&&rows[y1]<minR) y1--;
+    while(x0<w&&cols[x0]<minC) x0++; while(x1>x0&&cols[x1]<minC) x1--;
+    if(y0>=h||x0>=w){ setStatus('Couldn\'t find a signature in that image. Try a darker pen or a closer photo.',6000); return; }
+    g.putImageData(d,0,0);
+    x0=Math.max(0,x0-4); y0=Math.max(0,y0-4); x1=Math.min(w-1,x1+4); y1=Math.min(h-1,y1+4);
+    const cw=x1-x0+1, ch=y1-y0+1, s=Math.min(1,900/cw,300/ch);
+    const o=document.createElement('canvas'); o.width=Math.max(1,Math.round(cw*s)); o.height=Math.max(1,Math.round(ch*s));
+    o.getContext('2d').drawImage(c,x0,y0,cw,ch,0,0,o.width,o.height);
+    sigImage=o.toDataURL('image/png');
+    if(!esig) sign(); else renderSig();
+  };
+  img.src=url;
+}
+$('#btnSign').addEventListener('click',sign);
+$('#sigImgPick').addEventListener('click',()=>{
+  if(sigImage){ sigImage=''; renderSig(); setStatus('Signature image removed',2500); return; }
+  $('#sigImgFile').click();
+});
+$('#sigImgFile').addEventListener('change',e=>{ const f=e.target.files[0]; e.target.value=''; if(f) sigLoadImage(f); });
 
 /* ---------------- boot ---------------- */
 buildTables(); buildCorrTable(); buildPalette(); updateToolUI(); renderKey();

@@ -46,6 +46,7 @@ How to use it:
 - **Print blank form** prints an empty copy for hand-plotting.
 - **Copy chart image** puts a picture of the chart and key on your clipboard, ready to paste into a report or email.
 - **Save evaluation** downloads a copy of the form with everything filled in, named after the student and date. Open that copy later to see or change the evaluation. Your original stays blank, so keep it as your master.
+- **Sign electronically**, under the signature line, signs the report on screen with your typed name or an image of your signature. See [Signing electronically](#signing-electronically) below.
 - **Clear form** empties every field, ready for the next student.
 
 ## ABR report
@@ -112,6 +113,19 @@ All three forms have a **Letterhead…** button in the toolbar that puts your lo
 If you work at more than one clinic, click **Add another location** in the panel and enter each one. A **Location** menu then appears above the page, so you can pick which clinic prints on each evaluation. The first location is the default, and a saved evaluation remembers the one it used. The first line of each location is the clinic name, which prints in bold.
 
 The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy**, in the toolbar or in the panel. That downloads a blank copy of the form (`audiogram.html`, `abr-report.html`, or `ehdi-report.html`) with your letterhead built in. The ABR report's copy also keeps your correction factors. The EHDI report's copy also keeps your Reported by details, your state, and any fixes to its sending details. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Evaluations you save carry the letterhead too.
+
+## Signing electronically
+
+The audiogram and the ABR report can be signed on screen, so you don't have to print, sign, and scan. Under the signature line:
+
+- **Sign electronically** prints "Electronically signed by", your name, and the date and time on the line. The name comes from the letterhead's signer line, or from Printed name. A long name and credentials wrap onto a second line. A saved evaluation keeps this signature.
+- **Use a signature image…** takes a scan or photo of your signature (PNG or JPG). The form removes the paper background and trims it to the ink, then signs the report with it. While the image is loaded, the button reads **Sign with your signature image**, so the next report takes one click. Your name and credentials from the letterhead still print under the line.
+
+Your signature image is never saved in any file. Not in a saved evaluation, not in a master copy. Those files get shared and copied, and an image inside them would let anyone sign a report as you. The image stays only until you close the page, so load it again next time.
+
+A signature is for one report. Changing anything on the report after signing removes it (the date beside it doesn't count). Clear form removes it, and blank forms never print with one.
+
+The form puts the signature on the page. Your clinic, hospital, or district decides whether it accepts an electronic or image signature on a report, so check their policy before you rely on it.
 
 ## Privacy
 
