@@ -34,6 +34,10 @@ h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-al
 .head{display:grid;grid-template-columns:2in 1fr 2in;align-items:center;gap:0.12in;margin-bottom:6px}
 .head .logo img{display:block;max-width:2in;max-height:0.45in}
 .head .contact{font-size:8px;line-height:1.25;color:var(--muted);text-align:right;white-space:pre-line;overflow:hidden}
+.head .contact .org{display:block;font-size:10px;font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:1px}
+.locpick{position:absolute;top:0.08in;right:0.3in;display:flex;align-items:center;gap:5px;font:11px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#666}
+.locpick[hidden]{display:none}
+.locpick select{font:inherit;color:#222;max-width:3in;border:1px solid #cfd2d8;border-radius:5px;padding:1px 4px;background:#fff}
 .fields{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-width:1px 0 0 1px}
 .field{border:1px solid var(--line);border-width:0 1px 1px 0;padding:3px 5px 2px;min-height:0.35in}
 .field label{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
@@ -45,6 +49,7 @@ h1{font-size:15px;margin:0;letter-spacing:.08em;text-transform:uppercase;text-al
 #chart.erase{cursor:not-allowed}
 .box{border:1px solid var(--line);padding:4px 6px;margin-bottom:0.1in}
 .box:last-child{margin-bottom:0}
+.u{text-transform:none}
 .box h2{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 3px}
 .cond-row{display:flex;gap:6px;align-items:baseline;margin:2px 0}
 .cond-row .cl{font-size:9px;color:var(--muted);min-width:56px}
@@ -95,6 +100,10 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
 .lh input[type=text],.lh textarea{width:100%;border:1px solid #cfd2d8;border-radius:6px;padding:5px 7px;font:inherit;resize:none;color:#222;background:#fff}
 .lh input[type=text]:focus,.lh textarea:focus{outline:none;border-color:#1f4fd1}
 .lh .hint{font-size:11px;color:#666;margin-top:3px}
+.lh .loc{margin-bottom:8px}
+.lh .loc-h{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;color:#666;margin-bottom:2px}
+.lh .loc-h button{border:0;background:none;padding:0;font:inherit;color:#1f4fd1;cursor:pointer;margin-left:8px}
+.lh .loc-h button:hover{text-decoration:underline}
 .lh .logo-preview{display:flex;align-items:center;gap:10px;margin-bottom:6px;min-height:40px}
 .lh .logo-preview img{max-width:200px;max-height:48px;border:1px dashed #ccc;padding:2px;background:#fff}
 .lh .btns{display:flex;gap:6px;flex-wrap:wrap}
@@ -108,7 +117,7 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
 @media print{
   @page{size:letter portrait;margin:0.3in}
   body{background:#fff}
-  .toolbar,dialog{display:none!important}
+  .toolbar,dialog,.screen-only{display:none!important}
   .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
   ::placeholder{color:transparent}
   #ghost{display:none}
@@ -145,7 +154,8 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
   <div class="status" id="status"></div>
 </div>
 
-<div class="sheet" id="sheet">
+<div class="sheet" id="sheet" style="position:relative">
+  <label class="locpick screen-only" id="locPick" hidden>Location <select id="shLocation"></select></label>
   <div class="head">
     <div class="logo"><img id="shLogo" alt="" hidden></div>
     <h1>Audiological Evaluation</h1>
@@ -195,7 +205,7 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
         <svg id="key" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
       <div class="box">
-        <h2>Pure-tone average (500, 1000, 2000, 4000 Hz)</h2>
+        <h2>Pure-tone average (<span class="u">500, 1000, 2000, 4000 Hz</span>)</h2>
         <div class="pta">
           <span class="r">Right <b id="ptaR">—</b></span>
           <span class="l">Left <b id="ptaL">—</b></span>
@@ -280,8 +290,9 @@ dialog.lh{position:fixed;top:56px;right:14px;left:auto;margin:0;width:370px;max-
   </div>
   <div class="row">
     <label class="t" for="lhContact">Office or organization</label>
-    <textarea id="lhContact" rows="4" placeholder="Clinic or office name&#10;Street address&#10;Phone&#10;Fax"></textarea>
-    <div class="hint">Up to 4 lines. Prints at the top right.</div>
+    <div id="lhLocs"></div>
+    <button class="tb" id="lhLocAdd">Add another location</button>
+    <div class="hint">Up to 4 lines each, printed at the top right. The first line is the clinic name and prints in bold. With more than one location, a Location menu above the page picks which one prints. The first is the default.</div>
   </div>
   <div class="row">
     <label class="t" for="lhSigner1">Under the signature line</label>
@@ -553,7 +564,7 @@ function getState(){
   const fields={}, checks={};
   document.querySelectorAll('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
   document.querySelectorAll('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
-  return {version:1,fields,checks,points:points.map(p=>({...p})),showBands};
+  return {version:1,fields,checks,points:points.map(p=>({...p})),showBands,location:locIndex()};
 }
 function applyState(s){
   s=s||{};
@@ -566,6 +577,8 @@ function applyState(s){
   undoStack=[];
   renderChart();
   layoutSig();
+  if(Number.isInteger(s.location)) loc=s.location;   // older saves have none: keep the current location
+  lhRenderContact();
 }
 function emptyState(){ return {fields:{date:today()},checks:{},points:[],showBands}; }
 
@@ -592,7 +605,7 @@ function embedJSON(html,id,obj){
   const json=JSON.stringify(obj).replace(/</g,'\\u003c');
   return html.replace(new RegExp('(<script type="application/json" id="'+id+'">)[\\s\\S]*?(<\\/script>)'),(m,a,b)=>a+json+b);
 }
-function buildFile(state){ return embedJSON(embedJSON(PRISTINE,'saved-state',state),'letterhead',lhIsEmpty(lh)?null:lh); }
+function buildFile(state){ return embedJSON(embedJSON(PRISTINE,'saved-state',state),'letterhead',lhIsEmpty(lh)?null:{...lh,contact:lh.locations[0]||''}); }
 function saveFile(){
   const st=getState();
   const name=`Audiogram_${safeName(st.fields.student)||'blank'}_${safeName(st.fields.date)||safeName(today())}.html`;
@@ -657,21 +670,26 @@ $('#btnCopy').addEventListener('click',()=>{
    A page opened from disk cannot write to its own file, so the letterhead lives only in the
    files this form writes: every "Save evaluation" copy and the "Save master copy" download carry it
    in the #letterhead block. Nothing is kept in the browser. */
-const LH_EMPTY={logo:'',contact:'',signer1:'',signer2:'',docId:'',bcPages:'first'};   // bcPages: which page carries the barcode; one page here, kept for parity with the ABR report
-let lh={...LH_EMPTY};
+const LOC_MAX=20;
+const LH_EMPTY={logo:'',signer1:'',signer2:'',docId:'',bcPages:'first'};   // bcPages: which page carries the barcode; one page here, kept for parity with the ABR report
+let lh=lhNormalize(null);
 let lhDirty=false;   // changed since the file was opened and not yet saved into a master copy
 function lhNormalize(o){
   o=o&&typeof o==='object'?o:{};
   const t={...LH_EMPTY};
   for(const k in LH_EMPTY) if(typeof o[k]==='string') t[k]=o[k];
-  t.contact=t.contact.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim();
+  // One contact block per clinic location. Older files have a single "contact" block; files still
+  // write it (the first location) so older copies of the forms can read a newer letterhead.
+  t.locations=(Array.isArray(o.locations)?o.locations:[o.contact]).filter(s=>typeof s==='string').slice(0,LOC_MAX).map(lhLines);
+  while(t.locations.length&&!t.locations[t.locations.length-1]) t.locations.pop();
   t.signer1=t.signer1.slice(0,60).trim(); t.signer2=t.signer2.slice(0,60).trim();
   t.docId=t.docId.replace(/[^\x20-\x7e]/g,'').slice(0,16).trim();
   if(!['first','last','all'].includes(t.bcPages)) t.bcPages='first';
   if(!/^data:image\/(png|jpeg|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(t.logo)||t.logo.length>800000) t.logo='';
   return t;
 }
-function lhIsEmpty(t){ return !(t.logo||t.contact||t.signer1||t.signer2||t.docId); }
+function lhLines(s){ return s.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n').trim(); }
+function lhIsEmpty(t){ return !(t.logo||t.locations.some(Boolean)||t.signer1||t.signer2||t.docId); }
 function lhLoad(){
   let emb=null; try{ emb=JSON.parse(document.getElementById('letterhead').textContent); }catch(e){ emb=null; }
   return lhNormalize(emb);
@@ -701,7 +719,7 @@ function layoutSig(){
 function lhRender(){
   const logo=$('#shLogo');
   if(lh.logo){ logo.src=lh.logo; logo.hidden=false; } else { logo.removeAttribute('src'); logo.hidden=true; }
-  const c=$('#shContact'); c.textContent=lh.contact; c.hidden=!lh.contact;
+  lhRenderContact();
   const sg=[lh.signer1,lh.signer2].filter(Boolean).join('\n');
   $('#shSigner').textContent=sg; $('#shSigner').hidden=!sg; $('#sigLabel').hidden=!!sg;
   const bc=$('#shBarcode');
@@ -710,7 +728,7 @@ function lhRender(){
   layoutSig();
 }
 function lhFillDialog(){
-  $('#lhContact').value=lh.contact; $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId; $('#lhBcPages').value=lh.bcPages;
+  lhFillLocs(); $('#lhSigner1').value=lh.signer1; $('#lhSigner2').value=lh.signer2; $('#lhDocId').value=lh.docId; $('#lhBcPages').value=lh.bcPages;
   const pv=$('#lhLogoPreview');
   if(lh.logo){ pv.src=lh.logo; pv.hidden=false; } else { pv.removeAttribute('src'); pv.hidden=true; }
   $('#lhLogoNone').hidden=!!lh.logo; $('#lhLogoClear').disabled=!lh.logo;
@@ -750,11 +768,6 @@ $('#lhDone').addEventListener('click',()=>lhDialog.close());
 $('#lhLogoPick').addEventListener('click',()=>$('#lhLogoFile').click());
 $('#lhLogoFile').addEventListener('change',e=>{ lhSetLogoFile(e.target.files[0]); e.target.value=''; });
 $('#lhLogoClear').addEventListener('click',()=>{ lh.logo=''; lhCommit('Logo removed'); lhFillDialog(); });
-$('#lhContact').addEventListener('input',e=>{
-  const v=e.target.value, fixed=v.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n');
-  if(fixed!==v) e.target.value=fixed;
-  lh.contact=fixed.trim(); lhCommit();
-});
 $('#lhSigner1').addEventListener('input',e=>{ lh.signer1=e.target.value.trim(); lhCommit(); });
 $('#lhSigner2').addEventListener('input',e=>{ lh.signer2=e.target.value.trim(); lhCommit(); });
 $('#lhDocId').addEventListener('input',e=>{
@@ -766,7 +779,7 @@ $('#lhBcPages').addEventListener('change',e=>{ lh.bcPages=e.target.value; lhComm
 $('#lhClear').addEventListener('click',()=>{
   if(lhIsEmpty(lh)) return;
   if(!confirm('Remove the logo, contact lines, signer, and document identifier?')) return;
-  lh={...LH_EMPTY}; lhCommit('Letterhead cleared'); lhFillDialog();
+  lh=lhNormalize(null); loc=0; lhCommit('Letterhead cleared'); lhFillDialog();
 });
 function saveMaster(){
   download(new Blob([buildFile(null)],{type:'text/html'}),'audiogram.html');
@@ -775,6 +788,64 @@ function saveMaster(){
 }
 $('#lhMaster').addEventListener('click',saveMaster);
 $('#btnMaster').addEventListener('click',saveMaster);
+
+/* ---------------- clinic locations: the letterhead keeps one contact block per location, and each
+   evaluation remembers which one it prints (state.location). Clear form and Print blank keep the
+   current choice, since an audiologist usually stays at one clinic for the day. */
+let loc=0;
+function locIndex(){ return loc>=0&&loc<lh.locations.length?loc:0; }
+function lhRenderContact(){
+  const txt=lh.locations[locIndex()]||'', nl=txt.indexOf('\n'), c=$('#shContact');
+  c.textContent='';
+  if(txt){ const b=document.createElement('b'); b.className='org'; b.textContent=nl<0?txt:txt.slice(0,nl); c.append(b,nl<0?'':txt.slice(nl+1)); }
+  c.hidden=!txt;
+  const sel=$('#shLocation');
+  sel.innerHTML='';
+  lh.locations.forEach((s,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=s.split('\n')[0]||`Location ${i+1} (blank)`; sel.append(o); });
+  sel.value=String(locIndex());
+  $('#locPick').hidden=lh.locations.length<2;
+}
+$('#shLocation').addEventListener('change',e=>{ loc=+e.target.value; markDirty(); lhRenderContact(); });
+function lhFillLocs(){
+  const box=$('#lhLocs'), list=lh.locations.length?lh.locations:[''], many=list.length>1;
+  box.innerHTML='';
+  list.forEach((s,i)=>{
+    const d=document.createElement('div'); d.className='loc';
+    if(many) d.innerHTML=`<div class="loc-h"><span>${i?'Location '+(i+1):'Location 1 (default)'}</span><span>${i?`<button data-loc-top="${i}">Make default</button>`:''}<button data-loc-del="${i}">Remove</button></span></div>`;
+    const ta=document.createElement('textarea'); ta.rows=4; ta.dataset.loc=i; ta.value=s;
+    ta.placeholder='Clinic or office name\nStreet address\nPhone\nFax';
+    if(!i) ta.id='lhContact';
+    d.append(ta); box.append(d);
+  });
+  $('#lhLocAdd').disabled=list.length>=LOC_MAX;
+}
+$('#lhLocs').addEventListener('input',e=>{
+  const i=+e.target.dataset.loc; if(!(i>=0)) return;
+  const v=e.target.value, fixed=v.split('\n').slice(0,4).map(l=>l.slice(0,60)).join('\n');
+  if(fixed!==v) e.target.value=fixed;
+  while(lh.locations.length<=i) lh.locations.push('');
+  lh.locations[i]=fixed.trim(); lhCommit();
+});
+$('#lhLocs').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.locDel){
+    const i=+b.dataset.locDel, name=lh.locations[i].split('\n')[0];
+    if(name&&!confirm(`Remove ${name}?`)) return;
+    lh.locations.splice(i,1); if(loc===i) loc=0; else if(loc>i) loc--;
+    lhCommit('Location removed');
+  } else if(b.dataset.locTop){
+    const i=+b.dataset.locTop;
+    lh.locations.unshift(lh.locations.splice(i,1)[0]); if(loc===i) loc=0; else if(loc<i) loc++;
+    lhCommit('Default location changed');
+  }
+  lhFillLocs();
+});
+$('#lhLocAdd').addEventListener('click',()=>{
+  if(!lh.locations.length) lh.locations.push('');
+  if(lh.locations.length>=LOC_MAX) return;
+  lh.locations.push(''); lhCommit(); lhFillLocs();
+  const all=$('#lhLocs').querySelectorAll('textarea'); all[all.length-1].focus();
+});
 
 /* ---------------- boot ---------------- */
 buildPalette(); updateToolUI(); renderKey();

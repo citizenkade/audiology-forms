@@ -109,6 +109,8 @@ Every state collects infant diagnostic results on its own form, with its own lab
 
 All three forms have a **Letterhead…** button in the toolbar that puts your logo, office details, and name on every printout. You can set a logo, up to four lines of office contact information, your name and credentials for under the signature line, and a document identifier that prints as a barcode for records systems that file by type, on the first page, the last page, or every page. Each is optional. The EHDI report has no signature line, so its panel skips the name.
 
+If you work at more than one clinic, click **Add another location** in the panel and enter each one. A **Location** menu then appears above the page, so you can pick which clinic prints on each evaluation. The first location is the default, and a saved evaluation remembers the one it used. The first line of each location is the clinic name, which prints in bold.
+
 The letterhead prints right away, but the form can't save it into itself. To keep it, click **Save master copy**, in the toolbar or in the panel. That downloads a blank copy of the form (`audiogram.html`, `abr-report.html`, or `ehdi-report.html`) with your letterhead built in. The ABR report's copy also keeps your correction factors. The EHDI report's copy also keeps your Reported by details, your state, and any fixes to its sending details. Use that file from now on, and give it to colleagues so everyone prints the same letterhead. Evaluations you save carry the letterhead too.
 
 ## Privacy
