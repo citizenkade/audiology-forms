@@ -93,6 +93,19 @@ table.results td input.calc{background:#f7f7f7;color:#333}
 .comments:focus{background:#fbfcff}
 .comments-label{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0.1in 0 2px}
 .comments-label+.comments{margin-top:0}
+/* Page 1 has two layouts. With the latency table shown, Testing notes sits above the chart. With it
+   hidden (an option in the master copy), Otoscopy moves up there, Testing notes runs full width below
+   and takes whatever room is left, and History gets taller. layoutPage1() moves the two blocks. */
+#history{min-height:1.25in}
+#notesWrap .comments-label{margin-top:0}
+#testingNotes{min-height:0.95in;margin-bottom:0.1in}
+body.hide-latencies #history{min-height:1.5in}
+body.hide-latencies #notesWrap{flex:1 0 auto;display:flex;flex-direction:column}
+body.hide-latencies #notesWrap .comments-label{margin-top:0.1in}
+body.hide-latencies #testingNotes{flex:1 0 auto;margin-bottom:0;min-height:0.7in}   /* full width: more room than 0.95in in the column */
+body.hide-facility #fFacility,body.hide-latencies #boxLatencies{display:none}
+body.hide-facility #fReason{grid-column:span 4}
+.box h2 .ctl select{font:inherit;color:#222;max-width:1.75in;border:1px solid #cfd2d8;border-radius:4px;padding:0 2px;background:#fff}
 .rec{margin-top:2px}
 .rec-item{display:flex;align-items:baseline;gap:5px;font-size:10px;margin:2px 0}
 .rec-item input[type=checkbox]{position:relative;top:1px;flex:none}
@@ -148,6 +161,14 @@ table.corr th.r,table.corr th.l{font-weight:600}
 table.corr input{width:100%;border:0;background:transparent;font:inherit;text-align:center;outline:none;padding:2px 0}
 table.corr input:focus{background:#f5f7ff}
 table.corr .dis{color:#bbb}
+dialog#corrDialog{width:420px}
+.lh .setbar{display:flex;gap:6px;margin-bottom:6px}
+.lh .setbar select{flex:1;min-width:0}
+/* Draw the menu arrow ourselves, so it sits inside the box with room on the right in every browser. */
+.lh select{appearance:none;-webkit-appearance:none;padding-right:28px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center/10px 6px}
+.lh label.chk{display:flex;align-items:center;gap:6px;font-size:12px;margin:3px 0}
+.lh label.chk input{width:13px;height:13px;accent-color:#1f4fd1}
+.box h2{flex-wrap:wrap}
 
 /* ---------- print ---------- */
 @media print{
@@ -186,7 +207,7 @@ table.corr .dis{color:#bbb}
     <button class="tb" id="btnSave" title="Downloads a copy of this form with everything filled in, so you can reopen it later">Save evaluation</button>
     <button class="tb" id="btnMaster" title="Downloads a blank copy with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
     <button class="tb" id="btnNew">Clear form</button>
-    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode.">Letterhead…</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, a document barcode, and the optional parts of the form.">Letterhead…</button>
   </div>
   <div class="status" id="status"></div>
 </div>
@@ -211,8 +232,8 @@ table.corr .dis{color:#bbb}
     <div class="field span2"><label>Referring provider</label><input data-field="referredBy" autocomplete="off"></div>
     <div class="field"><label>Corrected age</label><input data-field="correctedAge" autocomplete="off"></div>
 
-    <div class="field span2"><label>Facility / clinic</label><input data-field="facility" autocomplete="off"></div>
-    <div class="field span2"><label>Reason for evaluation</label><input data-field="reason" autocomplete="off"></div>
+    <div class="field span2" id="fFacility"><label>Facility / clinic</label><input data-field="facility" autocomplete="off"></div>
+    <div class="field span2" id="fReason"><label>Reason for evaluation</label><input data-field="reason" autocomplete="off"></div>
     <div class="field span2"><label>Newborn hearing screen</label><input data-field="nhs" placeholder="Result, date, method" autocomplete="off"></div>
   </div>
 
@@ -242,7 +263,7 @@ table.corr .dis{color:#bbb}
   </div>
 
   <div class="comments-label">History</div>
-  <div class="comments" contenteditable="true" data-field="history" style="min-height:1.25in"></div>
+  <div class="comments" contenteditable="true" data-field="history" id="history"></div>
 
   <div class="thr">
     <div>
@@ -255,13 +276,13 @@ table.corr .dis{color:#bbb}
       </div>
       <div class="box">
         <h2><span>Estimated behavioral thresholds (<span class="u">dB eHL</span>)</span>
-          <span class="ctl screen-only"><label title="Fills this table from the measured table: eHL = nHL minus the correction factor for that stimulus. Uncheck to type estimates yourself."><input type="checkbox" data-check="autoCalc"> Auto-fill using</label> <button type="button" class="linkbtn" id="btnCorr" title="View or change the correction factors">correction factors ▾</button></span></h2>
+          <span class="ctl screen-only"><label title="Fills this table from the measured table: eHL = nHL plus the correction for that stimulus. Uncheck to type estimates yourself."><input type="checkbox" data-check="autoCalc"> Auto-fill using</label> <select id="corrSet" title="Which set of correction factors to use, such as the one for the baby's corrected age" hidden></select> <button type="button" class="linkbtn" id="btnCorr" title="View or change the correction factors">correction factors ▾</button></span></h2>
         <table class="results" id="tblEhl">
           <tr><th>Stimulus</th><th class="r">Right</th><th class="l">Left</th><th class="r">R bone</th><th class="l">L bone</th></tr>
         </table>
         <div class="foot" id="ehlFoot"></div>
       </div>
-      <div class="box">
+      <div class="box" id="boxLatencies">
         <h2><span>Click ABR latencies (<span class="u">ms</span>)</span></h2>
         <table class="results">
           <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
@@ -273,15 +294,17 @@ table.corr .dis{color:#bbb}
         </table>
       </div>
     </div>
-    <div>
-      <div class="comments-label" style="margin-top:0">Testing notes</div>
-      <div class="comments" contenteditable="true" data-field="testingNotes" style="min-height:0.95in;margin-bottom:0.1in"></div>
+    <div id="rightCol">
+      <div id="notesWrap">
+        <div class="comments-label">Testing notes</div>
+        <div class="comments" contenteditable="true" data-field="testingNotes" id="testingNotes"></div>
+      </div>
       <div class="box">
         <h2>Estimated audiogram</h2>
         <svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg>
         <svg id="key" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
-      <div class="box">
+      <div class="box" id="boxOto">
         <h2>Otoscopy</h2>
         <div class="ear-row r"><span class="ear">Right</span><span class="inline-field"><input data-field="otoR"></span></div>
         <div class="ear-row l"><span class="ear">Left</span><span class="inline-field"><input data-field="otoL"></span></div>
@@ -389,6 +412,12 @@ table.corr .dis{color:#bbb}
     <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
     <div class="inline"><label for="lhBcPages">On page</label><select id="lhBcPages"><option value="first">First</option><option value="last">Last</option><option value="all">All</option></select></div>
   </div>
+  <div class="row">
+    <label class="t">Optional parts of the form</label>
+    <label class="chk"><input type="checkbox" id="optFacility"> Facility / clinic</label>
+    <label class="chk"><input type="checkbox" id="optLatencies"> Click ABR latencies</label>
+    <div class="hint">Untick one to leave it off. Without Facility, Reason for evaluation takes its place. Without latencies, Otoscopy moves above the chart, Testing notes runs full width, and History gets taller.</div>
+  </div>
   <div class="foot">
     <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
     <span><button class="tb" id="lhClear">Clear all</button> <button class="tb primary" id="lhDone">Done</button></span>
@@ -397,14 +426,28 @@ table.corr .dis{color:#bbb}
 
 <dialog class="lh pop" id="corrDialog">
   <h3>Correction factors</h3>
-  <div class="note">Subtracted from each measured nHL threshold to estimate the behavioral threshold in dB eHL. One set for air conduction, one for bone.</div>
+  <div class="note">Added to each measured nHL threshold to estimate the behavioral threshold in dB eHL. For example, −15 turns 50 dB nHL into 35 dB eHL. Leave a box blank to leave that estimate blank.</div>
+  <div class="row">
+    <label class="t" for="corrSetPick">Set</label>
+    <div class="setbar"><select id="corrSetPick"></select><button class="tb" id="corrAdd" title="Adds a copy of this set">Add</button><button class="tb" id="corrDel">Remove</button></div>
+    <input type="text" id="corrName" maxlength="60" aria-label="Name of this set" placeholder="Name, such as 0–12 weeks">
+    <div class="hint">Keep one set, or one per corrected-age group. With more than one, a menu next to Auto-fill picks the set for each report, and the printout names it.</div>
+  </div>
   <table class="corr" id="corrTable">
-    <tr><th>Stimulus</th><th>Air</th><th>Bone</th></tr>
+    <tr><th>Stimulus</th><th>Air, inserts</th><th>Air, headphones</th><th>Bone</th></tr>
   </table>
-  <div class="hint" style="margin-bottom:10px">To keep these for next time, click <b>Save master copy</b> and use that file from now on.</div>
+  <div class="hint">Air uses the headphones column when Test conditions has Headphones ticked and not Insert earphones.</div>
+  <div class="row" style="margin-top:10px">
+    <label class="chk"><input type="checkbox" id="corrHigh"> Above 70 dB nHL, make air corrections 5 dB smaller</label>
+    <div class="hint">For example, −15 becomes −10. Corrections of 0 or more don't change. This follows the Ontario Infant Hearing Program, which uses it when the final step size was 5 dB.</div>
+  </div>
+  <div class="row">
+    <button type="button" class="linkbtn" id="corrBSA">Fill in the BSA 2021 values</button>
+    <div class="hint">Replaces your sets with the four corrected-age groups for tone pip and click ABR from the British Society of Audiology's 2021 guidance (Appendix I). Check them against your own protocol. BSA has no 8000 Hz values. It gives bone click before 12 weeks by gestational age, so that box is blank too.</div>
+  </div>
+  <div class="hint" style="margin-bottom:10px">To keep these for next time, click <b>Save master copy</b> in the toolbar and use that file from now on.</div>
   <div class="foot">
-    <button class="tb" id="corrMaster" title="Downloads a blank copy of this form with your letterhead and correction factors built in.">Save master copy</button>
-    <span><button class="tb" id="corrReset">Reset</button> <button class="tb primary" id="corrDone">Done</button></span>
+    <span style="margin-left:auto"><button class="tb" id="corrReset">Reset</button> <button class="tb primary" id="corrDone">Done</button></span>
   </div>
 </dialog>
 
@@ -440,7 +483,22 @@ const STIM=[
   {key:'8000', label:'8000 Hz',short:'8k',  freq:8000,noBone:true},
 ];
 const EARS=[{key:'R',series:'RA',bone:false},{key:'L',series:'LA',bone:false},{key:'RB',series:'RB',bone:true},{key:'LB',series:'LB',bone:true}];
-const DEFAULT_CORR={air:{click:0,'500':15,'1000':10,'2000':5,'4000':0,'8000':0},bone:{click:0,'500':15,'1000':10,'2000':5,'4000':0}};
+// Corrections are added to the measured nHL threshold, as in BSA and Ontario tables: -15 turns 50 dB nHL into 35 dB eHL.
+// Air has a column for insert earphones and one for headphones; Test conditions picks between them.
+const CORR_COLS=[{key:'ins',label:'Air, inserts'},{key:'phones',label:'Air, headphones'},{key:'bone',label:'Bone'}];
+const DEFAULT_AIR={click:0,'500':-15,'1000':-10,'2000':-5,'4000':0,'8000':0};
+const DEFAULT_SET={name:'Default',high:false,ins:DEFAULT_AIR,phones:DEFAULT_AIR,bone:{click:0,'500':-15,'1000':-10,'2000':-5,'4000':0}};
+// British Society of Audiology (2021), Practice Guidance: Early Audiological Assessment and Management of
+// Babies Referred from the NHSP, Appendix I, tone pip / click ABR. BSA has no 8 kHz values. Bone click
+// before 12 weeks is given by gestational age (+7 at 36 weeks to -2 at 52 weeks), so it stays blank here.
+const BSA_PHONES={click:-5,'500':-20,'1000':-15,'2000':-10,'4000':-10,'8000':null};
+const BSA_2021=[
+  {name:'0–12 weeks (0–84 days)',            ins:{click:5, '500':-15,'1000':-10,'2000':-5, '4000':0,  '8000':null},bone:{click:null,'500':5, '1000':5, '2000':-5, '4000':0}},
+  {name:'13–24 weeks (85–168 days)',         ins:{click:0, '500':-20,'1000':-15,'2000':-10,'4000':-5, '8000':null},bone:{click:-5,'500':0, '1000':0, '2000':-10,'4000':-5}},
+  {name:'25 weeks–2 years (169–730 days)',   ins:{click:-5,'500':-20,'1000':-15,'2000':-10,'4000':-10,'8000':null},bone:{click:-5,'500':-5,'1000':-5,'2000':-10,'4000':-10}},
+  {name:'Over 2 years (731+ days)',          ins:{click:-5,'500':-20,'1000':-15,'2000':-10,'4000':-10,'8000':null},bone:{click:-5,'500':-20,'1000':-15,'2000':-10,'4000':-10}},
+].map(s=>({...s,high:false,phones:BSA_PHONES}));
+const SET_MAX=12;
 
 function buildTables(){
   const nhl=$('#tblNhl'), ehl=$('#tblEhl');
@@ -466,22 +524,67 @@ function parseLevel(str){
 }
 function fmtLevel(p){ return `${p.nr?'NR ':''}${p.db}${p.star?'*':''}${p.masked?'M':''}`; }
 
-/* ---------------- correction factors (a clinic setting, kept in the file next to the letterhead) ---------------- */
+/* ---------------- clinic settings: correction sets and optional fields ----------------
+   Kept in the file next to the letterhead (the #settings block), so a master copy carries them.
+   sets: named sets of corrections, such as one per corrected-age band. Each has a column for air with
+     insert earphones, air with headphones, and bone, and an optional rule for high thresholds.
+     A blank (null) correction leaves that estimate blank.
+   show: whether the Facility / clinic field and the click latency table are on the form.
+   Files from before sets existed hold {corr:{air,bone}} as amounts to subtract; they load as one set,
+   with the sign turned around and the air values used for both earphone types. */
 let settings=settingsNormalize(null);
-function settingsNormalize(o){
-  const t={corr:{air:{},bone:{}}};
-  ['air','bone'].forEach(g=>{
-    const src=(o&&o.corr&&o.corr[g])||{};
-    STIM.forEach(s=>{ if(g==='bone'&&s.noBone) return; const v=parseFloat(src[s.key]); t.corr[g][s.key]=isNaN(v)?DEFAULT_CORR[g][s.key]:v; });
+let curSet=0;   // which set this report uses (saved with the evaluation by name)
+function corrValue(v){ if(v===null) return null; const n=typeof v==='number'?v:parseFloat(v); return isNaN(n)?undefined:Math.max(-60,Math.min(60,Math.round(n))); }
+function setNormalize(o,i){
+  o=o&&typeof o==='object'?o:{};
+  const t={name:(typeof o.name==='string'?o.name:'').replace(/\s+/g,' ').trim().slice(0,60)||(i?`Set ${i+1}`:'Default'),high:!!o.high};
+  CORR_COLS.forEach(c=>{
+    t[c.key]={};
+    STIM.forEach(s=>{
+      if(c.key==='bone'&&s.noBone) return;
+      const v=corrValue(o[c.key]?o[c.key][s.key]:undefined);
+      t[c.key][s.key]=v===undefined?DEFAULT_SET[c.key][s.key]:v;
+    });
   });
   return t;
 }
+function settingsNormalize(o){
+  o=o&&typeof o==='object'?o:{};
+  let sets;
+  if(Array.isArray(o.sets)&&o.sets.length) sets=o.sets.slice(0,SET_MAX);
+  else if(o.corr&&typeof o.corr==='object'){
+    const flip=g=>{ const r={}, src=o.corr[g]||{}; for(const k in src){ const v=parseFloat(src[k]); if(!isNaN(v)) r[k]=v?-v:0; } return r; };
+    sets=[{name:'Default',ins:flip('air'),phones:flip('air'),bone:flip('bone')}];
+  } else sets=[null];
+  const show=o.show&&typeof o.show==='object'?o.show:{};
+  return {version:2,sets:sets.map(setNormalize),show:{facility:show.facility!==false,latencies:show.latencies!==false}};
+}
 function settingsLoad(){ let emb=null; try{ emb=JSON.parse(document.getElementById('settings').textContent); }catch(e){ emb=null; } return settingsNormalize(emb); }
 function settingsIsDefault(t){ return JSON.stringify(t)===JSON.stringify(settingsNormalize(null)); }
-function corrFor(stim,ear){ const v=settings.corr[ear.bone?'bone':'air'][stim.key]; return typeof v==='number'?v:0; }
+function setNow(){ return settings.sets[curSet]||settings.sets[0]; }
 function autoCalcOn(){ return $('[data-check=autoCalc]').checked; }
+// Air uses the headphones column only when Headphones is ticked and Insert earphones isn't.
+function airCol(){ return $('[data-check=tHeadphones]').checked&&!$('[data-check=tInserts]').checked?'phones':'ins'; }
 
-// eHL = nHL minus the correction. Non-numeric entries (DNT, CNT, a dash) are copied through unchanged.
+// The correction for one cell at a measured level, or null when the set leaves it blank. With the set's
+// high-threshold rule on, an air correction below zero is 5 dB smaller above 70 dB nHL, never past zero
+// (the Ontario Infant Hearing Program's rule for a final 5 dB step; it has no positive corrections to adjust).
+function corrFor(stim,ear,db){
+  const set=setNow(), v=set[ear.bone?'bone':airCol()][stim.key];
+  if(v===null||v===undefined) return null;
+  if(!ear.bone&&set.high&&db>70&&v<0) return Math.min(0,v+5);
+  return v;
+}
+// The measured level that gives this estimate: used when a click on the chart writes the measured table.
+function nhlFor(stim,ear,ehl){
+  const c0=corrFor(stim,ear,0); if(c0===null) return null;
+  const n=ehl-c0, c1=corrFor(stim,ear,n);
+  if(c1===c0) return n;
+  const n2=ehl-c1;   // the high-threshold rule applies at n: check whether it still applies one step down
+  return n2>70&&n2+c1===ehl?n2:n;
+}
+
+// eHL = nHL plus the correction. Non-numeric entries (DNT, CNT, a dash) are copied through unchanged.
 function computeEstimated(){
   STIM.forEach(s=>{ EARS.forEach(e=>{
     const src=cell('nhl',e,s), dst=cell('ehl',e,s);
@@ -489,44 +592,111 @@ function computeEstimated(){
     const raw=src.value.trim(), p=parseLevel(raw);
     if(!raw) dst.value='';
     else if(!p) dst.value=raw;
-    else dst.value=fmtLevel({...p,db:Math.round(p.db-corrFor(s,e))});
+    else { const c=corrFor(s,e,p.db); dst.value=c===null?'':fmtLevel({...p,db:Math.round(p.db+c)}); }
   }); });
 }
-function corrSummary(g){ return STIM.filter(s=>!(g==='bone'&&s.noBone)).map(s=>`${s.short} ${settings.corr[g][s.key]}`).join(' · '); }
+function fmtCorr(v){ return v===null||v===undefined?'—':v>0?'+'+v:v<0?'−'+(-v):'0'; }
+function corrSummary(g){ const set=setNow(); return STIM.filter(s=>set[g][s.key]!==undefined).map(s=>`${s.short} ${fmtCorr(set[g][s.key])}`).join(' · '); }
+function updateFoot(){
+  const set=setNow(), ac=airCol(), named=settings.sets.length>1;
+  $('#ehlFoot').textContent=autoCalcOn()
+    ? `Estimated = measured nHL plus a correction (dB)${named?`, ${set.name} set`:''}. Air, ${ac==='phones'?'headphones':'insert earphones'}: ${corrSummary(ac)}. Bone: ${corrSummary('bone')}.`
+      +(set.high?' Above 70 dB nHL, air corrections are 5 dB smaller.':'')+' M = masked.'
+    : 'Estimated thresholds entered by the examiner. M = masked.';
+}
 function updateCalcUI(){
   const on=autoCalcOn();
   $$('#tblEhl input[data-field^="ehl_"]').forEach(i=>{ i.readOnly=on; i.classList.toggle('calc',on); i.tabIndex=on?-1:0; i.title=on?'Calculated from the measured table. Untick "Auto-fill" to edit.':''; });
   if(on) computeEstimated();
-  $('#ehlFoot').textContent=on
-    ? `Estimated = measured nHL minus a correction (dB). Air: ${corrSummary('air')}. Bone: ${corrSummary('bone')}. M = masked.`
-    : 'Estimated thresholds entered by the examiner. M = masked.';
+  updateFoot();
 }
+
+// The set menus: one beside Auto-fill (shown when there's more than one set) and one in the dialog.
+function fillSetMenus(){
+  ['#corrSet','#corrSetPick'].forEach(id=>{
+    const sel=$(id); sel.innerHTML='';
+    settings.sets.forEach((s,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=s.name; sel.append(o); });
+    sel.value=String(curSet);
+  });
+  $('#corrSet').hidden=settings.sets.length<2;
+  $('#corrDel').disabled=settings.sets.length<2;
+  $('#corrAdd').disabled=settings.sets.length>=SET_MAX;
+}
+function chooseSet(i){ curSet=Math.max(0,Math.min(settings.sets.length-1,i)); fillSetMenus(); fillCorrInputs(); updateCalcUI(); refresh(); }
+$('#corrSet').addEventListener('change',e=>{ markDirty(); chooseSet(+e.target.value); });
+$('#corrSetPick').addEventListener('change',e=>{ markDirty(); chooseSet(+e.target.value); });
 
 function buildCorrTable(){
   const tb=$('#corrTable');
   STIM.forEach(s=>{
-    tb.insertAdjacentHTML('beforeend',`<tr><td>${s.label}</td><td><input type="number" step="1" data-corr="air_${s.key}"></td><td>${s.noBone?'<span class="dis">—</span>':`<input type="number" step="1" data-corr="bone_${s.key}">`}</td></tr>`);
+    let r=`<tr><td>${s.label}</td>`;
+    CORR_COLS.forEach(c=>{ r+=c.key==='bone'&&s.noBone?'<td><span class="dis">—</span></td>':`<td><input type="number" step="5" data-corr="${c.key}_${s.key}"></td>`; });
+    tb.insertAdjacentHTML('beforeend',r+'</tr>');
   });
 }
-function fillCorrInputs(){ $$('[data-corr]').forEach(i=>{ const [g,k]=i.dataset.corr.split('_'); i.value=settings.corr[g][k]; }); }
+function fillCorrInputs(){
+  const set=setNow();
+  $$('[data-corr]').forEach(i=>{ const [g,k]=i.dataset.corr.split('_'); const v=set[g][k]; i.value=v===null?'':v; });
+  $('#corrName').value=set.name; $('#corrHigh').checked=set.high;
+}
+function corrChanged(){ settingsDirty=true; markDirty(); updateCalcUI(); refresh(); }
 $('#corrTable').addEventListener('input',e=>{
   const i=e.target; if(!i.dataset.corr) return;
-  const [g,k]=i.dataset.corr.split('_'); const v=parseFloat(i.value);
-  settings.corr[g][k]=isNaN(v)?0:v; settingsDirty=true;
-  updateCalcUI(); refresh();
+  const [g,k]=i.dataset.corr.split('_'); const v=corrValue(i.value.trim()===''?null:i.value);
+  setNow()[g][k]=v===undefined?null:v; corrChanged();
+});
+$('#corrName').addEventListener('input',e=>{
+  setNow().name=e.target.value.replace(/\s+/g,' ').slice(0,60).trim()||`Set ${curSet+1}`; settingsDirty=true; markDirty();
+  const label=setNow().name; ['#corrSet','#corrSetPick'].forEach(id=>{ $(id).options[curSet].textContent=label; });
+  updateFoot();
+});
+$('#corrHigh').addEventListener('change',e=>{ setNow().high=e.target.checked; corrChanged(); });
+$('#corrAdd').addEventListener('click',()=>{
+  if(settings.sets.length>=SET_MAX) return;
+  settings.sets.push(setNormalize({...JSON.parse(JSON.stringify(setNow())),name:`Set ${settings.sets.length+1}`},settings.sets.length));
+  settingsDirty=true; markDirty(); chooseSet(settings.sets.length-1);
+  $('#corrName').select(); setStatus('Added a copy of the set. Name it and change its values.',4000);
+});
+$('#corrDel').addEventListener('click',()=>{
+  if(settings.sets.length<2||!confirm(`Remove the set "${setNow().name}"?`)) return;
+  settings.sets.splice(curSet,1); settingsDirty=true; markDirty(); chooseSet(Math.min(curSet,settings.sets.length-1));
+});
+$('#corrBSA').addEventListener('click',()=>{
+  if(!settingsIsDefault({...settings,show:settingsNormalize(null).show})&&!confirm('Replace your correction sets with the four BSA 2021 age groups?')) return;
+  settings.sets=BSA_2021.map(setNormalize); settingsDirty=true; markDirty(); chooseSet(0);
+  setStatus('Filled in the BSA 2021 sets. Pick the one for the baby\'s corrected age.',5000);
 });
 const corrDialog=$('#corrDialog');
 $('#btnCorr').addEventListener('click',e=>{
   if(corrDialog.open){ corrDialog.close(); return; }
-  fillCorrInputs();
+  fillSetMenus(); fillCorrInputs();
   const r=e.currentTarget.getBoundingClientRect();
-  corrDialog.style.top=Math.min(r.bottom+6,window.innerHeight-360)+'px';
-  corrDialog.style.left=Math.max(8,Math.min(r.left,window.innerWidth-316))+'px';
-  corrDialog.show();
+  corrDialog.style.left=Math.max(8,Math.min(r.left,window.innerWidth-436))+'px';
+  // Open under the link, but move up as far as needed to keep the whole panel in the window, never
+  // over the toolbar (which wraps to two rows in a narrow window). A taller panel scrolls.
+  const minTop=Math.round($('.toolbar').getBoundingClientRect().bottom)+6;
+  corrDialog.style.maxHeight=(window.innerHeight-minTop-8)+'px';
+  corrDialog.style.top=minTop+'px'; corrDialog.show();
+  corrDialog.style.top=Math.max(minTop,Math.min(r.bottom+6,window.innerHeight-corrDialog.offsetHeight-8))+'px';
 });
 $('#corrDone').addEventListener('click',()=>{ fillCorrInputs(); corrDialog.close(); });
-$('#corrReset').addEventListener('click',()=>{ settings=settingsNormalize(null); settingsDirty=true; fillCorrInputs(); updateCalcUI(); refresh(); setStatus('Correction factors reset to the defaults',3000); });
-$('#corrMaster').addEventListener('click',saveMaster);
+$('#corrReset').addEventListener('click',()=>{
+  if(settings.sets.length>1&&!confirm('Remove all your correction sets and go back to the one default set?')) return;
+  settings.sets=settingsNormalize(null).sets; settingsDirty=true; markDirty(); chooseSet(0);
+  setStatus('Correction factors reset to the defaults',3000);
+});
+
+// Optional fields. Hiding the latency table switches page 1 to its second layout (see the CSS).
+function applyShow(){
+  document.body.classList.toggle('hide-facility',!settings.show.facility);
+  document.body.classList.toggle('hide-latencies',!settings.show.latencies);
+  const rc=$('#rightCol'), nw=$('#notesWrap'), oto=$('#boxOto');
+  if(settings.show.latencies){ rc.prepend(nw); rc.append(oto); }
+  else { rc.prepend(oto); $('.thr').after(nw); }
+  $('#optFacility').checked=settings.show.facility; $('#optLatencies').checked=settings.show.latencies;
+}
+$('#optFacility').addEventListener('change',e=>{ settings.show.facility=e.target.checked; settingsDirty=true; applyShow(); setStatus('Save a master copy to keep this.',3000); });
+$('#optLatencies').addEventListener('change',e=>{ settings.show.latencies=e.target.checked; settingsDirty=true; applyShow(); setStatus('Save a master copy to keep this.',3000); });
 
 /* ---------------- chart geometry ---------------- */
 const FREQS=[250,500,1000,2000,4000,8000];
@@ -678,7 +848,7 @@ function updateToolUI(){
 
 /* ---------------- chart interaction ----------------
    The chart is a view of the estimated table, so a click writes a table cell. With auto-fill on the
-   estimated cells are computed, so the click writes the measured cell instead (eHL plus the correction)
+   estimated cells are computed, so the click writes the measured cell instead (eHL minus the correction)
    and the status line shows both numbers. Clicking a symbol that already matches the tool toggles masking. */
 function toChart(e){
   const r=chartEl.getBoundingClientRect();
@@ -698,6 +868,7 @@ function target(type,freq){
   if(!stim) return {err:`No ${freq} Hz row in the table`};
   const ear=EARS.find(e=>e.series===SYM[type].series);
   if(ear.bone&&stim.noBone) return {err:'Bone conduction is not tested at 8000 Hz'};
+  if(autoCalcOn()&&corrFor(stim,ear,0)===null) return {err:`This correction set has no ${ear.bone?'bone':'air'} correction for ${stim.label}`};
   return {stim,ear,nhl:cell('nhl',ear,stim),ehl:cell('ehl',ear,stim)};
 }
 function sourceCell(t){ return autoCalcOn()?t.nhl:t.ehl; }
@@ -710,7 +881,7 @@ function nearestPoint(p){
 function describe(type,s,nr){
   const t=target(type,s.freq);
   let msg=`${SYM[type].name}${nr?' (no response)':''}: ${s.freq} Hz, ${s.db} dB eHL`;
-  if(autoCalcOn()) msg+=` (measured ${s.db+corrFor(t.stim,t.ear)} nHL)`;
+  if(autoCalcOn()) msg+=` (measured ${nhlFor(t.stim,t.ear,s.db)} nHL)`;
   return msg;
 }
 function pushUndo(){
@@ -750,7 +921,7 @@ chartEl.addEventListener('pointerdown',e=>{
     const cur=parseLevel(src.value)||{db:s.db,nr:tool.nr,star:false,masked:false};
     src.value=fmtLevel({...cur,masked:!cur.masked});
   } else {
-    const db=autoCalcOn()?s.db+corrFor(t.stim,t.ear):s.db;
+    const db=autoCalcOn()?nhlFor(t.stim,t.ear,s.db):s.db;
     src.value=fmtLevel({db,nr:tool.nr,star:false,masked:tool.type.endsWith('M')});
   }
   commitCells();
@@ -832,7 +1003,7 @@ function updateAge(){
 }
 
 /* ---------------- refresh on any edit ---------------- */
-function refresh(){ if(autoCalcOn()) computeEstimated(); renderChart(); updateP2(); }
+function refresh(){ if(autoCalcOn()) computeEstimated(); updateFoot(); renderChart(); updateP2(); }
 document.addEventListener('input',e=>{ if(!e.target.matches('[data-field],[data-check]')) return; markDirty(e.target); refresh(); });
 document.addEventListener('change',e=>{
   if(!e.target.matches('[data-field],[data-check]')) return;
@@ -851,7 +1022,7 @@ function getState(){
   const fields={}, checks={};
   $$('[data-field]').forEach(el=>{ fields[el.dataset.field]=el.isContentEditable?el.innerText.replace(/\n$/,''):el.value; });
   $$('[data-check]').forEach(el=>{ checks[el.dataset.check]=el.checked; });
-  return {version:2,form:'abr',fields,checks,showBands,location:locIndex(),esign:esignState()};
+  return {version:2,form:'abr',fields,checks,showBands,location:locIndex(),corrSet:setNow().name,esign:esignState()};
 }
 function applyState(s){
   s=s||{};
@@ -859,6 +1030,8 @@ function applyState(s){
   $$('[data-field]').forEach(el=>{ const v=fields[el.dataset.field]||''; if(el.isContentEditable) el.innerText=v; else el.value=v; });
   $$('[data-check]').forEach(el=>{ el.checked=!!checks[el.dataset.check]; });
   showBands=s.showBands!==false;
+  if(typeof s.corrSet==='string'){ const i=settings.sets.findIndex(x=>x.name===s.corrSet); if(i>=0) curSet=i; }   // otherwise keep the current set
+  fillSetMenus();
   $('#chkBands').checked=showBands;
   undoStack=[];
   updateCalcUI(); updateFollowups(); refresh(); layoutSig();
@@ -875,7 +1048,7 @@ function embedJSON(html,id,obj){
   const json=JSON.stringify(obj).replace(/</g,'\\u003c');
   return html.replace(new RegExp('(<script type="application/json" id="'+id+'">)[\\s\\S]*?(<\\/script>)'),(m,a,b)=>a+json+b);
 }
-// Every file this form writes carries the letterhead and correction factors; only "Save evaluation" carries the patient.
+// Every file this form writes carries the letterhead and clinic settings; only "Save evaluation" carries the patient.
 function buildFile(state){
   let html=embedJSON(PRISTINE,'saved-state',state);
   html=embedJSON(html,'letterhead',lhIsEmpty(lh)?null:{...lh,contact:lh.locations[0]||''});
@@ -1224,7 +1397,7 @@ $('#sigImgFile').addEventListener('change',e=>{ const f=e.target.files[0]; e.tar
 
 /* ---------------- boot ---------------- */
 buildTables(); buildCorrTable(); buildPalette(); updateToolUI(); renderKey();
-lh=lhLoad(); settings=settingsLoad(); lhRender(); fillCorrInputs();
+lh=lhLoad(); settings=settingsLoad(); lhRender(); applyShow(); fillSetMenus(); fillCorrInputs();
 let saved=null;
 try{ saved=JSON.parse(document.getElementById('saved-state').textContent); }catch(e){ saved=null; }
 applyState(saved||emptyState());

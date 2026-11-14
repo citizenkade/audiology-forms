@@ -17,7 +17,8 @@ def logo(line1,line2):
 
 # ---- ABR sample ----
 lh={"logo":logo("Example Children's","Pediatric Audiology"),"contact":"Example Children's Hospital\nSpecialty Care Center, Audiology\n100 Hospital Drive, Anytown, TX 75000\nPhone (555) 555-0100 · Fax (555) 555-0101","signer1":"J. Doe, AuD, CCC-A","signer2":"jdoe@examplechildrens.org","docId":"ABR Report","bcPages":"all"}
-settings={"corr":{"air":{"click":0,"500":15,"1000":10,"2000":5,"4000":0,"8000":0},"bone":{"click":0,"500":10,"1000":5,"2000":0,"4000":0}}}
+air={"click":0,"500":-15,"1000":-10,"2000":-5,"4000":0,"8000":0}
+settings={"version":2,"sets":[{"name":"Default","high":False,"ins":air,"phones":air,"bone":{"click":0,"500":-10,"1000":-5,"2000":0,"4000":0}}],"show":{"facility":True,"latencies":True}}
 f={"patient":"Sample Patient","dob":"03/02/2026","age":"6 mo","id":"000000","date":"09/16/2026","examiner":"J. Doe, AuD","referredBy":"Dr. R. Example, Pediatrics","correctedAge":"5 mo","facility":"Example Children's, Audiology","reason":"Referred after NHS refer, bilateral","nhs":"Refer both ears, 03/03/2026, AABR",
 "stateNotes":"Fed and swaddled; slept through recording","equipment":"Two-channel evoked potential system, insert earphones, B-71 oscillator","qualityNotes":"Low noise; a few movement artifacts at 500 Hz left",
 "history":"Born at 38 weeks by uncomplicated delivery and referred bilaterally on the newborn hearing screen (AABR). No NICU stay, no family history of childhood hearing loss, no ototoxic medications. Parents report startle to loud sounds but inconsistent response to voice. One episode of otitis media, resolved. Today's visit is the diagnostic ABR following the screening refer.",
