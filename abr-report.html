@@ -80,7 +80,7 @@ table.results td input:focus{background:#f5f7ff}
 table.results td input.calc{background:#f7f7f7;color:#333}
 .foot{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.3}
 .thr{display:grid;grid-template-columns:1fr 3.45in;gap:0.15in;margin-top:0.1in;align-items:start}
-.thr .box:last-child{margin-bottom:0}
+.thr .box:last-of-type{margin-bottom:0}   /* the + Add button after the latency box is a <p>, not a div */
 #chart{width:100%;height:auto;display:block;cursor:crosshair;touch-action:none}
 #chart.erase{cursor:not-allowed}
 #key{width:100%;height:auto;display:block;margin-top:2px}
@@ -103,7 +103,11 @@ body.hide-latencies #history{min-height:1.5in}
 body.hide-latencies #notesWrap{flex:1 0 auto;display:flex;flex-direction:column}
 body.hide-latencies #notesWrap .comments-label{margin-top:0.1in}
 body.hide-latencies #testingNotes{flex:1 0 auto;margin-bottom:0;min-height:0.7in}   /* full width: more room than 0.95in in the column */
-body.hide-facility #fFacility,body.hide-latencies #boxLatencies{display:none}
+body.hide-facility #fFacility,body.hide-latencies #boxLatencies,body:not(.hide-latencies) #latAdd{display:none}
+/* + Add, as on the EHDI report */
+.addbar{margin:0;padding:2px 0}
+.addbar button.add{padding:5px 10px;border:1px dashed #9aa3bd;border-radius:6px;background:#f7f8fc;cursor:pointer;font:12px -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#1f3a8a}
+.addbar button.add:hover{background:#eef1fb;border-style:solid}
 body.hide-facility #fReason{grid-column:span 4}
 .box h2 .ctl select{font:inherit;color:#222;max-width:1.75in;border:1px solid #cfd2d8;border-radius:4px;padding:0 2px;background:#fff}
 .rec{margin-top:2px}
@@ -194,6 +198,7 @@ dialog#corrDialog{width:420px}
     <button class="sym-btn" id="btnErase" title="Click a symbol on the chart to clear its table cell">Erase</button>
     <button class="tb" id="btnUndo" title="Undo last chart change (Ctrl/Cmd+Z)">Undo</button>
     <label class="tb-check"><input type="checkbox" id="chkBands" checked> Degree labels</label>
+    <label class="tb-check" title="Shows the Facility / clinic field on page 1. Untick to leave it off; Reason for evaluation takes its space. Save a master copy to keep the choice."><input type="checkbox" id="chkFacility" checked> Facility / clinic</label>
   </div>
   <div class="sep"></div>
   <div class="tb-group">
@@ -207,7 +212,7 @@ dialog#corrDialog{width:420px}
     <button class="tb" id="btnSave" title="Downloads a copy of this form with everything filled in, so you can reopen it later">Save evaluation</button>
     <button class="tb" id="btnMaster" title="Downloads a blank copy with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
     <button class="tb" id="btnNew">Clear form</button>
-    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, a document barcode, and the optional parts of the form.">Letterhead…</button>
+    <button class="tb" id="btnLetterhead" title="Logo, office contact lines, signer name, and a document barcode.">Letterhead…</button>
   </div>
   <div class="status" id="status"></div>
 </div>
@@ -283,7 +288,7 @@ dialog#corrDialog{width:420px}
         <div class="foot" id="ehlFoot"></div>
       </div>
       <div class="box" id="boxLatencies">
-        <h2><span>Click ABR latencies (<span class="u">ms</span>)</span></h2>
+        <h2><span>Click ABR latencies (<span class="u">ms</span>)</span><span class="ctl screen-only"><button type="button" class="linkbtn" id="latRemove" title="Takes the table off the form. Otoscopy moves above the chart, Testing notes runs full width, and History gets taller.">Remove section</button></span></h2>
         <table class="results">
           <tr><th></th><th class="r">Right</th><th class="l">Left</th></tr>
           <tr><td>Level (dB nHL)</td><td class="n"><input data-field="latLevelR"></td><td class="n"><input data-field="latLevelL"></td></tr>
@@ -293,6 +298,7 @@ dialog#corrDialog{width:420px}
           <tr><td>I–V interval</td><td class="n"><input data-field="latIVR"></td><td class="n"><input data-field="latIVL"></td></tr>
         </table>
       </div>
+      <p class="addbar screen-only" id="latAdd"><button type="button" class="add" id="latAddBtn">+ Add click ABR latencies</button></p>
     </div>
     <div id="rightCol">
       <div id="notesWrap">
@@ -411,12 +417,6 @@ dialog#corrDialog{width:420px}
     <input type="text" id="lhDocId" maxlength="16" placeholder="e.g. ABR Report">
     <div class="hint">Prints as a barcode at the bottom left, for records systems that file by document type. Keep it short. Leave blank if your office doesn't use one.</div>
     <div class="inline"><label for="lhBcPages">On page</label><select id="lhBcPages"><option value="first">First</option><option value="last">Last</option><option value="all">All</option></select></div>
-  </div>
-  <div class="row">
-    <label class="t">Optional parts of the form</label>
-    <label class="chk"><input type="checkbox" id="optFacility"> Facility / clinic</label>
-    <label class="chk"><input type="checkbox" id="optLatencies"> Click ABR latencies</label>
-    <div class="hint">Untick one to leave it off. Without Facility, Reason for evaluation takes its place. Without latencies, Otoscopy moves above the chart, Testing notes runs full width, and History gets taller.</div>
   </div>
   <div class="foot">
     <button class="tb" id="lhMaster" title="Downloads a blank copy of this form with your letterhead and correction factors built in. Use it instead of this file from now on, or give it to a colleague.">Save master copy</button>
@@ -693,10 +693,13 @@ function applyShow(){
   const rc=$('#rightCol'), nw=$('#notesWrap'), oto=$('#boxOto');
   if(settings.show.latencies){ rc.prepend(nw); rc.append(oto); }
   else { rc.prepend(oto); $('.thr').after(nw); }
-  $('#optFacility').checked=settings.show.facility; $('#optLatencies').checked=settings.show.latencies;
+  $('#chkFacility').checked=settings.show.facility;
 }
-$('#optFacility').addEventListener('change',e=>{ settings.show.facility=e.target.checked; settingsDirty=true; applyShow(); setStatus('Save a master copy to keep this.',3000); });
-$('#optLatencies').addEventListener('change',e=>{ settings.show.latencies=e.target.checked; settingsDirty=true; applyShow(); setStatus('Save a master copy to keep this.',3000); });
+// Both are clinic settings, kept in the master copy like the correction sets. Neither clears what was typed.
+function setShow(k,on,msg){ settings.show[k]=on; settingsDirty=true; markDirty(); applyShow(); setStatus(msg+' Save a master copy to keep this setting.',5000); }
+$('#chkFacility').addEventListener('change',e=>setShow('facility',e.target.checked,e.target.checked?'Facility / clinic is on the form.':'Facility / clinic is off the form.'));
+$('#latRemove').addEventListener('click',()=>setShow('latencies',false,'Click latencies removed from the form. What you typed is kept if you add them back.'));
+$('#latAddBtn').addEventListener('click',()=>{ setShow('latencies',true,'Click latencies added back.'); $('#boxLatencies').scrollIntoView({behavior:'smooth',block:'center'}); });
 
 /* ---------------- chart geometry ---------------- */
 const FREQS=[250,500,1000,2000,4000,8000];
