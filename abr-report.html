@@ -155,6 +155,7 @@ dialog.lh.pop{width:300px;right:auto}
 .lh .btns{display:flex;gap:6px;flex-wrap:wrap}
 .lh .foot{border-top:1px solid #eee;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .lh .note{font-size:11px;color:#666;margin-bottom:10px}
+.lh .warn{font-size:11px;color:#7a4100;background:#fff6e5;border:1px solid #f0c987;border-radius:6px;padding:6px 8px;margin:6px 0}
 .lh .inline{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#666}
 .lh .inline select{width:auto}
 table.corr{border-collapse:collapse;width:100%;margin-bottom:10px}
@@ -436,6 +437,7 @@ dialog#corrDialog{width:420px}
   <table class="corr" id="corrTable">
     <tr><th>Stimulus</th><th>Air, inserts</th><th>Air, headphones</th><th>Bone</th></tr>
   </table>
+  <div class="warn" id="corrWarn" role="status" hidden></div>
   <div class="hint">Air uses the headphones column when Test conditions has Headphones ticked and not Insert earphones.</div>
   <div class="row" style="margin-top:10px">
     <label class="chk"><input type="checkbox" id="corrHigh"> Above 70 dB nHL, make air corrections 5 dB smaller</label>
@@ -638,12 +640,23 @@ function fillCorrInputs(){
   const set=setNow();
   $$('[data-corr]').forEach(i=>{ const [g,k]=i.dataset.corr.split('_'); const v=set[g][k]; i.value=v===null?'':v; });
   $('#corrName').value=set.name; $('#corrHigh').checked=set.high;
+  corrWarn();
+}
+// Before v1.6.0 corrections were typed as amounts to subtract (15). Typed that way now, they raise the
+// estimate instead (+15), 30 dB off. Published infant tables (BSA 2021, Ontario IHP) have no positive air
+// correction at 500 or 1000 Hz, so a positive value there is almost certainly a sign slip. Warn; don't block.
+function corrWarn(){
+  const set=setNow(), hits=[];
+  [['ins','inserts'],['phones','headphones']].forEach(([g,lab])=>['500','1000'].forEach(k=>{ const v=set[g][k]; if(typeof v==='number'&&v>0) hits.push(`${k} Hz ${lab} ${fmtCorr(v)}`); }));
+  const w=$('#corrWarn');
+  w.hidden=!hits.length;
+  w.textContent=hits.length?`Check the sign: ${hits.join(', ')}. A positive correction raises the estimate above the measured level. Air corrections at 500 and 1000 Hz are almost always negative, such as −15.`:'';
 }
 function corrChanged(){ settingsDirty=true; markDirty(); updateCalcUI(); refresh(); }
 $('#corrTable').addEventListener('input',e=>{
   const i=e.target; if(!i.dataset.corr) return;
   const [g,k]=i.dataset.corr.split('_'); const v=corrValue(i.value.trim()===''?null:i.value);
-  setNow()[g][k]=v===undefined?null:v; corrChanged();
+  setNow()[g][k]=v===undefined?null:v; corrChanged(); corrWarn();
 });
 $('#corrName').addEventListener('input',e=>{
   setNow().name=e.target.value.replace(/\s+/g,' ').slice(0,60).trim()||`Set ${curSet+1}`; settingsDirty=true; markDirty();
